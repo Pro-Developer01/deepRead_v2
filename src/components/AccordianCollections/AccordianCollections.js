@@ -20,7 +20,7 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import CloseIcon from "@mui/icons-material/Close";
 import "../../pages/MyLibrary/MyLibrary.css";
-import { Checkbox } from 'antd';
+import { Checkbox } from "antd";
 
 import {
   updateBook,
@@ -417,7 +417,10 @@ const LinkedHighlights = ({
   const [afterHighlights, setAfterHighlights] = useState(null);
   const [linkedHighlights, setLinkedHighlights] = useState(null);
   const [newHighlightIdList, setNewHighlightIdList] = useState([]);
-  const [range, setRange] = useState(3);
+  const [beforeRange, setBeforeRange] = useState(3);
+  const [afterRange, setAfterRange] = useState(3);
+  const [isEditModeON, setIsEditModeON] = useState(false);
+  const [containerHeight, setContainerHeight] = useState(null);
   const fullAdjoiningHighlighstData = useRef(null);
 
   const filterHiglights = (adjoiningHighlightData, linkedHighlightsData) => {
@@ -473,7 +476,7 @@ const LinkedHighlights = ({
     );
     setBeforeHighlights(
       tempBeforeHighlights?.slice(
-        tempBeforeHighlights.length - range,
+        tempBeforeHighlights.length - beforeRange,
         tempBeforeHighlights.length
       )
     );
@@ -481,43 +484,113 @@ const LinkedHighlights = ({
       fullAdjoiningHighlighstData?.current?.after,
       linkedHighlightsData
     );
-    setAfterHighlights(tempAfterHighlights?.slice(0, range));
+    setAfterHighlights(tempAfterHighlights?.slice(0, afterRange));
+  };
+  const filterAdjoiningHighlightsBefore = (linkedHighlightsData) => {
+    const tempBeforeHighlights = filterHiglights(
+      fullAdjoiningHighlighstData?.current?.before,
+      linkedHighlightsData
+    );
+    setBeforeHighlights(
+      tempBeforeHighlights?.slice(
+        tempBeforeHighlights.length - beforeRange,
+        tempBeforeHighlights.length
+      )
+    );
+
   };
 
-  useEffect(() => {
-    if (linkedHighlights) {
-      filterAdjoiningHighlights(linkedHighlights);
-    }
-  }, [linkedHighlights, range]);
+  const filterAdjoiningHighlightsAfter = (linkedHighlightsData) => {
 
-  // const updateHighlightData=()=>{
-  //   const highlightData = getHighlightData();
-  //   const tempHighlights = [...linkedHighlights, highlightData];
-  //   tempHighlights.sort((first, second) => first.start - second.start);
-  //   setLinkedHighlights(tempHighlights);
-  //   updateLinkedHighlights(ideaCardId, { description: tempHighlights });
-  // }
+    const tempAfterHighlights = filterHiglights(
+      fullAdjoiningHighlighstData?.current?.after,
+      linkedHighlightsData
+    );
+    setAfterHighlights(tempAfterHighlights?.slice(0, afterRange));
+  };
 
   const handleChange = (e, value) => {
     if (e.target.checked) {
       setNewHighlightIdList([...newHighlightIdList, value]);
     }
     if (!e.target.checked) {
-      const updatedList = newHighlightIdList?.filter((item) => item !== value)
+      const updatedList = newHighlightIdList?.filter((item) => item !== value);
       setNewHighlightIdList(updatedList);
     }
   };
+
   const handleScroll = (e) => {
+    const bottom = Math.floor((e.target.scrollHeight - parseInt(e.target.scrollTop)) / 10) * 10 <= e.target.clientHeight;
     if (e.target.scrollTop === 0) {
-      setRange(range + 3);
+      setBeforeRange(beforeRange + 3);
+    }
+    if (bottom) {
+      setAfterRange(afterRange + 3);
     }
   };
+  const updateHighlightData = (highlightDataArray) => {
+    console.log('linkedHighlights inside', linkedHighlights)
+    console.log('highlightDataArray inside', highlightDataArray)
+    if (linkedHighlights && highlightDataArray.length) {
+      const tempHighlights = [...linkedHighlights, ...highlightDataArray];
+      tempHighlights.sort((first, second) => first.start - second.start);
+      setLinkedHighlights(tempHighlights);
+      updateLinkedHighlights(ideaCardId, { description: tempHighlights });
+    }
+  }
+
+  useEffect(() => {
+    if (linkedHighlights) {
+      filterAdjoiningHighlightsBefore(linkedHighlights);
+    }
+  }, [linkedHighlights, beforeRange]);
+  useEffect(() => {
+    console.log('afterRange', afterRange)
+    if (linkedHighlights) {
+      filterAdjoiningHighlightsAfter(linkedHighlights);
+    }
+  }, [linkedHighlights, afterRange]);
+  useEffect(() => {
+    if (!isEditModeON) {
+      if (newHighlightIdList?.length)
+        setAfterRange(3)
+      setBeforeRange(3)
+      setContainerHeight(null)
+      {
+        const highlightDataArray = []
+        newHighlightIdList.forEach(item => { highlightDataArray.push(getHighlightData(item)) })
+        setNewHighlightIdList([])
+        updateHighlightData(highlightDataArray);
+      }
+    }
+    if (isEditModeON) {
+      const element = document.getElementById('linkedHighlight-conatiner-blur-id')
+      setContainerHeight(element.offsetHeight)
+      console.log('  element.', element.style.height, element.offsetHeight)
+    }
+    console.log('afterHighlights ', afterHighlights, beforeHighlights)
+
+  }, [isEditModeON]);
+
+
+
 
   return (
-    <div className="linkedHighlight-conatiner overflow-auto" style={{ height: '330px' }} onScroll={handleScroll}>
-      <AccordionDetails className="flex flex-col gap-4" sx={accordianDetailStyling}>
-        {beforeHighlights?.length &&
-
+    <div
+      className={`${isEditModeON ? "linkedHighlight-conatiner-blur" : ""} overflow-auto`}
+      style={{ height: containerHeight ? `${containerHeight - 5}px` : "auto" }}
+      onScroll={handleScroll}
+      id={"linkedHighlight-conatiner-blur-id"}
+    >
+      <span className="material-symbols-outlined editSquareHighlight cursor-pointer" style={{ color: isEditModeON ? "var(--primaryColor)" : "var(--fontColor)" }} onClick={() => setIsEditModeON(!isEditModeON)}>
+        edit_square
+      </span>
+      <AccordionDetails
+        className="flex flex-col gap-4"
+        sx={accordianDetailStyling}
+      >
+        {
+          beforeHighlights?.length && isEditModeON &&
           beforeHighlights?.map((item, index) => {
             return (
               <div key={item._id} value={item._id}>
@@ -557,15 +630,16 @@ const LinkedHighlights = ({
           );
         })}
 
-        {afterHighlights?.length && beforeHighlights?.map((item, index) => {
-          return (
-            <div key={item._id} value={item._id}>
-              <Checkbox onChange={(e) => handleChange(e, item._id)}>
-                {item.context}
-              </Checkbox>
-            </div>
-          );
-        })}
+        {afterHighlights?.length && isEditModeON &&
+          beforeHighlights?.map((item, index) => {
+            return (
+              <div key={item._id} value={item._id}>
+                <Checkbox onChange={(e) => handleChange(e, item._id)}>
+                  {item.context}
+                </Checkbox>
+              </div>
+            );
+          })}
       </AccordionDetails>
 
       <style>{`
@@ -576,11 +650,11 @@ const LinkedHighlights = ({
     color: var(--fontColor);
   }
 
-  .linkedHighlight-conatiner::before
+  .linkedHighlight-conatiner-blur::before
   {
     content: "";
     position: absolute;
-    top: 18px;
+    top: 60px;
     left: 0;
     width: 100%;
     height: 50px;
@@ -588,6 +662,24 @@ const LinkedHighlights = ({
     pointer-events: none;
     background: rgb(255,255,255);
     background: linear-gradient(0deg, rgba(255,255,255,0.3835221832873774) 0%, rgba(255,255,255,1) 100%);
+  }
+  .linkedHighlight-conatiner-blur::after
+  {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    /* background-image: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) ); */
+    pointer-events: none;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,0.3835221832873774) 0%, rgba(255,255,255,1) 100%);
+  }
+  .editSquareHighlight{
+    position: absolute;
+    top: 18px;
+    left: -37px;
   }
         `}</style>
     </div>
