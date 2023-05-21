@@ -1,0 +1,50 @@
+.NewIdeaParent {
+  position: absolute;
+  top: 78vh;
+  left: 87vw;
+  /* top: 496px; */
+  /* left: 850px; */
+  height: fit-content;
+  z-index: 9999;
+}
+
+.NewIdeaPosition {
+  position: relative;
+  /* top: 88vh;
+  left: 93vw; */
+}
+
+.NewIdeaButton {
+  padding-top: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background: var(--NavigationBackgroundColor);
+  width: fit-content;
+  border: 1px solid var(--fontColor);
+  border-radius: 33px;
+  cursor: pointer;
+  margin: 46px 67px;
+}
+
+.NewIdeaButton:hover {
+  background: var(--HoverOver);
+  /* --weight:900; */
+}
+
+.NewIdeaButton span {
+  font-size: 35px;
+  color: var(--fontColor);
+  --weight: 900;
+}
+
+.IdeaOptions {
+  /* position: absolute; */
+  /* right: -4px; */
+  /* border-radius: 52px; */
+  background: transparent;
+}
+
+.buttons-container {
+  position: relative;
+  z-index: 9999;
+}

@@ -1,0 +1,1069 @@
+{
+	"info": {
+		"_postman_id": "3e63f331-9360-414a-97dc-2c7b18e2b2ed",
+		"name": "DeepRead 21.03.23",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15369884"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "_id",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "email",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/user/index?_id={{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"index"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "{{user_id}}",
+									"description": "not filtering the user_id (_id)"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This endpoint is used to return all users or by filter."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "content",
+			"item": [
+				{
+					"name": "content",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/content/index?book_id={{book_id}}&user_id={{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"content",
+								"index"
+							],
+							"query": [
+								{
+									"key": "book_id",
+									"value": "{{book_id}}"
+								},
+								{
+									"key": "title",
+									"value": "semi",
+									"disabled": true
+								},
+								{
+									"key": "asin",
+									"value": "B0084BZS9K",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pyle",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "{{user_id}}"
+								}
+							]
+						},
+						"description": "This endpoint is used to get book chapters."
+					},
+					"response": []
+				},
+				{
+					"name": "content-and-highlights",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/content/highlights?user_id={{user_id}}&book_id={{book_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"content",
+								"highlights"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "{{user_id}}"
+								},
+								{
+									"key": "book_id",
+									"value": "{{book_id}}"
+								},
+								{
+									"key": "asin",
+									"value": "B01MREJNRY",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Frankhouser",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "anch",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This request is used to get all chapters with highlights inside them."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "highlights",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/highlight/index?title=species&user_id={{user_id}}&book_id={{book_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"highlight",
+								"index"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "species"
+								},
+								{
+									"key": "user_id",
+									"value": "{{user_id}}"
+								},
+								{
+									"key": "asin",
+									"value": "B0084BZS9K",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pyle",
+									"disabled": true
+								},
+								{
+									"key": "book_id",
+									"value": "{{book_id}}"
+								}
+							]
+						},
+						"description": "This endpoint is used to get all highlights."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ideas",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/ideas/index?book_id={{book_id}}&user_id={{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ideas",
+								"index"
+							],
+							"query": [
+								{
+									"key": "book_id",
+									"value": "{{book_id}}"
+								},
+								{
+									"key": "user_id",
+									"value": "{{user_id}}"
+								},
+								{
+									"key": "title",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "label",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "_id",
+									"value": "62ff8bc2e89dc0e4d6301523",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Return all idea cards."
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\":\"630d2b9510cf9a1ca419ae5b\",\n    \"label_id\":\"630e53a89935150cf9f3c9e7\",\n    \"highlight_id\": \"630d2b8d10cf9a1ca419ae23\",\n    \"title\":\"test\",\n    \"own_thoughts\":[],\n    \"picture_link\":\"\",\n    \"rating\":0,\n    \"tags\":[],\n    \"level\":0,\n    \"start\":578072,\n    \"end\":578146\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/ideas/store",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ideas",
+								"store"
+							]
+						},
+						"description": "Store a idea card."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to_delete\": [\"62f28ac87743134ec4a48664\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/ideas/delete",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ideas",
+								"delete"
+							]
+						},
+						"description": "Delete a idea card."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"label_id\":\"63024f870a420c17bdd5c08f\",\n    \"title\":\"the structure, for instance, of the woodpecker, with its feet, tail, beak, and tongue, so admirably adapted to catch insects under the bark of\\nassumption\",\n    \"own_thoughts\":[\"My Own thoughts\"],\n    \"picture_link\":\"test\",\n    \"rating\":0,\n    \"tags\":[\"#test\"],\n    \"level\":0,\n    \"start\":13367,\n    \"end\":14284\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/ideas/update?_id=630251314b856435a8867ded",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ideas",
+								"update"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "630251314b856435a8867ded"
+								}
+							]
+						},
+						"description": "Update idea card."
+					},
+					"response": []
+				},
+				{
+					"name": "update_label_type",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"label_id\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/book/update_label_type?_id=637e9e36a357a91bc7a75e73",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"update_label_type"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "637e9e36a357a91bc7a75e73"
+								}
+							]
+						},
+						"description": "This method will update one idea card label type"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ideaDescription",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/idea-description/index",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"idea-description",
+								"index"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "List idea descriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"highlight_id\": \"6302409d0a420c17bdd5c039\",\n    \"highlight_modified\": {\n        \"action\": null,\n        \"asin\": \"B008478VE8\",\n        \"context\": \"detail all the facts, copy of original highlight modified\",\n        \"deviceType\": null,\n        \"dsn\": \"A2CTZ977SKFQZY00A37J4F9SSS8T5X\",\n        \"end\": 11550,\n        \"guid\": \"CR!ZPXS3J572S0219SR1HCM4DZM5G7D\",\n        \"highlightColor\": \"yellow\",\n        \"isSample\": null,\n        \"modifiedTimestamp\": 1657632736000,\n        \"note\": \"\",\n        \"position\": 11531,\n        \"positionType\": \"Mobi7\",\n        \"start\": 11531,\n        \"type\": \"kindle.highlight\"\n    },\n    \"note_modified\": \"note modified\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/idea-description/store?idea_id=630365d941470e190e4f8960",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"idea-description",
+								"store"
+							],
+							"query": [
+								{
+									"key": "idea_id",
+									"value": "630365d941470e190e4f8960"
+								}
+							]
+						},
+						"description": "Store new idea description."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"highlight_modified\": {\n        \"book_id\": \"6302409c0a420c17bdd5c034\",\n        \"action\": null,\n        \"asin\": \"B008478VE8\",\n        \"context\": \"INTRODUCTION.\",\n        \"deviceType\": null,\n        \"dsn\": \"A2CTZ977SKFQZY00A37J4F9SSS8T5X\",\n        \"end\": 9111,\n        \"guid\": \"CR!ZPXS3J572S0219SR1HCM4DZM5G7D\",\n        \"highlightColor\": \"orange\",\n        \"isSample\": null,\n        \"modifiedTimestamp\": 1661092136000,\n        \"note\": \"Rafael fraguinha\",\n        \"position\": 9100,\n        \"positionType\": \"Mobi7\",\n        \"start\": 9100,\n        \"type\": \"kindle.highlight\"\n    },\n    \"note_modified\": \"note modifiedd2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/idea-description/update?_id=6302d46ae2e0242782ec5398",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"idea-description",
+								"update"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "6302d46ae2e0242782ec5398"
+								}
+							]
+						},
+						"description": "Update idea description."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to_delete\": [\"6302d46ae2e0242782ec5398\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/idea-description/delete",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"idea-description",
+								"delete"
+							]
+						},
+						"description": "Delete a idea description."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IdeaLabel",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/idea-label/index",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"idea-label",
+								"index"
+							]
+						},
+						"description": "Idea card type list."
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "label ",
+									"value": "KEYWORD",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/luizfmd/Área de Trabalho/projetos/deepread/client/static/svg/new_icons/Keywords.svg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/idea-label/store",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"idea-label",
+								"store"
+							]
+						},
+						"description": "Store a new idea card type."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "library",
+			"item": [
+				{
+					"name": "library",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/library/fetch?book_id={{book_id}}&user_id={{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"library",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "the",
+									"disabled": true
+								},
+								{
+									"key": "asin",
+									"value": "B00EJRPZEQ",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Fitzgera",
+									"disabled": true
+								},
+								{
+									"key": "book_id",
+									"value": "{{book_id}}"
+								},
+								{
+									"key": "user_id",
+									"value": "{{user_id}}"
+								}
+							]
+						},
+						"description": "In this endpoint you can get all user books."
+					},
+					"response": []
+				},
+				{
+					"name": "update library element (book)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 3,\r\n    \"tags\": [\"new tag\"],\r\n    \"recomendation\": \"none other than\",\r\n    \"my_notes\": [\"a book you should read\", \"no clue honestly\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/library/update?book_id={{book_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"library",
+								"update"
+							],
+							"query": [
+								{
+									"key": "book_id",
+									"value": "{{book_id}}"
+								}
+							]
+						},
+						"description": "In this endpoint you can get all user books."
+					},
+					"response": []
+				},
+				{
+					"name": "simple update (not full highlights)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"device_token\": \"xxxx\", \"cookies\": \"xxxx\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/library/simple-axios-update?user_id={{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"library",
+								"simple-axios-update"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "{{user_id}}"
+								}
+							]
+						},
+						"description": "In this endpoint you can get all user books."
+					},
+					"response": []
+				},
+				{
+					"name": "library-and-metadata",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/library/metadata?title=&asin=&author=&book_id={{book_id}}&user_id={{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"library",
+								"metadata"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": ""
+								},
+								{
+									"key": "asin",
+									"value": ""
+								},
+								{
+									"key": "author",
+									"value": ""
+								},
+								{
+									"key": "book_id",
+									"value": "{{book_id}}"
+								},
+								{
+									"key": "user_id",
+									"value": "{{user_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": {{email}},\n    \"password\": {{password}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "demo-account-login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"user_id\", jsonData.user_id);\r",
+							"pm.collectionVariables.set(\"authorization\", jsonData.authorization);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/auth/demo-account",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"demo-account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "otp-login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"\",\n    \"password\": \"\",\n    \"otp_code\": \"303124\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/login-otp",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login-otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "captcha-login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"\",\n    \"password\": \"\",\n    \"captcha\": \"x6rzxf\",\n    \"wsEndPoint\": \"ws://127.0.0.1:46385/devtools/browser/e35f981c-19bf-42bc-8fca-7f934844e11b\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/login-captcha",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login-captcha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction-approval",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"\",\n    \"password\": \"\",\n    \"wsEndPoint\": \"ws://127.0.0.1:41607/devtools/browser/565b0be7-0e38-4277-8c37-b577965ecb81\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/login-transaction-approval",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login-transaction-approval"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host ",
+			"value": "https://app.deepread.com"
+		},
+		{
+			"key": "port",
+			"value": "TBD",
+			"type": "string"
+		},
+		{
+			"key": "user_id",
+			"value": "TBD",
+			"type": "string"
+		},
+		{
+			"key": "authorization",
+			"value": "TBD",
+			"type": "string"
+		},
+		{
+			"key": "book_id",
+			"value": "TBD",
+			"type": "string"
+		}
+	]
+}

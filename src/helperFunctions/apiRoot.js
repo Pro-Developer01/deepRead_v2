@@ -1,0 +1,1 @@
+export const apiRoot = { endpoint: 'https://app.deepread.com'} //'https://backend.deepread.com

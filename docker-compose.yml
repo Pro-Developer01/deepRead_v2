@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  react-deepread:
+    container_name: react_deepread
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    volumes:
+      - .:/home/deepread/deepread-react
+    ports:
+      - "4000:3000" 
+
+networks:
+  localhost:
+    driver: bridge

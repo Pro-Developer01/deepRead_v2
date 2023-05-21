@@ -1,0 +1,84 @@
+.feedParentContainer {
+  height: 100vh;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.feedBoxLayout {
+  width: 48%;
+}
+.libraryLists {
+  width: 100%;
+  display: flex;
+  background: transparent;
+  justify-content: space-between;
+  /* gap: 13px; */
+  padding: 0 0.7rem;
+}
+.fetchStatusIconContainer {
+  align-self: end;
+}
+.libraryListsContainer {
+  margin: 11px 0px;
+  position: relative;
+  margin-top: 0;
+  /* border: 1px solid grey;
+  border-radius: 9px;
+  padding: 0px 3px; */
+}
+.libraryListsImg {
+  width: 123px;
+  height: 190px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+.dots {
+  display: inline-block;
+}
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.reactionButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+  padding: 0 0.7rem;
+  padding-left: 3.4rem;
+}
+.otherAccordians {
+  margin-left: 3.6rem;
+  margin-top: 0.6rem;
+  margin-right: 0.5rem;
+}
+.fetchStatusIconContainer {
+  padding-top: 6px;
+}
+
+/* //IdeacardStyling */
+
+.myNotesInput::placeholder {
+  font-size: 21px;
+}
+.ideacard-Title {
+  background: white;
+  z-index: 11;
+  padding-top: 0.5rem;
+  border-radius: 12px;
+}
+.ideacardParentContainer {
+  border: 1px solid var(--borderColors);
+  padding: 0px 0px 0.5rem;
+  border-radius: 12px;
+  background: white;
+  margin: 0px 0px 4.1rem 0.7rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}

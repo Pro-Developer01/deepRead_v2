@@ -1,0 +1,506 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": [
+        {
+            "_id": "643d1fa55e27220034ee32df",
+            "user_id": "643d1fa45e27220034edd156",
+            "book_id": "643d1fa45e27220034edd15d",
+            "data": [
+                {
+                    "label": "Griechische Mythologie: Die schönsten Sagen des klassischen Altertums",
+                    "tocPositionId": 3,
+                    "nextPosition": 150,
+                    "highlights": []
+                },
+                {
+                    "label": "Inhaltsverzeichnis",
+                    "tocPositionId": 150,
+                    "nextPosition": 224,
+                    "highlights": []
+                },
+                {
+                    "label": "Sagen des klassischen Altertums",
+                    "tocPositionId": 224,
+                    "entries": [
+                        {
+                            "label": "Erster Teil",
+                            "tocPositionId": 797,
+                            "entries": [
+                                {
+                                    "label": "Erstes Buch",
+                                    "tocPositionId": 826,
+                                    "entries": [
+                                        {
+                                            "label": "Prometheus",
+                                            "tocPositionId": 959,
+                                            "nextPosition": 12239,
+                                            "highlights": [
+                                                {
+                                                    "_id": "643d1fa55e27220034edd736",
+                                                    "user_id": "643d1fa45e27220034edd156",
+                                                    "book_id": "643d1fa45e27220034edd15d",
+                                                    "action": null,
+                                                    "asin": "B07D2BRJRT",
+                                                    "context": "Prometheus\n                ",
+                                                    "deviceType": null,
+                                                    "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                                    "end": 968,
+                                                    "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                                    "highlightColor": null,
+                                                    "isSample": null,
+                                                    "modifiedTimestamp": 1594024240000,
+                                                    "note": "",
+                                                    "position": 959,
+                                                    "positionType": "Mobi7",
+                                                    "start": 959,
+                                                    "type": "kindle.highlight",
+                                                    "created_at": "20220802190401",
+                                                    "updated_at": "20220802190401",
+                                                    "deleted_at": null,
+                                                    "idea_cards": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Die Menschenalter",
+                                            "tocPositionId": 12239,
+                                            "nextPosition": 17968,
+                                            "highlights": [
+                                                {
+                                                    "_id": "643d1fa55e27220034edd4f4",
+                                                    "user_id": "643d1fa45e27220034edd156",
+                                                    "book_id": "643d1fa45e27220034edd15d",
+                                                    "action": null,
+                                                    "asin": "B07D2BRJRT",
+                                                    "context": "Die Menschenalter",
+                                                    "deviceType": null,
+                                                    "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                                    "end": 12255,
+                                                    "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                                    "highlightColor": null,
+                                                    "isSample": null,
+                                                    "modifiedTimestamp": 1594024263000,
+                                                    "note": null,
+                                                    "position": 12239,
+                                                    "positionType": "Mobi7",
+                                                    "start": 12239,
+                                                    "type": "kindle.highlight",
+                                                    "created_at": "20220802190401",
+                                                    "updated_at": "20220802190401",
+                                                    "deleted_at": null,
+                                                    "idea_cards": []
+                                                },
+                                                {
+                                                    "_id": "643d1fa55e27220034edd8bc",
+                                                    "user_id": "643d1fa45e27220034edd156",
+                                                    "book_id": "643d1fa45e27220034edd15d",
+                                                    "action": null,
+                                                    "asin": "B07D2BRJRT",
+                                                    "context": "Die ersten Menschen, welche die Götter schufen, waren ein goldenes Geschlecht. Diese lebten, solange Kronos (Saturnus) dem Himmel vorstand, sorgenlos und den Göttern…\n                Some highlights have been hidden or truncated due to export limits.",
+                                                    "deviceType": null,
+                                                    "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                                    "end": 12561,
+                                                    "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                                    "highlightColor": null,
+                                                    "isSample": null,
+                                                    "modifiedTimestamp": 1594024343000,
+                                                    "note": "",
+                                                    "position": 12349,
+                                                    "positionType": "Mobi7",
+                                                    "start": 12349,
+                                                    "type": "kindle.highlight",
+                                                    "created_at": "20220802190401",
+                                                    "updated_at": "20220802190401",
+                                                    "deleted_at": null,
+                                                    "idea_cards": []
+                                                }
+                                            ]
+                                        }
+                                        
+                                        
+                                    ],
+                                    "nextPosition": 959,
+                                    "highlights": [
+                                        {
+                                            "_id": "643d1fa55e27220034edd370",
+                                            "user_id": "643d1fa45e27220034edd156",
+                                            "book_id": "643d1fa45e27220034edd15d",
+                                            "action": null,
+                                            "asin": "B07D2BRJRT",
+                                            "context": "Erstes Buch\n                ",
+                                            "deviceType": null,
+                                            "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                            "end": 836,
+                                            "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                            "highlightColor": null,
+                                            "isSample": null,
+                                            "modifiedTimestamp": 1594024226000,
+                                            "note": ".h2",
+                                            "position": 826,
+                                            "positionType": "Mobi7",
+                                            "start": 826,
+                                            "type": "kindle.highlight",
+                                            "created_at": "20220802190401",
+                                            "updated_at": "20220802190401",
+                                            "deleted_at": null,
+                                            "idea_cards": []
+                                        },
+                                        {
+                                            "_id": "643d1fa55e27220034edf880",
+                                            "user_id": "643d1fa45e27220034edd156",
+                                            "book_id": "643d1fa45e27220034edd15d",
+                                            "action": null,
+                                            "asin": "B07D2BRJRT",
+                                            "context": "Erstes Buch\n                ",
+                                            "deviceType": null,
+                                            "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                            "end": 836,
+                                            "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                            "highlightColor": null,
+                                            "isSample": null,
+                                            "modifiedTimestamp": 1594024226000,
+                                            "note": ".h2",
+                                            "position": 826,
+                                            "positionType": "Mobi7",
+                                            "start": 826,
+                                            "type": "kindle.highlight",
+                                            "created_at": "20220802190401",
+                                            "updated_at": "20220802190401",
+                                            "deleted_at": null,
+                                            "idea_cards": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Zweites Buch Die Argonautensage",
+                                    "tocPositionId": 133963,
+                                    "entries": [
+                                        {
+                                            "label": "Iason und Pelias",
+                                            "tocPositionId": 134545,
+                                            "nextPosition": 138349,
+                                            "highlights": [
+                                                {
+                                                    "_id": "643d1fa55e27220034edda5e",
+                                                    "user_id": "643d1fa45e27220034edd156",
+                                                    "book_id": "643d1fa45e27220034edd15d",
+                                                    "action": null,
+                                                    "asin": "B07D2BRJRT",
+                                                    "context": "Iason und Pelias\n                ",
+                                                    "deviceType": null,
+                                                    "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                                    "end": 134560,
+                                                    "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                                    "highlightColor": null,
+                                                    "isSample": null,
+                                                    "modifiedTimestamp": 1594454444000,
+                                                    "note": ".h3",
+                                                    "position": 134545,
+                                                    "positionType": "Mobi7",
+                                                    "start": 134545,
+                                                    "type": "kindle.highlight",
+                                                    "created_at": "20220802190401",
+                                                    "updated_at": "20220802190401",
+                                                    "deleted_at": null,
+                                                    "idea_cards": []
+                                                },
+                                                {
+                                                    "_id": "643d1fa55e27220034edfa38",
+                                                    "user_id": "643d1fa45e27220034edd156",
+                                                    "book_id": "643d1fa45e27220034edd15d",
+                                                    "action": null,
+                                                    "asin": "B07D2BRJRT",
+                                                    "context": "Iason und Pelias\n                ",
+                                                    "deviceType": null,
+                                                    "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                                    "end": 134560,
+                                                    "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                                    "highlightColor": null,
+                                                    "isSample": null,
+                                                    "modifiedTimestamp": 1594454444000,
+                                                    "note": ".h3",
+                                                    "position": 134545,
+                                                    "positionType": "Mobi7",
+                                                    "start": 134545,
+                                                    "type": "kindle.highlight",
+                                                    "created_at": "20220802190401",
+                                                    "updated_at": "20220802190401",
+                                                    "deleted_at": null,
+                                                    "idea_cards": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Anlaß und Beginn des Argonautenzuges",
+                                            "tocPositionId": 138349,
+                                            "nextPosition": 142421,
+                                            "highlights":[
+                                                {
+                                                    "_id": "643d1fa55e27220034eddd9e",
+                                                    "user_id": "643d1fa45e27220034edd156",
+                                                    "book_id": "643d1fa45e27220034edd15d",
+                                                    "action": null,
+                                                    "asin": "B07D2BRJRT",
+                                                    "context": "Anlaß und Beginn des Argonautenzuges\n                ",
+                                                    "deviceType": null,
+                                                    "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                                    "end": 138384,
+                                                    "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                                    "highlightColor": null,
+                                                    "isSample": null,
+                                                    "modifiedTimestamp": 1594473984000,
+                                                    "note": ".h3",
+                                                    "position": 138349,
+                                                    "positionType": "Mobi7",
+                                                    "start": 138349,
+                                                    "type": "kindle.highlight",
+                                                    "created_at": "20220802190401",
+                                                    "updated_at": "20220802190401",
+                                                    "deleted_at": null,
+                                                    "idea_cards": []
+                                                },
+                                                {
+                                                    "_id": "643d1fa55e27220034edfa4e",
+                                                    "user_id": "643d1fa45e27220034edd156",
+                                                    "book_id": "643d1fa45e27220034edd15d",
+                                                    "action": null,
+                                                    "asin": "B07D2BRJRT",
+                                                    "context": "Anlaß und Beginn des Argonautenzuges\n                ",
+                                                    "deviceType": null,
+                                                    "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                                    "end": 138384,
+                                                    "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                                    "highlightColor": null,
+                                                    "isSample": null,
+                                                    "modifiedTimestamp": 1594473984000,
+                                                    "note": ".h3",
+                                                    "position": 138349,
+                                                    "positionType": "Mobi7",
+                                                    "start": 138349,
+                                                    "type": "kindle.highlight",
+                                                    "created_at": "20220802190401",
+                                                    "updated_at": "20220802190401",
+                                                    "deleted_at": null,
+                                                    "idea_cards": []
+                                                },
+                                                {
+                                                    "_id": "643d1fa55e27220034ede15e",
+                                                    "user_id": "643d1fa45e27220034edd156",
+                                                    "book_id": "643d1fa45e27220034edd15d",
+                                                    "action": null,
+                                                    "asin": "B07D2BRJRT",
+                                                    "context": "Phrixos, ein Sohn des böotischen Königs Athamas, hatte viel von der Nebengattin seines Vaters, seiner bösen Stiefmutter Ino, zu dulden.\n                ",
+                                                    "deviceType": null,
+                                                    "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                                    "end": 138589,
+                                                    "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                                    "highlightColor": null,
+                                                    "isSample": null,
+                                                    "modifiedTimestamp": 1594474242000,
+                                                    "note": "",
+                                                    "position": 138455,
+                                                    "positionType": "Mobi7",
+                                                    "start": 138455,
+                                                    "type": "kindle.highlight",
+                                                    "created_at": "20220802190401",
+                                                    "updated_at": "20220802190401",
+                                                    "deleted_at": null,
+                                                    "idea_cards": []
+                                                }
+                                            ]
+                                        }
+                                             
+                                    ],
+                                    "nextPosition": 134545,
+                                    "highlights": [
+                                        {
+                                            "_id": "643d1fa55e27220034edd688",
+                                            "user_id": "643d1fa45e27220034edd156",
+                                            "book_id": "643d1fa45e27220034edd15d",
+                                            "action": null,
+                                            "asin": "B07D2BRJRT",
+                                            "context": "Zweites Buch Die Argonautensage\n                ",
+                                            "deviceType": null,
+                                            "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                            "end": 133993,
+                                            "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                            "highlightColor": null,
+                                            "isSample": null,
+                                            "modifiedTimestamp": 1594454425000,
+                                            "note": ".h2",
+                                            "position": 133963,
+                                            "positionType": "Mobi7",
+                                            "start": 133963,
+                                            "type": "kindle.highlight",
+                                            "created_at": "20220802190401",
+                                            "updated_at": "20220802190401",
+                                            "deleted_at": null,
+                                            "idea_cards": []
+                                        },
+                                        {
+                                            "_id": "643d1fa55e27220034edfa36",
+                                            "user_id": "643d1fa45e27220034edd156",
+                                            "book_id": "643d1fa45e27220034edd15d",
+                                            "action": null,
+                                            "asin": "B07D2BRJRT",
+                                            "context": "Zweites Buch Die Argonautensage\n                ",
+                                            "deviceType": null,
+                                            "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                            "end": 133993,
+                                            "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                            "highlightColor": null,
+                                            "isSample": null,
+                                            "modifiedTimestamp": 1594454425000,
+                                            "note": ".h2",
+                                            "position": 133963,
+                                            "positionType": "Mobi7",
+                                            "start": 133963,
+                                            "type": "kindle.highlight",
+                                            "created_at": "20220802190401",
+                                            "updated_at": "20220802190401",
+                                            "deleted_at": null,
+                                            "idea_cards": []
+                                        }
+                                    ]
+                                }
+                            ],
+                            "nextPosition": 826,
+                            "highlights": [
+                                {
+                                    "_id": "643d1fa55e27220034eddec6",
+                                    "user_id": "643d1fa45e27220034edd156",
+                                    "book_id": "643d1fa45e27220034edd15d",
+                                    "action": null,
+                                    "asin": "B07D2BRJRT",
+                                    "context": "Erster Teil\n                ",
+                                    "deviceType": null,
+                                    "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                    "end": 807,
+                                    "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                    "highlightColor": null,
+                                    "isSample": null,
+                                    "modifiedTimestamp": 1594024210000,
+                                    "note": ".h1",
+                                    "position": 797,
+                                    "positionType": "Mobi7",
+                                    "start": 797,
+                                    "type": "kindle.highlight",
+                                    "created_at": "20220802190401",
+                                    "updated_at": "20220802190401",
+                                    "deleted_at": null,
+                                    "idea_cards": []
+                                },
+                                {
+                                    "_id": "643d1fa55e27220034edf87e",
+                                    "user_id": "643d1fa45e27220034edd156",
+                                    "book_id": "643d1fa45e27220034edd15d",
+                                    "action": null,
+                                    "asin": "B07D2BRJRT",
+                                    "context": "Erster Teil\n                ",
+                                    "deviceType": null,
+                                    "dsn": "A2CTZ977SKFQZY00A27GCWPMAN4ZVB",
+                                    "end": 807,
+                                    "guid": "CR!K7W9ZXM3H168VAD1PRNG8W5ZHQN4",
+                                    "highlightColor": null,
+                                    "isSample": null,
+                                    "modifiedTimestamp": 1594024210000,
+                                    "note": ".h1",
+                                    "position": 797,
+                                    "positionType": "Mobi7",
+                                    "start": 797,
+                                    "type": "kindle.highlight",
+                                    "created_at": "20220802190401",
+                                    "updated_at": "20220802190401",
+                                    "deleted_at": null,
+                                    "idea_cards": []
+                                }
+                            ]
+                        }
+                      
+                        
+                    ],
+                    "nextPosition": 797,
+                    "highlights": []
+                },
+                {
+                    "label": "Volkssagen und Legenden",
+                    "tocPositionId": 2060825,
+                    "entries": [
+                        {
+                            "label": "Die schöne Melusine",
+                            "tocPositionId": 2061066,
+                            "nextPosition": 2222833,
+                            "highlights": []
+                        },
+                        {
+                            "label": "Der arme Heinrich",
+                            "tocPositionId": 2222833,
+                            "nextPosition": 2249825,
+                            "highlights": []
+                        },
+                        {
+                            "label": "Die über die Bosheit triumphierende Unschuld, das ist: Das Buch Hirlanda",
+                            "tocPositionId": 2249825,
+                            "nextPosition": 2310696,
+                            "highlights": []
+                        },
+                        {
+                            "label": "Genovefa",
+                            "tocPositionId": 2310696,
+                            "nextPosition": 2374910,
+                            "highlights": []
+                        },
+                        {
+                            "label": "Die schöne Magelone",
+                            "tocPositionId": 2374910,
+                            "nextPosition": 2457717,
+                            "highlights": []
+                        },
+                        {
+                            "label": "Herzog Ernst",
+                            "tocPositionId": 2457717,
+                            "nextPosition": 2554463,
+                            "highlights": []
+                        },
+                        {
+                            "label": "Das Schloß in der Höhle Xa Xa",
+                            "tocPositionId": 2554463,
+                            "nextPosition": 2645119,
+                            "highlights": []
+                        },
+                        {
+                            "label": "Kaiser Oktavianus",
+                            "tocPositionId": 2645119,
+                            "nextPosition": 1.7976931348623157e+308,
+                            "highlights": []
+                        }
+                    ],
+                    "created_at": "20220802190401",
+                    "updated_at": "20220802190401",
+                    "deleted_at": null,
+                    "nextPosition": 2061066,
+                    "highlights": []
+                }
+            ],
+            "book": [
+                {
+                    "_id": "643d1fa45e27220034edd15d",
+                    "user_id": "643d1fa45e27220034edd156",
+                    "asin": "B07D2BRJRT",
+                    "title": "Griechische Mythologie: Die schönsten Sagen des klassischen Altertums (German Edition)",
+                    "author": "Schwab, Gustav",
+                    "img_path": "https://m.media-amazon.com/images/I/51KZxOiqO7L._SY400_.jpg",
+                    "rating": 0,
+                    "tags": [],
+                    "created_at": 1673730690537,
+                    "deleted_at": null,
+                    "updated_at": 1674081932184,
+                    "seen_at": 1674081933855,
+                    "recomendation": null,
+                    "my_notes": null
+                }
+            ]
+        }
+    ]
+}

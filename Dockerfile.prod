@@ -1,0 +1,14 @@
+FROM node:14-alpine as build
+WORKDIR /home/deepread/deepread-react
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM node:14-alpine
+WORKDIR /home/deepread/deepread-react
+COPY package*.json ./
+COPY --from=build /home/deepread/deepread-react/build .
+# RUN npm install -g serve
+EXPOSE 3000
+CMD ["npm", "start"]

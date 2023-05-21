@@ -1,0 +1,347 @@
+:root {
+  --fill: 0;
+  --weight: 400;
+  --white: #ffffff;
+  --fontColor: #717171;
+  --HoverOver: #ededed;
+  --ClickState: #e3e3e3;
+  --BackgroundColor: #f9f9f9;
+  --NavigationBackgroundColor: #ffffff;
+  --fontSizeRegular: 14px;
+  --borderColors: #e5e4e4;
+  --fontSizeHeading: 21px;
+  --inputBorderColor: #e5e4e4;
+  --iconFontSize: 23px;
+  --greyColor: grey;
+  --primaryColor: #ff6600;
+  --cardBackgraoundColor: #fff;
+  --cardBorderRadius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+.rootContainer {
+  display: flex;
+}
+.material-symbols-outlined {
+  font-size: var(--iconFontSize);
+}
+body {
+  background-color: var(--BackgroundColor);
+}
+.main-container {
+  display: flex;
+}
+main {
+  padding: 10px;
+}
+
+.logoColapse {
+  width: 300px;
+  /* height: 300px; */
+}
+.title {
+  font-size: 3rem;
+  display: grid;
+  place-items: center;
+}
+
+/* Sidebar */
+.sidebar {
+  background: var(--NavigationBackgroundColor);
+  color: var(--fontColor);
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: baseline;
+  overflow: hidden;
+}
+
+.top_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 10px;
+}
+.logo {
+  font-size: 18px;
+  line-height: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  height: 30px;
+  padding: 10px;
+}
+.search input {
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  background: rgb(238, 238, 238);
+
+  color: var(--BackgroundColor);
+}
+
+.routes {
+  /* margin-top: 15px; */
+  display: flex;
+  flex-direction: column;
+  /* gap: 5px; */
+  width: 180px;
+}
+.mainmenu {
+  margin-top: 10px;
+}
+.routesCollapsible {
+  /* margin-top: 15px; */
+  display: flex;
+  flex-direction: column;
+  width: 53px;
+}
+#routesID:first-child {
+  margin-top: 0;
+}
+.link {
+  display: flex;
+  color: var(--fontColor);
+  background: var(--NavigationBackgroundColor);
+  gap: 19px;
+  padding: 5px 10px;
+  --fill: 0;
+  --weight: 400;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  margin: 11px 0px;
+  border-radius: 24px;
+  /* height: 56px; */
+  /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
+}
+.linkCollapsible {
+  display: flex;
+  flex-flow: column;
+  color: var(--fontColor);
+  background: var(--NavigationBackgroundColor);
+  align-items: center;
+  gap: 1px;
+  padding: 6px 4px;
+  --fill: 0;
+  --weight: 400;
+  border: none;
+  cursor: pointer;
+  margin: 3px 0px;
+  border-radius: 9px;
+  /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
+}
+.linkCollapsible:hover {
+  border: none;
+  background: var(--HoverOver);
+  border-radius: 9px;
+  --fill: 0;
+  /* --weight: 900; */
+  /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
+}
+.link:hover {
+  border: none;
+  background: var(--HoverOver);
+  border-radius: 24px;
+  --fill: 0;
+  /* --weight: 900; */
+  /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
+}
+/* .link:active {
+  border: none;
+  background: var(--ClickState);
+  --fill: 1;
+  --weight: 900;
+  border-radius: 24px;
+  transform: scale(0.98);
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.24);
+} */
+#activeMainMenu {
+  border: none;
+  background: var(--ClickState);
+  --fill: 1;
+  --weight: 900;
+  /* border-radius: 24px; */
+}
+/* .linkCollapsible:active {
+  border: none;
+  background: var(--ClickState);
+  --fill: 1;
+  --weight: 900;
+  transform: scale(0.98);
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.24);
+} */
+.link_text {
+  white-space: nowrap;
+  font-size: var(--fontSizeRegular);
+  background-color: transparent;
+}
+.link_text_collapse {
+  white-space: nowrap;
+  font-size: 10px;
+  background-color: transparent;
+}
+.menu {
+  display: flex;
+  color: #717171;
+  padding: 5px 10px;
+  border-right: 4px solid transparent;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  justify-content: space-between;
+}
+.menu :hover {
+  --fill: 1;
+  --weight: 900;
+}
+.menu_item {
+  display: flex;
+  gap: 10px;
+}
+.menu_container {
+  display: flex;
+  flex-direction: column;
+}
+.menu_container .link {
+  padding-left: 20px;
+  border-bottom: #fff 0.5px solid;
+}
+
+.icon svg {
+  background-color: transparent;
+  /* fill: 0; */
+}
+.material-symbols-outlined {
+  font-variation-settings: "FILL" var(--fill), "wght" var(--weight), "GRAD" 0,
+    "opsz" 48;
+}
+
+.sidebarLowerCollapse {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 29px;
+}
+.sidebarLower {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: 100%;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 29px;
+}
+
+#sidebarProfileImg {
+  border-radius: 30px;
+  width: 26px;
+  height: 26px;
+}
+
+.sidebarLayer2 {
+  width: 294px;
+}
+.barsContainer {
+  padding: 8px 7px 5px 7px;
+}
+.barsContainer:hover {
+  background-color: var(--HoverOver);
+  border-radius: 33px;
+}
+#barParent {
+  padding: 0px 7px;
+  padding-bottom: 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+/* //Global Css */
+.Sub-heading {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--fontColor);
+}
+.xtra-small {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--fontColor);
+}
+.bold {
+  font-weight: bold;
+  color: var(--fontColor);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+/* //Scrollbar Css */
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* background: var(--BackgroundColor); */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: darkgrey;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+input::placeholder {
+  font-size: 13px;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.Card-image-w50-h50 {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ellipsisStyling {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.cursoreChangeAll {
+  cursor: url("../public/Assets/MarkerWithPointer_xs.svg"), auto !important;
+}
+
+.popup {
+  position: absolute;
+  z-index: 100;
+  background-color: #fff;
+  padding: 5px 8px;
+  font-size: 13px;
+  box-shadow: 0px 0px 7px rgb(205 74 6 / 30%);
+  border-radius: 4px;
+}

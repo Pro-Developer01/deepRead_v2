@@ -1,0 +1,203 @@
+.login-page {
+  display: flex;
+  /* height: 100vh; */
+  min-height: 100vh;
+
+  width: 100%;
+}
+
+.logo-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  gap: 1.3rem;
+}
+
+.logo-section img {
+  width: 200px;
+  height: auto;
+}
+
+.login-page h1 {
+  font-family: "Bell MT", sans-serif;
+  font-size: 4rem;
+}
+
+.login-page h2 {
+  font-family: "Calibri", sans-serif;
+  font-size: 2.2rem;
+  margin-top: -24px;
+}
+
+.login-form-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primaryColor);
+}
+
+.login-form {
+  width: 70%;
+  padding: 29px 67px;
+  background-color: #fff;
+  border-radius: 10px;
+  align-items: left;
+  display: flex;
+  flex-flow: column;
+  gap: 1.2rem;
+}
+
+.login-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.show-password-button {
+  position: absolute;
+  top: 20%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: grey;
+}
+
+.stay-signed-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* .small-text {
+  font-size: 12px;
+  color: #888;
+  margin-top: 5px;
+  margin-left: 30px;
+} */
+
+.login-form button {
+  /* width: 85%; */
+  padding: 9.6px;
+  background-color: var(--primaryColor);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+.login-form button:hover {
+  background-color: #ea5f00;
+}
+.login-form button:active {
+  background-color: #c44f00;
+}
+
+.create-account-button {
+  background-color: #5a8cc8 !important;
+  transition: background-color 0.3s ease; /* Add transition for smooth effect */
+  cursor: pointer;
+}
+
+.create-account-button:hover {
+  background-color: #4381cd !important; /* Add desired background color on hover */
+}
+.create-account-button:active {
+  background-color: #1f69c3 !important; /* Add desired background color on hover */
+}
+
+.small-or {
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
+  margin-left: 30px;
+}
+
+.container-login {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.form-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 18px;
+}
+.form-buttons {
+  gap: 0.8rem;
+
+  display: flex;
+  flex-direction: column;
+}
+.login-seperator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-seperator hr {
+  width: 100%;
+  border: 1px solid grey;
+}
+
+.third-party-login {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.third-party-login button {
+  background-color: #717171;
+}
+
+.google-login-button,
+.amazon-login-button {
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 4px;
+  padding: 6.6px 10px 6.6px 6.6px !important;
+  gap: 19px;
+  transition: background-color 0.3s ease; /* Add transition for smooth effect */
+  cursor: pointer; /* Add cursor pointer for better user interaction */
+}
+
+.button-icon {
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.google-login-button strong,
+.amazon-login-button strong {
+  margin-left: 15%;
+}
+
+.google-login-button:hover,
+.amazon-login-button:hover {
+  background-color: #575757 !important; /* Add desired background color on hover */
+}
+
+.google-login-button:active,
+.amazon-login-button:active {
+  background-color: #000000 !important; /* Add desired background color on click */
+}
+
+.login-page a:hover {
+  text-decoration: underline;
+}

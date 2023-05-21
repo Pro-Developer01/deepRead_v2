@@ -1,0 +1,336 @@
+.NavigationMenu .radioInputs {
+  margin-left: 33px;
+}
+
+.sidebarLayer2 .link {
+  display: flex;
+  color: var(--fontColor);
+  background: var(--NavigationBackgroundColor);
+  gap: 19px;
+  padding: 5px 10px;
+  --fill: 0;
+  --weight: 400;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  margin: 19px 0px;
+  width: 244px;
+  /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
+}
+
+.radioInputs .link {
+  display: flex;
+  color: var(--fontColor);
+  background: var(--NavigationBackgroundColor);
+  gap: 6px;
+  padding: 5px 10px;
+  --fill: 0;
+  --weight: 400;
+  --iconFontSize: 21px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  margin: 9px 0px;
+  width: 211px;
+  font-size: 13px;
+}
+
+.sidebarLayer2 .linkCollapsible {
+  display: flex;
+  flex-flow: column;
+  color: var(--fontColor);
+  background: var(--NavigationBackgroundColor);
+  align-items: center;
+  gap: 1px;
+  padding: 6px 4px;
+  --fill: 0;
+  --weight: 400;
+  border: none;
+  cursor: pointer;
+  margin: 9px 0px;
+  /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
+}
+.sidebarLayer2 .linkCollapsible:hover {
+  border: none;
+  background: var(--HoverOver);
+  border-radius: 24px;
+  --fill: 0;
+  /* --weight: 900; */
+
+  /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
+}
+.sidebarLayer2 .link:hover {
+  border: none;
+  background: var(--HoverOver);
+  border-radius: 24px;
+  --fill: 0;
+  /* --weight: 900; */
+
+  /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
+}
+.sidebarLayer2 .link:active {
+  border: none;
+  background: var(--ClickState);
+  --fill: 1;
+  --weight: 900;
+  border-radius: 24px;
+  transform: scale(0.98);
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.24);
+}
+.sidebarLayer2 .linkCollapsible:active {
+  border: none;
+  background: var(--ClickState);
+  --fill: 1;
+  --weight: 900;
+  transform: scale(0.98);
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.24);
+}
+.sidebarLayer2 .link_text {
+  white-space: nowrap;
+  font-size: var(--fontSizeRegular);
+  background-color: transparent;
+}
+.sidebarLayer2 .link_text_collapse {
+  white-space: nowrap;
+  font-size: 10px;
+  background-color: transparent;
+}
+.activeState {
+  display: flex;
+  color: var(--fontColor);
+  gap: 19px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  margin: 19px 0px;
+  width: 244px;
+  background: var(--ClickState);
+  --fill: 1;
+  --weight: 900;
+  border-radius: 24px;
+}
+.radioInputs .activeState {
+  display: flex;
+  color: var(--fontColor);
+  gap: 6px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  margin: 9px 0px;
+  width: 211px;
+  background: var(--ClickState);
+  --fill: 1;
+  --iconFontSize: 21px;
+  --weight: 900;
+  border-radius: 24px;
+  font-size: 13px;
+}
+.dynamicSelect {
+  white-space: nowrap;
+  font-size: var(--fontSizeRegular);
+  background-color: transparent;
+  color: var(--fontColor);
+}
+.dynamicSelectContainer {
+  margin-left: 33px;
+  margin-right: 19px;
+  display: flex;
+  color: var(--fontColor);
+  background: var(--NavigationBackgroundColor);
+  gap: 6px;
+  padding: 5px 10px;
+  --fill: 0;
+  /* --weight: 400; */
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  /* margin: 9px 0px; */
+  /* width: 192px; */
+  justify-content: space-between;
+}
+
+.dynamicSelectContainer:hover {
+  border: none;
+  background: var(--HoverOver);
+  border-radius: 24px;
+  --fill: 0;
+  /* --weight: 900; */
+  font-weight: 600;
+}
+.dynamicSelectContainer:active {
+  border: none;
+  background: var(--ClickState);
+  --fill: 1;
+  --weight: 900;
+  border-radius: 24px;
+  transform: scale(0.98);
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.24);
+}
+.dynamicSelectLabel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.dynamicSelectLabel > label {
+  font-size: var(--fontSizeRegular);
+}
+.buttonArrowDiv {
+  display: flex;
+}
+#arrows {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+}
+.SearchMenu .search {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid var(--inputBorderColor);
+  border-radius: 33px;
+  justify-content: space-between;
+  margin-top: -10px;
+}
+
+.SearchMenu .search input {
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  background: var(--NavigationBackgroundColor);
+  color: var(--fontColor);
+}
+#bookmarPageRadio input:active {
+  background: var(--ClickState);
+}
+select {
+  border: none;
+  color: var(--fontColor);
+  font-size: var(--fontSizeRegular) !important;
+  /* font-weight: 600; */
+  /* font-size: 16px; */
+}
+select:hover {
+  background-color: var(--HoverOver) !important;
+}
+option {
+  color: var(--fontColor);
+  font-size: var(--fontSizeRegular);
+  background: var(--BackgroundColor) !important;
+
+  /* font-weight: 600; */
+  /* box-shadow: 0 0 10px 100px #d61434 inset; */
+}
+option:checked {
+  background-color: var(--ClickState) !important;
+}
+option:hover {
+  background-color: var(--HoverOver) !important;
+}
+option:active {
+  background-color: rgb(236, 33, 243) !important;
+}
+select:focus > option:hover {
+  background: var(--HoverOver) !important;
+}
+
+input:focus,
+select:focus {
+  outline-offset: 0px !important;
+  outline: none !important;
+}
+.bookList {
+  width: 243px;
+}
+.bookListContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  /* padding: 3px 4px; */
+  background: var(--BackgroundColor);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.bookListContainer:hover {
+  background: var(--HoverOver);
+}
+.bookListContainerActive {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  /* padding: 3px 4px; */
+  background: var(--ClickState);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.bookListContainer img,
+.bookListContainerActive img {
+  border-radius: 9px;
+  /* border: 1px solid var(--fontColor); */
+  object-fit: cover;
+  /* width: 100%; */
+}
+.bookMetaContainer {
+  display: flex;
+  flex-flow: column;
+  gap: 2px;
+  padding: 1px 12px;
+}
+.bookMetaContainer .heading {
+  font-weight: 800;
+  color: black;
+  width: 164px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  background: none;
+  border: none;
+  text-align: left;
+}
+.bookMetaContainer .author {
+  color: var(--fontColor);
+  font-size: 14px;
+  width: 164px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.search_icon {
+  font-size: 18px;
+  color: var(--fontColor);
+}
+/* 
+select option:checked:after {
+  content: attr(title);
+  background: rgb(241, 18, 18);
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  border: none;
+} */
+
+input[type="radio"] {
+  accent-color: grey;
+}
+input[type="checkbox"] {
+  accent-color: white;
+  font-style: italic;
+  color: grey;
+}
+input[type="checkbox"]:hover {
+  accent-color: white;
+  font-style: italic;
+  color: grey;
+}
+.selectCheckbox {
+  margin-top: -11px !important;
+  padding-left: 17px !important;
+}
+.checkBoxLabel {
+  font-style: italic;
+}

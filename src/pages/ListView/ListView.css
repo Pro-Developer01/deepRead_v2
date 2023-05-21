@@ -1,0 +1,76 @@
+#lastItemDot {
+  display: none;
+}
+.caret-down-45 svg {
+  transform: rotate(45deg);
+}
+.caret-without-content #caret-arrow {
+  display: none;
+}
+.caret-without-content-outer svg {
+  display: none;
+}
+
+.caret-without-content-outer #lastItemDot {
+  display: block;
+  font-size: 26px;
+  color: var(--fontColor);
+}
+
+.caret-without-content #lastItemDot {
+  display: block;
+  font-size: 26px;
+  color: var(--fontColor);
+  /* margin-top: 6px;
+  margin-right: 8px;
+  margin-left: 23px; */
+}
+.caret-without-content {
+  color: black;
+  align-items: center;
+}
+.listViewParent svg:hover {
+  background: lightgray;
+  border-radius: 33px;
+}
+.listViewParent span {
+  user-select: text;
+  cursor: text;
+}
+.ideacardDiv {
+  display: flex;
+  gap: 7px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: black;
+  padding: 0px 8px;
+  padding-top: 4px;
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+.ideacardDiv span {
+  cursor: pointer;
+}
+
+.highlightDiv {
+  display: flex;
+  gap: 12px;
+  margin-left: 6.5px;
+  color: black;
+}
+.customCursor {
+  cursor: url("../../../public/Assets/svg_marker/MarkerWithPointer_xs_3.svg"),
+    auto !important;
+}
+
+.highlightDiv svg {
+  font-size: 0.5rem;
+  margin-top: 5px;
+}
+/* .highlightLi {
+  cursor: default !important;
+} */
+#lastItemDot:hover {
+  background: transparent;
+}

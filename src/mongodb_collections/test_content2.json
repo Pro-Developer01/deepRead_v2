@@ -1,0 +1,220 @@
+{
+  "_id": {
+    "$oid": "633f32123b6f1b8d2922818d"
+  },
+  "book_id": {
+    "$oid": "633f32123b6f1b8d2922818a"
+  },
+  "data": [
+    {
+      "label": "Front Matter / Elementos Pré-textuais / Páginas Iniciales",
+      "tocPositionId": 699
+    },
+    {
+      "label": "Introdução",
+      "tocPositionId": 12523
+    },
+    {
+      "label": "Parte I – O lugar sistemático da filosofia da história",
+      "tocPositionId": 24324,
+      "entries": [
+        {
+          "label": "A) Filosofia da história de um ponto de vista teórico",
+          "tocPositionId": 24378,
+          "entries": [
+            {
+              "label": "1 – A Ideia de uma história universal de um ponto de vista cosmopolita: progresso político e moral, sua justificação teórica e o curso da história",
+              "tocPositionId": 24431,
+              "HighLights": [
+                {
+                  "label": "1.1 Determinando o fim <Zweck> da ideia de uma história universal: progresso e moral",
+                  "tocPositionId": 26097
+                },
+                {
+                  "label": "1.2 História, sistema e intenção da natureza: a justificação teórica da unidade da ideia de história como progresso",
+                  "tocPositionId": 39849,
+                  "ideacard": [
+                    {
+                      "ideacard": "história como progresso",
+                      "tocPositionId": 56564
+                    },
+                    {
+                      "ideacard": "história como progresso",
+                      "tocPositionId": 56564
+                    },
+                    {
+                      "ideacard": "história como progresso",
+                      "tocPositionId": 56564
+                    }
+                  ]
+                },
+
+                {
+                  "label": "1.3 O curso da história: desenvolvimento das disposições naturais originárias, insociável sociabilidade e ordem jurídica",
+                  "tocPositionId": 68812
+                },
+                {
+                  "ideacard": "idea como progresso",
+                  "type": "custom1",
+                  "tocPositionId": 56564
+                },
+                {
+                  "label": "1.4 Utilidade da ideia de uma história universal da humanidade",
+                  "tocPositionId": 109503,
+                  "ideacard": [
+                    {
+                      "ideacard": "história como progresso",
+                      "tocPositionId": 56564
+                    },
+                    {
+                      "ideacard": "história como progresso",
+                      "tocPositionId": 56564
+                    },
+                    {
+                      "ideacard": "história como progresso",
+                      "tocPositionId": 56564
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "2 – A cultura como preparação para a moralidade: o §83 da Crítica da faculdade do juízo e a justificação teórica da ideia de história",
+              "tocPositionId": 118760
+            },
+            {
+              "label": "3 - Natureza, unidade sistemática e teleologia: as bases da justificação teórica da filosofia da história na Crítica da razão pura",
+              "tocPositionId": 163038,
+              "entries": [
+                {
+                  "label": "3.1 O princípio de unidade sistemática",
+                  "tocPositionId": 171493
+                },
+                {
+                  "label": "3.2 A passagem da validade lógico-subjetiva para a validade transcendental-objetiva da ideia de unidade sistemática",
+                  "tocPositionId": 188827
+                },
+                {
+                  "ideacard": "idea como progresso",
+                  "type": "argument",
+                  "tocPositionId": 56564
+                },
+                {
+                  "label": "3.3 O “esquema da razão” e a dedução transcendental das ideias",
+                  "tocPositionId": 212144
+                },
+                {
+                  "label": "3.4 Unidade sistemática e conformidade a fins <Zweckmässigkeit> da natureza",
+                  "tocPositionId": 227778
+                }
+              ]
+            },
+            {
+              "label": "4 – Conformidade a fins e sistema teleológico da natureza: as bases da justificação teórica da filosofia da história na Crítica da faculdade do juízo",
+              "tocPositionId": 242954,
+              "entries": [
+                {
+                  "label": "4.1 O conceito de conformidade a fins formalcomo princípio transcendental da faculdade do juízo",
+                  "tocPositionId": 247694
+                },
+                {
+                  "label": "4.2 A conformidade a fins objetiva121: os produtos da natureza como fins naturais",
+                  "tocPositionId": 270971
+                },
+                {
+                  "label": "4.3 A conformidade a fins relativa e o sistema teleológico da natureza",
+                  "tocPositionId": 308340
+                },
+                {
+                  "ideacard": "idea como progresso",
+                  "type": "actionitem",
+                  "tocPositionId": 56564
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "B) Filosofia da história de um ponto de vista prático",
+          "tocPositionId": 327088
+        }
+      ]
+    },
+    {
+      "label": "Parte II – O conteúdo da filosofia da história",
+      "tocPositionId": 473896,
+      "entries": [
+        {
+          "label": "C) História e moral: o desenvolvimento das disposições originárias da humanidade",
+          "tocPositionId": 473942,
+          "entries": [
+            {
+              "label": "8 – Universalismo, moral e progresso",
+              "tocPositionId": 474022,
+              "entries": [
+                {
+                  "label": "8.1 A objeção de matriz hegeliana à filosofia da história de Kant",
+                  "tocPositionId": 485336
+                }
+              ]
+            },
+            {
+              "label": "9 – O progresso da humanidade e o desenvolvimento das disposições naturais originárias: história e aprendizagem",
+              "tocPositionId": 497924,
+              "entries": [
+                {
+                  "label": "9.1 As disposições naturais originárias ligadas à destinação <Bestimmung> animal da espécie humana",
+                  "tocPositionId": 505225
+                },
+                {
+                  "label": "9.2 O desenvolvimento das disposições naturais originárias ligadas à destinação moral da espécie humana: o progresso histórico como um processo de aprendizagem",
+                  "tocPositionId": 513071
+                }
+              ]
+            },
+            {
+              "label": "10 – O processo de desenvolvimento das disposições naturais e o direito público: direito político <staatsrecht>, direito das gentes <völkerrecht> e direito cosmopolita <weltbürgerrecht> na perspectiva da filosofia da história",
+              "tocPositionId": 543995,
+              "entries": [
+                {
+                  "label": "10.1 O direito político <Staatsrecht>237: autolegislação pública e esclarecimento; conflito social e progresso reformista",
+                  "tocPositionId": 550094
+                },
+                {
+                  "label": "10.2 O direito das gentes <Völkerrecht>260: confederação de nações ou Estado mundial?",
+                  "tocPositionId": 573388
+                },
+                {
+                  "label": "10.3 O direito cosmopolita <Weltbürgerrecht>: hospitalidade, comércio e anticolonialismo",
+                  "tocPositionId": 586389
+                }
+              ]
+            },
+            {
+              "label": "11 – O progresso cultural, civilizatório e político como preparador ou facilitador do progresso moral da humanidade",
+              "tocPositionId": 592830,
+              "entries": [
+                {
+                  "label": "11.1 Da política à moral: arranjos institucionais que preparam ou facilitam a moralização",
+                  "tocPositionId": 594683
+                },
+                {
+                  "label": "11.2 A aparência de moralidade como passo para a moralidade",
+                  "tocPositionId": 614257
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "12 – Considerações finais",
+      "tocPositionId": 624361
+    },
+    {
+      "label": "Bibliografia",
+      "tocPositionId": 632551
+    }
+  ]
+}
