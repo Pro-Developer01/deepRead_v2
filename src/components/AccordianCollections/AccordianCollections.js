@@ -514,7 +514,7 @@ const LinkedHighlights = ({
   };
 
   return (
-    <div className=" overflow-auto" style={{ height: '330px' }} onScroll={handleScroll}>
+    <div className="linkedHighlight-conatiner overflow-auto" style={{ height: '330px' }} onScroll={handleScroll}>
       <AccordionDetails className="flex flex-col gap-4" sx={accordianDetailStyling}>
         {beforeHighlights?.length &&
 
@@ -574,6 +574,20 @@ const LinkedHighlights = ({
     font-size: 16px;
     font-family: 'Lato';
     color: var(--fontColor);
+  }
+
+  .linkedHighlight-conatiner::before
+  {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    /* background-image: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) ); */
+    pointer-events: none;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,0.3835221832873774) 0%, rgba(255,255,255,1) 100%);
   }
         `}</style>
     </div>
