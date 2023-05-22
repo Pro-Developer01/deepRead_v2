@@ -562,9 +562,13 @@ const LinkedHighlights = ({
         setNewHighlightIdList([])
         updateHighlightData(highlightDataArray);
       }
+      const titlecolor = document.getElementById('panel1a-header highlightColourChange')
+      titlecolor.style.color='#717171';
     }
     if (isEditModeON) {
       const element = document.getElementById('linkedHighlight-conatiner-blur-id')
+      const titlecolor = document.getElementById('panel1a-header highlightColourChange')
+      titlecolor.style.color='#ff6600';
       setContainerHeight(element.offsetHeight)
       console.log('  element.', element.style.height, element.offsetHeight)
     }
@@ -681,6 +685,27 @@ const LinkedHighlights = ({
     top: 18px;
     left: -37px;
   }
+  /* Styles for checkbox */
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox:hover .ant-checkbox-inner {
+  border-color: #ff6600 !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #ff6600 !important;
+  border-color: transparent !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner::after {
+  border-color: white;
+}
+
+.ant-checkbox-checked:hover .ant-checkbox-inner {
+  border-color: transparent !important;
+}
+
+
+  
         `}</style>
     </div>
   );
@@ -1168,8 +1193,9 @@ export function IdeaCardAccordian({ data }) {
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
-          id="panel1a-header"
+          id="panel1a-header highlightColourChange"
           sx={headingStyle}
+          
         >
           LINKED HIGHLIGHTS
         </AccordionSummary>
