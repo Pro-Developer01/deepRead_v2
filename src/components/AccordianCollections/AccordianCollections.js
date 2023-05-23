@@ -20,7 +20,7 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import CloseIcon from "@mui/icons-material/Close";
 import "../../pages/MyLibrary/MyLibrary.css";
-import { Checkbox } from "antd";
+import { Checkbox, Tooltip } from "antd";
 
 import {
   updateBook,
@@ -412,6 +412,7 @@ const LinkedHighlights = ({
   bookId,
   position,
   highlightData,
+  isEditModeON
 }) => {
   const [beforeHighlights, setBeforeHighlights] = useState(null);
   const [afterHighlights, setAfterHighlights] = useState(null);
@@ -419,7 +420,6 @@ const LinkedHighlights = ({
   const [newHighlightIdList, setNewHighlightIdList] = useState([]);
   const [beforeRange, setBeforeRange] = useState(3);
   const [afterRange, setAfterRange] = useState(3);
-  const [isEditModeON, setIsEditModeON] = useState(false);
   const [containerHeight, setContainerHeight] = useState(null);
   const fullAdjoiningHighlighstData = useRef(null);
 
@@ -431,28 +431,7 @@ const LinkedHighlights = ({
     });
   };
 
-  useEffect(() => {
-    let mainHighlight;
-    fetchAdjoiningHighlights(bookId, position).then((adjoiningData) => {
-      if (adjoiningData) {
-        fullAdjoiningHighlighstData.current = adjoiningData[0];
-        mainHighlight = adjoiningData[0].target[0];
-        if ((!highlightData || highlightData.length === 0) && mainHighlight) {
-          setLinkedHighlights([
-            {
-              highlight_id: mainHighlight._id,
-              start: mainHighlight.start,
-              context: mainHighlight.context,
-            },
-          ]);
-        }
-        if (highlightData) {
-          filterAdjoiningHighlights(highlightData);
-        }
-      }
-    });
-    setLinkedHighlights(highlightData);
-  }, []);
+
 
   const getHighlightData = (highlightId) => {
     const highlights = [...beforeHighlights, ...afterHighlights];
@@ -563,19 +542,40 @@ const LinkedHighlights = ({
         updateHighlightData(highlightDataArray);
       }
       const titlecolor = document.getElementById('panel1a-header highlightColourChange')
-      titlecolor.style.color='#717171';
+      titlecolor.style.color = '#717171';
     }
     if (isEditModeON) {
       const element = document.getElementById('linkedHighlight-conatiner-blur-id')
       const titlecolor = document.getElementById('panel1a-header highlightColourChange')
-      titlecolor.style.color='#ff6600';
+      titlecolor.style.color = '#ff6600';
       setContainerHeight(element.offsetHeight)
       console.log('  element.', element.style.height, element.offsetHeight)
     }
     console.log('afterHighlights ', afterHighlights, beforeHighlights)
 
   }, [isEditModeON]);
-
+  useEffect(() => {
+    let mainHighlight;
+    fetchAdjoiningHighlights(bookId, position).then((adjoiningData) => {
+      if (adjoiningData) {
+        fullAdjoiningHighlighstData.current = adjoiningData[0];
+        mainHighlight = adjoiningData[0].target[0];
+        if ((!highlightData || highlightData.length === 0) && mainHighlight) {
+          setLinkedHighlights([
+            {
+              highlight_id: mainHighlight._id,
+              start: mainHighlight.start,
+              context: mainHighlight.context,
+            },
+          ]);
+        }
+        if (highlightData) {
+          filterAdjoiningHighlights(highlightData);
+        }
+      }
+    });
+    setLinkedHighlights(highlightData);
+  }, []);
 
 
 
@@ -586,9 +586,6 @@ const LinkedHighlights = ({
       onScroll={handleScroll}
       id={"linkedHighlight-conatiner-blur-id"}
     >
-      <span className="material-symbols-outlined editSquareHighlight cursor-pointer" style={{ color: isEditModeON ? "var(--primaryColor)" : "var(--fontColor)" }} onClick={() => setIsEditModeON(!isEditModeON)}>
-        edit_square
-      </span>
       <AccordionDetails
         className="flex flex-col gap-4"
         sx={accordianDetailStyling}
@@ -604,23 +601,12 @@ const LinkedHighlights = ({
               </div>
             );
           })
-          // <FormControl fullWidth>
-          //   <InputLabel id="before-label">Link preceding highlight</InputLabel>
-          //   <Select
-          //     labelId="before-label"
-          //     label="Link preceding highlight"
-          //     value=""
-          //     onChange={handleChange}
-          //   >
-          //     })}
-          //   </Select>
-          // </FormControl>
         }
 
         {linkedHighlights?.map((item, index) => {
           return (
             <div style={{ display: "flex", gap: "12px" }}>
-              <span style={{ height: "fit-content", padding: "2px 0" }}>
+              <span style={{ height: "fit-content", padding: "0" }}>
                 <AnchorIcon sx={anchorIconStyle} />
               </span>
               <span
@@ -647,7 +633,7 @@ const LinkedHighlights = ({
       </AccordionDetails>
 
       <style>{`
-        .ant-checkbox+span {
+  .ant-checkbox+span {
     padding-inline-start: 16px !important;
     font-size: 16px;
     font-family: 'Lato';
@@ -662,7 +648,6 @@ const LinkedHighlights = ({
     left: 0;
     width: 100%;
     height: 50px;
-    /* background-image: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) ); */
     pointer-events: none;
     background: rgb(255,255,255);
     background: linear-gradient(0deg, rgba(255,255,255,0.3835221832873774) 0%, rgba(255,255,255,1) 100%);
@@ -675,15 +660,15 @@ const LinkedHighlights = ({
     left: 0;
     width: 100%;
     height: 50px;
-    /* background-image: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) ); */
     pointer-events: none;
     background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,0.3835221832873774) 0%, rgba(255,255,255,1) 100%);
   }
   .editSquareHighlight{
-    position: absolute;
-    top: 18px;
-    left: -37px;
+    margin-left: -34px;
+    margin-right: 11px;
+    margin-top: -1px;
+
   }
   /* Styles for checkbox */
 .ant-checkbox-wrapper:hover .ant-checkbox-inner,
@@ -703,8 +688,21 @@ const LinkedHighlights = ({
 .ant-checkbox-checked:hover .ant-checkbox-inner {
   border-color: transparent !important;
 }
+.ant-checkbox-checked:after{
+border:  2px solid orange !important;
+}
+.ant-checkbox{
+  padding: 3px 0;
 
-
+}
+.ant-tooltip-inner
+{
+  color: black !important;
+}
+.ant-tooltip-content
+{
+  width: 65%;
+}
   
         `}</style>
     </div>
@@ -1158,6 +1156,9 @@ export default function LibraryAccordian({ metaData }) {
 }
 
 export function IdeaCardAccordian({ data }) {
+  const [editIconVisibility, setEditIconVisibility] = useState(false)
+  const [isEditModeON, setIsEditModeON] = useState(false);
+
   console.log("data of Ideacard", data);
 
   return (
@@ -1189,14 +1190,22 @@ export function IdeaCardAccordian({ data }) {
       </Accordion>
 
       {/* //LINKED HIGHLIGHTS */}
-      <Accordion elevation={0} sx={accordianBorder} defaultExpanded={true}>
+      <Accordion elevation={0} sx={accordianBorder} defaultExpanded={true} onMouseEnter={() => setEditIconVisibility(true)} onMouseLeave={() => setEditIconVisibility(false)}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header highlightColourChange"
           sx={headingStyle}
-          
         >
+          {editIconVisibility &&
+            <Tooltip placement="bottomLeft" title={<span> <strong>Click</strong> to add or remove linked highlights</span>} zIndex={9999} color="lightgrey" >
+              <span className="material-symbols-outlined editSquareHighlight cursor-pointer"
+                onClick={(e) => { e.stopPropagation(); setIsEditModeON(!isEditModeON) }}
+                style={{ color: isEditModeON ? "var(--primaryColor)" : "var(--fontColor)" }}
+              >
+                edit_square
+              </span>
+            </Tooltip>}
           LINKED HIGHLIGHTS
         </AccordionSummary>
         <LinkedHighlights
@@ -1205,6 +1214,7 @@ export function IdeaCardAccordian({ data }) {
           bookId={data?.book_id}
           position={data?.start}
           highlightData={data?.description}
+          isEditModeON={isEditModeON}
         />
       </Accordion>
 
@@ -1242,6 +1252,8 @@ export function IdeaCardAccordian({ data }) {
   );
 }
 export function CreateIdeaCardAccordian({ data }) {
+  const [editIconVisibility, setEditIconVisibility] = useState(false)
+  const [isEditModeON, setIsEditModeON] = useState(false);
   // console.log("data of Ideacard", data);
   return (
     <div>
@@ -1259,13 +1271,22 @@ export function CreateIdeaCardAccordian({ data }) {
       </Accordion>
       {/* //LINKED HIGHLIGHTS */}
       {data?.highlight_id && (
-        <Accordion elevation={0} sx={accordianBorder} defaultExpanded={true}>
+        <Accordion elevation={0} sx={accordianBorder} defaultExpanded={true} onMouseEnter={() => setEditIconVisibility(true)} onMouseLeave={() => setEditIconVisibility(false)}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
             sx={headingStyle}
           >
+            {editIconVisibility &&
+              <Tooltip placement="bottomLeft" title={<span> <strong>Click</strong> to add or remove linked highlights</span>} zIndex={9999} color="lightgrey" >
+                <span className="material-symbols-outlined editSquareHighlight cursor-pointer"
+                  onClick={(e) => { e.stopPropagation(); setIsEditModeON(!isEditModeON) }}
+                  style={{ color: isEditModeON ? "var(--primaryColor)" : "var(--fontColor)" }}
+                >
+                  edit_square
+                </span>
+              </Tooltip>}
             LINKED HIGHLIGHTS
           </AccordionSummary>
           <LinkedHighlights
@@ -1274,6 +1295,7 @@ export function CreateIdeaCardAccordian({ data }) {
             bookId={data?.book_id}
             position={data?.start}
             highlightData={data?.description}
+            isEditModeON={isEditModeON}
           />
         </Accordion>
       )}
