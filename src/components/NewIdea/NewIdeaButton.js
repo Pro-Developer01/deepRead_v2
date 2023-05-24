@@ -154,17 +154,16 @@ const IdeaOptions = ({ text, icon, setopenOptions }) => {
     }
     const removePopup = () => {
         const popupElement = document.querySelector('.popup');
-        popupElement.parentNode.removeChild(popupElement);
+        popupElement?.parentNode.removeChild(popupElement);
 
     }
     const handleEnter = (event) => {
         if (event.keyCode === 13 && window.getSelection().toString().length > 0) {
             console.log('Enter is pressed');
             identifyICCreater()
+            removePopup()
         }
-        removePopup()
     };
-    console.log('count', count);
     const handleEscGlobal = (event) => {
         if (event.keyCode === 27) { // esc clicked
             if (!count) {

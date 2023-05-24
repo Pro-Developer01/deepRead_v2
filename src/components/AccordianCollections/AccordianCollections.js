@@ -245,7 +245,6 @@ const MyNotes = ({ myNotesData, bookId, ideaCardId }) => {
       tempNotes.push(newObj);
       setNotesData(tempNotes);
       setNewNotes("");
-      console.log("tempNotes", tempNotes);
 
       setNotesData(tempNotes);
       updateData(
@@ -508,8 +507,6 @@ const LinkedHighlights = ({
     }
   };
   const updateHighlightData = (highlightDataArray) => {
-    console.log('linkedHighlights inside', linkedHighlights)
-    console.log('highlightDataArray inside', highlightDataArray)
     if (linkedHighlights && highlightDataArray.length) {
       const tempHighlights = [...linkedHighlights, ...highlightDataArray];
       tempHighlights.sort((first, second) => first.start - second.start);
@@ -524,7 +521,6 @@ const LinkedHighlights = ({
     }
   }, [linkedHighlights, beforeRange]);
   useEffect(() => {
-    console.log('afterRange', afterRange)
     if (linkedHighlights) {
       filterAdjoiningHighlightsAfter(linkedHighlights);
     }
@@ -541,7 +537,7 @@ const LinkedHighlights = ({
         setNewHighlightIdList([])
         updateHighlightData(highlightDataArray);
       }
-      const titlecolor = document.getElementById('panel1a-header highlightColourChange')
+      const titlecolor = document.getElementById('panel1a-header highlightColourChange');
       titlecolor.style.color = '#717171';
     }
     if (isEditModeON) {
@@ -549,9 +545,7 @@ const LinkedHighlights = ({
       const titlecolor = document.getElementById('panel1a-header highlightColourChange')
       titlecolor.style.color = '#ff6600';
       setContainerHeight(element.offsetHeight)
-      console.log('  element.', element.style.height, element.offsetHeight)
     }
-    console.log('afterHighlights ', afterHighlights, beforeHighlights)
 
   }, [isEditModeON]);
   useEffect(() => {
@@ -712,7 +706,6 @@ const Topics = ({ tagData, bookId, ideaCardId }) => {
   const [tags, setTags] = useState("");
   const [tagsData, setTagsData] = useState(tagData);
   const handleKeyDown = (event) => {
-    console.log("A key was pressed", event.key);
     if (event.key === "Enter" && tags !== "") {
       let tempTags = [...tagsData];
       tempTags.push(tags);
@@ -1159,7 +1152,6 @@ export function IdeaCardAccordian({ data }) {
   const [editIconVisibility, setEditIconVisibility] = useState(false)
   const [isEditModeON, setIsEditModeON] = useState(false);
 
-  console.log("data of Ideacard", data);
 
   return (
     <div>
@@ -1254,7 +1246,6 @@ export function IdeaCardAccordian({ data }) {
 export function CreateIdeaCardAccordian({ data }) {
   const [editIconVisibility, setEditIconVisibility] = useState(false)
   const [isEditModeON, setIsEditModeON] = useState(false);
-  // console.log("data of Ideacard", data);
   return (
     <div>
       {/* //Mynotes */}
@@ -1275,7 +1266,7 @@ export function CreateIdeaCardAccordian({ data }) {
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
-            id="panel1a-header"
+            id="panel1a-header highlightColourChange"
             sx={headingStyle}
           >
             {editIconVisibility &&
