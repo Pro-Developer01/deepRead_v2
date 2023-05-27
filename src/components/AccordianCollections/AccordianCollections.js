@@ -411,12 +411,14 @@ const LinkedHighlights = ({
   bookId,
   position,
   highlightData,
-  isEditModeON
+  isEditModeON,
+  setIsEditModeON
 }) => {
   const [beforeHighlights, setBeforeHighlights] = useState(null);
   const [afterHighlights, setAfterHighlights] = useState(null);
   const [linkedHighlights, setLinkedHighlights] = useState(null);
   const [newHighlightIdList, setNewHighlightIdList] = useState([]);
+  const [tempEditedHighlights, setTempEditedHighlights] = useState([]);
   const [beforeRange, setBeforeRange] = useState(3);
   const [afterRange, setAfterRange] = useState(3);
   const [containerHeight, setContainerHeight] = useState(null);
@@ -429,8 +431,6 @@ const LinkedHighlights = ({
       });
     });
   };
-
-
 
   const getHighlightData = (highlightId) => {
     const highlights = [...beforeHighlights, ...afterHighlights];
@@ -506,37 +506,51 @@ const LinkedHighlights = ({
       setAfterRange(afterRange + 3);
     }
   };
-  const updateHighlightData = (highlightDataArray) => {
-    if (linkedHighlights && highlightDataArray.length) {
-      const tempHighlights = [...linkedHighlights, ...highlightDataArray];
-      tempHighlights.sort((first, second) => first.start - second.start);
-      setLinkedHighlights(tempHighlights);
-      updateLinkedHighlights(ideaCardId, { description: tempHighlights });
+  const updateHighlightData = () => {
+    if (tempEditedHighlights && tempEditedHighlights.length) {
+      setLinkedHighlights(tempEditedHighlights);
+      updateLinkedHighlights(ideaCardId, { description: tempEditedHighlights });
+      setTempEditedHighlights([]);
+      setNewHighlightIdList([])
+      setIsEditModeON(false)
     }
   }
 
+  const handleOutsideClick = (event) => {
+    const element = document.getElementById('linkedHighlight-parent');
+
+    if (element && !element.contains(event.target)) {
+      updateHighlightData();
+    }
+  }
   useEffect(() => {
     if (linkedHighlights) {
       filterAdjoiningHighlightsBefore(linkedHighlights);
     }
   }, [linkedHighlights, beforeRange]);
+
   useEffect(() => {
     if (linkedHighlights) {
       filterAdjoiningHighlightsAfter(linkedHighlights);
     }
   }, [linkedHighlights, afterRange]);
+
+  useEffect(() => {
+    if (newHighlightIdList?.length) {
+      const highlightDataArray = newHighlightIdList.map(item => getHighlightData(item))
+      const tempHighlights = [...linkedHighlights, ...highlightDataArray];
+      tempHighlights.sort((first, second) => first?.start - second?.start);
+      setTempEditedHighlights(tempHighlights)
+    }
+  }, [newHighlightIdList]);
+
   useEffect(() => {
     if (!isEditModeON) {
-      if (newHighlightIdList?.length)
+      if (tempEditedHighlights?.length)
         setAfterRange(3)
       setBeforeRange(3)
       setContainerHeight(null)
-      {
-        const highlightDataArray = []
-        newHighlightIdList.forEach(item => { highlightDataArray.push(getHighlightData(item)) })
-        setNewHighlightIdList([])
-        updateHighlightData(highlightDataArray);
-      }
+      updateHighlightData();
       const titlecolor = document.getElementById('panel1a-header highlightColourChange');
       titlecolor.style.color = '#717171';
     }
@@ -546,8 +560,8 @@ const LinkedHighlights = ({
       titlecolor.style.color = '#ff6600';
       setContainerHeight(element.offsetHeight)
     }
-
   }, [isEditModeON]);
+
   useEffect(() => {
     let mainHighlight;
     fetchAdjoiningHighlights(bookId, position).then((adjoiningData) => {
@@ -569,7 +583,17 @@ const LinkedHighlights = ({
       }
     });
     setLinkedHighlights(highlightData);
+
+
   }, []);
+  useEffect(() => {
+
+    document.addEventListener('click', handleOutsideClick);
+    return (() => {
+      updateHighlightData()
+      document.removeEventListener('click', handleOutsideClick);
+    })
+  }, [tempEditedHighlights])
 
 
 
@@ -605,10 +629,10 @@ const LinkedHighlights = ({
               </span>
               <span
                 style={{
-                  fontWeight: item._id === highlightId ? "bold" : "normal",
+                  fontWeight: item?._id === highlightId ? "bold" : "normal",
                 }}
               >
-                {item.context}
+                {item?.context}
               </span>
             </div>
           );
@@ -1182,7 +1206,7 @@ export function IdeaCardAccordian({ data }) {
       </Accordion>
 
       {/* //LINKED HIGHLIGHTS */}
-      <Accordion elevation={0} sx={accordianBorder} defaultExpanded={true} onMouseEnter={() => setEditIconVisibility(true)} onMouseLeave={() => setEditIconVisibility(false)}>
+      <Accordion id='linkedHighlight-parent' elevation={0} sx={accordianBorder} defaultExpanded={true} onMouseEnter={() => setEditIconVisibility(true)} onMouseLeave={() => setEditIconVisibility(false)}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -1207,6 +1231,7 @@ export function IdeaCardAccordian({ data }) {
           position={data?.start}
           highlightData={data?.description}
           isEditModeON={isEditModeON}
+          setIsEditModeON={setIsEditModeON}
         />
       </Accordion>
 
@@ -1262,7 +1287,7 @@ export function CreateIdeaCardAccordian({ data }) {
       </Accordion>
       {/* //LINKED HIGHLIGHTS */}
       {data?.highlight_id && (
-        <Accordion elevation={0} sx={accordianBorder} defaultExpanded={true} onMouseEnter={() => setEditIconVisibility(true)} onMouseLeave={() => setEditIconVisibility(false)}>
+        <Accordion id='linkedHighlight-parent' elevation={0} sx={accordianBorder} defaultExpanded={true} onMouseEnter={() => setEditIconVisibility(true)} onMouseLeave={() => setEditIconVisibility(false)}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -1287,6 +1312,7 @@ export function CreateIdeaCardAccordian({ data }) {
             position={data?.start}
             highlightData={data?.description}
             isEditModeON={isEditModeON}
+            setIsEditModeON={setIsEditModeON}
           />
         </Accordion>
       )}
