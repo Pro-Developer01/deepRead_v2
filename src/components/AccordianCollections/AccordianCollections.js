@@ -31,6 +31,7 @@ import {
   updateIdeaCardRelation,
 } from "../../helperFunctions/apiFunctions";
 import AnchorIcon from "@mui/icons-material/Anchor";
+import Notes from "../../helperFunctions/Notes";
 // import { ReactComponent as Identify } from "../../Assets/Identify.svg";
 
 import InputLabel from "@mui/material/InputLabel";
@@ -1189,7 +1190,7 @@ export function IdeaCardAccordian({ data }) {
         >
           MY NOTES
         </AccordionSummary>
-        <MyNotes myNotesData={data?.my_notes} ideaCardId={data?._id} />
+        <Notes/>
       </Accordion>
 
       {/* //Topic */}
@@ -1283,7 +1284,7 @@ export function CreateIdeaCardAccordian({ data }) {
         >
           MY NOTES
         </AccordionSummary>
-        <MyNotes myNotesData={data?.my_notes} ideaCardId={data?._id} />
+        <Notes/>
       </Accordion>
       {/* //LINKED HIGHLIGHTS */}
       {data?.highlight_id && (
