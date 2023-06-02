@@ -92,18 +92,7 @@ export default function IdeaCardPage() {
       {data && (
         <>
           {" "}
-          <div
-            style={{
-              border: "1px solid var(--borderColors)",
-              borderTop: "none",
-              padding: "7px",
-              borderRadius: "12px ",
-              background: "white",
-              margin: "0 0 4.5rem 0.7rem",
-              padding: "0.5rem 0",
-              paddingTop: "0",
-            }}
-          >
+          <div className="ideacardParentContainer" >
             <div className="ideacard-Title">
               {/* //Shared by */}
               <Stack
@@ -123,6 +112,7 @@ export default function IdeaCardPage() {
                     color: "lightslategrey",
                   }}
                 >
+
                   <b>My own content</b>{" "}
                 </span>
               </Stack>
@@ -151,63 +141,62 @@ export default function IdeaCardPage() {
                 >
                   {getIdeacardIcons(data.label_id, "large")}
                 </span>
-                <h3>
-                  {data.title?.length > 253
-                    ? data.title?.slice(0, 253) + "..."
-                    : data.title}
-                </h3>
+                <h3 className="text-lg font-bold"> {data.title?.length > 253 ? data.title?.slice(0, 253) + '...' : data.title}</h3>
               </Stack>
             </div>
 
-            {/* //Graphics */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: "12px",
-                paddingLeft: "3.6rem",
-                paddingRight: "0.5rem",
-              }}
-            >
-              {data.picture_link && (
-                <img
-                  src={data.picture_link}
-                  alt={data.title}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "12px ",
-                  }}
-                />
-              )}
-            </div>
+            <div style={{ overflow: ' scroll' }}>
 
-            {/* //SocialButtons */}
+              {/* //Graphics */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginTop: "12px",
+                  paddingLeft: "3.6rem",
+                  paddingRight: "0.5rem",
+                }}
+              >
+                {data.picture_link && (
+                  <img
+                    src={data.picture_link}
+                    alt={data.title}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "12px ",
+                    }}
+                  />
+                )}
+              </div>
 
-            <div
-              className="reactionButtonsContainer"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-              style={{ paddingLeft: "3.4rem", paddingRight: "0.5rem" }}
-            >
-              <div className="socialButtons">
-                <Stack direction="row" spacing={3}>
-                  <FavoriteBorder sx={{ color: "var(--primaryColor)" }} />
-                  <ChatBubbleOutline sx={socialButtonsStyle} />
-                  <ShareIcon sx={socialButtonsStyle} />
-                </Stack>
+              {/* //SocialButtons */}
+
+              <div
+                className="reactionButtonsContainer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                style={{ paddingLeft: "3.4rem", paddingRight: "0.5rem" }}
+              >
+                <div className="socialButtons">
+                  <Stack direction="row" spacing={3}>
+                    <FavoriteBorder sx={{ color: "var(--primaryColor)" }} />
+                    <ChatBubbleOutline sx={socialButtonsStyle} />
+                    <ShareIcon sx={socialButtonsStyle} />
+                  </Stack>
+                </div>
+                <div className="bookmarkButtons">
+                  <Stack direction="row" spacing={3}>
+                    <BookmarkBorderIcon sx={socialButtonsStyle} />
+                    <MoreVertIcon sx={socialButtonsStyle} />
+                  </Stack>
+                </div>
               </div>
-              <div className="bookmarkButtons">
-                <Stack direction="row" spacing={3}>
-                  <BookmarkBorderIcon sx={socialButtonsStyle} />
-                  <MoreVertIcon sx={socialButtonsStyle} />
-                </Stack>
+              <hr style={{ border: "1px solid var(--borderColors)" }} />
+              <div className="otherAccordians">
+                <IdeaCardAccordian data={data} />
               </div>
-            </div>
-            <hr style={{ border: "1px solid var(--borderColors)" }} />
-            <div className="otherAccordians">
-              <IdeaCardAccordian data={data} />
             </div>
           </div>
           <Menu
