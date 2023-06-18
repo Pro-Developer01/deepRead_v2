@@ -11,6 +11,7 @@ import fetchIdeacardIcons from "./helperFunctions/getIdeacardIcons";
 import LoginPage from "./pages/Login/Signup/LoginPage";
 import { hot } from "react-hot-loader/root";
 import Reactotron from "reactotron-react-js";
+import Sidebar_v2 from "./components/Sidebar/Sidebar_v2";
 
 const signUp = {
   heading: "Create DeepRead account",
@@ -49,7 +50,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <div className="rootContainer">
           <Router>
-            <SideBar />
+            <Sidebar_v2 />
             <Routes>
               <Route path="/*" element={<DashBoard />} />
               <Route path="/login" element={<LoginPage content={login} />} />
