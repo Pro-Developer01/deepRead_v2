@@ -98,7 +98,7 @@ main {
   /* margin-top: 15px; */
   display: flex;
   flex-direction: column;
-  /* gap: 5px; */
+  gap: 4px;
   width: 180px;
 }
 .mainmenu {
@@ -244,8 +244,8 @@ main {
   justify-content: center;
   width: 100%;
   align-items: flex-start;
-  gap: 12px;
-  /* margin-bottom: 29px; */
+  /* gap: 12px; */
+  margin-bottom: 5px;
 }
 
 #sidebarProfileImg {
@@ -270,6 +270,8 @@ main {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  margin-top: -9px;
+  margin-left: -4px;
 }
 
 /* //Global Css */

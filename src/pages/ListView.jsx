@@ -11,22 +11,22 @@ import StopRoundedIcon from "@mui/icons-material/StopRounded";
 import { Chip } from "@mui/material";
 import highlightTester from "../helperFunctions/highlightTester";
 import { dynamicBulletHandler } from "../helperFunctions/getIdeacardIcons";
+import "./Pages_V2.css";
+import { iconProvider } from "../helperFunctions/iconProvider";
+
 const labelIconStyleInitial = {
-  backgroundColor: "var(--fontColor)",
-  borderRadius: "33px",
-  color: "gainsboro",
-  padding: "3px",
+  color: "var(--fontColor)",
 };
 const routes = [
   {
     path: "/",
     name: "Highlights",
-    icon: "album",
+    icon: "highlights",
   },
   {
     path: "/users",
     name: "Idea cards",
-    icon: "lightbulb",
+    icon: "ideaCards",
     subRoutes: [
       {
         name: "KEYWORDS",
@@ -40,7 +40,7 @@ const routes = [
 let listLevels = [
   {
     name: "1st Level:Chapter",
-    icon: "playlist_add",
+    icon: "Playlist_Add",
     state: true,
     className: "level-1",
   },
@@ -53,23 +53,28 @@ const cardChipStyle = {
   paddingLeft: "8px",
   cursor: "pointer",
   color: "var(--fontColor)",
+  background: "var(--ClickState)",
 };
 const iconStyle = {
   color: "var(--fontColor)",
+};
+const chipLabelStyle = {
+  fontSize: "14px",
 };
 
 const StartingPointRenderer = () => {
   return (
     <>
       <div>
-        <span className="text-fontColor text-xs	 ">Starting point:</span>
+        <span className="text-fontColor text-xs	">Starting point:</span>
       </div>
       <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
         <StartingPoint />
-        <div className="flex flex-col gap-[3px]">
+        <div className="flex flex-col gap-[5px]">
           <Chip
             sx={cardChipStyle}
             icon={<LibraryBooksOutlinedIcon sx={iconStyle} />}
+            classes={{ label: chipLabelStyle }}
             label="Library"
             className="text-fontColor w-fit"
             onClick={() => {}}
@@ -77,6 +82,7 @@ const StartingPointRenderer = () => {
           <Chip
             sx={cardChipStyle}
             icon={<AutoStoriesOutlinedIcon sx={iconStyle} />}
+            classes={{ label: chipLabelStyle }}
             label={"Atomic Habits"}
             onClick={() => {}}
             className="text-fontColor "
@@ -86,6 +92,7 @@ const StartingPointRenderer = () => {
     </>
   );
 };
+
 const Structurerenderer = () => {
   let levelCount = useSelector((state) => state.levelCounterReducer.value);
   const [listLevelState, setListLevelState] = useState(listLevels);
@@ -134,7 +141,26 @@ const Structurerenderer = () => {
   const selectedList = (index) => {
     const tempList = JSON.parse(JSON.stringify(listLevelState));
     tempList[index].state = !tempList[index].state;
-    stateCheckerLoop();
+    setListLevelState(tempList);
+    collectSelectedLevels(tempList);
+  };
+  const selectHandler = () => {
+    const tempList = JSON.parse(JSON.stringify(listLevelState));
+    if (selectState.selectAll) {
+      tempList.forEach((item) => {
+        item.state = false;
+      });
+      setListLevelState(tempList);
+      setIdeaCardActiveState(false);
+      setSelectState({ ...selectState, selectAll: false });
+    } else if (!selectState.selectAll) {
+      tempList.forEach((item) => {
+        item.state = true;
+      });
+      setListLevelState(tempList);
+      setIdeaCardActiveState(true);
+      setSelectState({ ...selectState, selectAll: true });
+    }
     collectSelectedLevels(tempList);
   };
   const levelObjectConstructor = (level) => {
@@ -160,6 +186,7 @@ const Structurerenderer = () => {
     for (let i = 1; i < levelCount; i++) {
       const obj = {
         name: levelObjectConstructor(i),
+        icon: "Playlist_Add",
         state: true,
         className: `level-${i}`,
       };
@@ -167,6 +194,9 @@ const Structurerenderer = () => {
       setListLevelState(listLevels);
     }
   }, [levelCount]);
+  useEffect(() => {
+    stateCheckerLoop();
+  }, [listLevelState]);
   return (
     <>
       <div>
@@ -174,23 +204,64 @@ const Structurerenderer = () => {
       </div>
       <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
         <StartingPoint />
-        <div className="flex flex-col gap-[3px]">
-          {listLevelState?.map((item, i) => (
-            <Chip
-              sx={cardChipStyle}
-              key={i + item.name}
-              icon={<PlaylistAddRoundedIcon sx={iconStyle} />}
-              label={item?.name}
-              className="text-fontColor w-fit"
-              style={{
-                width: "159px",
-                marginLeft: `${18 * i}px`,
-                // background: `${item.state ? "#71717166" : ""}`,
-              }}
-              onClick={() => {}}
-              // onClick={() => selectedList(i)}
-            />
-          ))}
+        <div className="flex flex-col gap-[5px]">
+          {/* // <Chip
+            //   sx={cardChipStyle}
+            //   key={i + item.name}
+            //   icon={<PlaylistAddRoundedIcon sx={iconStyle} />}
+            //   classes={{ label: chipLabelStyle }}
+            //   label={item?.name}
+            //   className="text-fontColor w-fit"
+            //   style={{
+            //     width: "159px",
+            //     
+            //     // background: `${item.state ? "#71717166" : ""}`,
+            //   }}
+            //   onClick={() => {}}
+            //   // onClick={() => selectedList(i)}
+            // /> */}
+          <div className="radioInputs ">
+            <span
+              className={"link_Modified selectCheckbox"}
+              id="bookmarPageRadio"
+            >
+              <input
+                type="checkBox"
+                id={"selectAll"}
+                name="selectAll"
+                checked={selectState.selectAll}
+                onChange={selectHandler}
+              />
+              <label for="selectAll" className="checkBoxLabel">
+                Select all
+              </label>
+            </span>
+            {listLevelState?.map((item, i) => {
+              return (
+                <button
+                  key={i}
+                  className={
+                    item.state ? "activeState_Modified" : "link_Modified"
+                  }
+                  // id={isOpen ? "active" : "activeCollapsible"}
+                  onClick={() => selectedList(i)}
+                  style={{
+                    gap: "4px",
+                    width: "147px",
+                    marginLeft: `${14 * i}px`,
+                  }}
+                >
+                  {iconProvider(item.icon)}
+                  <div
+                    style={{ textTransform: "capitalize" }}
+                    className="link_text ellipsis_Style"
+                  >
+                    {item.name}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>
@@ -229,6 +300,7 @@ const ContentListRenderer = () => {
       setSelectState({ ...selectState, selectAll: false });
     }
   };
+
   const bookmarkClicked = () => {
     if (counter === 0) {
       stateCheckerLoop();
@@ -240,6 +312,7 @@ const ContentListRenderer = () => {
       stateCheckerLoop();
     }
   };
+
   const collectSelectedIdeas = (data) => {
     const filteredDataTrue = data.filter((item) => item.state === true);
     const filteredDataFalse = data.filter((item) => item.state === false);
@@ -256,11 +329,13 @@ const ContentListRenderer = () => {
       });
     });
   };
+
   const CardsClicked = (index) => {
     routes[1].subRoutes[index].state = !routes[1].subRoutes[index].state;
     stateCheckerLoop();
     collectSelectedIdeas(routes[1].subRoutes);
   };
+
   const selectHandler = () => {
     if (selectState.selectAll) {
       routes[1].subRoutes.forEach((item) => {
@@ -284,11 +359,11 @@ const ContentListRenderer = () => {
       const highlightButton = document.querySelector(`#${id}`);
       setHighlightState(!highlightState);
       if (highlightState) {
-        highlightButton.classList.remove("link");
-        highlightButton.classList.add("activeState");
+        highlightButton.classList.remove("link_Modified");
+        highlightButton.classList.add("activeState_Modified");
       } else {
-        highlightButton.classList.add("link");
-        highlightButton.classList.remove("activeState");
+        highlightButton.classList.add("link_Modified");
+        highlightButton.classList.remove("activeState_Modified");
       }
       for (var i = 0; i < liChilds.length; ++i) {
         let item = liChilds[i].classList;
@@ -314,8 +389,8 @@ const ContentListRenderer = () => {
 
     if (highlightTester()) {
       const highlightButton = document.querySelector(`#Highlights-0`);
-      highlightButton.classList.remove("link");
-      highlightButton.classList.add("activeState");
+      highlightButton.classList.remove("link_Modified");
+      highlightButton.classList.add("activeState_Modified");
     }
   }, []);
   return (
@@ -325,28 +400,24 @@ const ContentListRenderer = () => {
       </div>
       <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
         <StartingPoint />
-        <div className="flex flex-col gap-[3px]">
-          <Chip
-            sx={cardChipStyle}
-            icon={<StopRoundedIcon sx={iconStyle} />}
-            label="Highlights"
-            className="text-fontColor w-fit"
-            onClick={() => {}}
-          />
+        <div className="flex flex-col gap-[5px]">
           {routes.map((route, index) => {
             if (route.subRoutes?.length) {
               return (
                 <>
                   <button
                     key={index}
-                    className={ideaCardActiveState ? "activeState" : "link"}
+                    className={
+                      ideaCardActiveState
+                        ? "activeState_Modified"
+                        : "link_Modified"
+                    }
                     // id={isOpen ? "active" : "activeCollapsible"}
                     onClick={bookmarkClicked}
                   >
-                    <span className="material-symbols-outlined">
-                      {" "}
-                      {route.icon}
-                    </span>
+                    {/* <span className="material-symbols-outlined"> */}{" "}
+                    {iconProvider(route.icon)}
+                    {/* </span> */}
                     <div className="link_text">{route.name}</div>
                     <span className="material-symbols-outlined" id="arrows">
                       {" "}
@@ -355,9 +426,9 @@ const ContentListRenderer = () => {
                   </button>
 
                   {bookmarkState && (
-                    <div className="radioInputs">
+                    <div className="radioInputs mt-3 ml-8">
                       <span
-                        className={"link selectCheckbox"}
+                        className={"link_Modified selectCheckbox"}
                         id="bookmarPageRadio"
                       >
                         <input
@@ -375,7 +446,11 @@ const ContentListRenderer = () => {
                         return (
                           <button
                             key={i}
-                            className={item.state ? "activeState" : "link"}
+                            className={
+                              item.state
+                                ? "activeState_Modified"
+                                : "link_Modified"
+                            }
                             // id={isOpen ? "active" : "activeCollapsible"}
                             onClick={() => CardsClicked(i)}
                           >
@@ -388,7 +463,11 @@ const ContentListRenderer = () => {
                               "medium",
                               labelIconStyleInitial
                             )}
-                            <div style={{ textTransform: "capitalize" }}>
+                            {/* {iconProvider(route.icon)} */}
+                            <div
+                              style={{ textTransform: "capitalize" }}
+                              className="link_text"
+                            >
                               {item.name}
                             </div>
                           </button>
@@ -403,14 +482,16 @@ const ContentListRenderer = () => {
             return (
               <button
                 key={index}
-                className={isOpen ? "linkCollapsible" : "link"}
+                className={isOpen ? "linkCollapsible" : "link_Modified"}
                 id={route.name + "-" + index}
                 onClick={() =>
                   showMenuClickHandler(route.name, route.name + "-" + index)
                 }
               >
-                <span className="material-symbols-outlined"> {route.icon}</span>
-                <div>{route.name}</div>
+                {/* <span className="material-symbols-outlined"> */}{" "}
+                {iconProvider(route.icon)}
+                {/* </span> */}
+                <div className="link_text">{route.name}</div>
               </button>
             );
           })}
@@ -419,6 +500,7 @@ const ContentListRenderer = () => {
     </>
   );
 };
+
 export default function ListView() {
   return (
     <div>
@@ -431,9 +513,6 @@ export default function ListView() {
         <hr />
       </div>
       <ContentListRenderer />
-      <div className="mt-[15px]">
-        <hr />
-      </div>
     </div>
   );
 }
