@@ -5,74 +5,35 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
 import DrawerModal from "../DrawerModal/DrawerModal";
-// import logo from "../../Assets/LogoHalf.png";
 import { ReactComponent as Logo } from "../../Assets/LogoHalfSvg.svg";
 import { ReactComponent as FullLogo } from "../../Assets/logoFullSvg.svg";
-
-import { useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import NewIdeaButton from "../NewIdea/NewIdeaButton";
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    icon: "Home",
-    state: false,
-  },
-  {
-    path: "/users",
-    name: "Navigate",
-    icon: "explore",
-    state: false,
-  },
-  {
-    path: "/messages",
-    name: "Search",
-    icon: "search",
-    state: false,
-  },
-  {
-    path: "/analytics",
-    name: "Show",
-    icon: "visibility",
-    state: false,
-  },
-  {
-    path: "/file-manager",
-    name: "Filter",
-    icon: "filter_alt",
-    state: false,
-  },
-  {
-    path: "/order",
-    name: "Template",
-    icon: "dashboard",
-    state: false,
-  },
-];
+import { iconProvider } from "../../helperFunctions/iconProvider";
+
 const views = [
   {
     path: "/",
     name: "List View",
-    icon: "Home",
+    icon: "FormatListBulletedOutlined",
     state: false,
   },
   {
     path: "/users",
     name: "Tiles View",
-    icon: "explore",
+    icon: "GridViewOutlined",
     state: false,
   },
   {
     path: "/messages",
     name: "Tree View",
-    icon: "search",
+    icon: "AccountTreeOutlined",
     state: false,
   },
   {
     path: "/analytics",
     name: "Node View",
-    icon: "visibility",
+    icon: "HubOutlined",
     state: false,
   },
 ];
@@ -80,39 +41,40 @@ const actions = [
   {
     path: "/",
     name: "Identify idea",
-    icon: "Home",
+    icon: "Identify_White",
     state: false,
   },
   {
     path: "/users",
     name: "Create idea",
-    icon: "explore",
+    icon: "TipsAndUpdatesOutlined",
     state: false,
   },
 ];
+
 const links = [
   {
     path: "/feed",
     name: "Feed",
-    icon: () => {},
+    icon: "DynamicFeedOutlined",
     state: false,
   },
   {
     path: "/library",
     name: "Library",
-    icon: "Library",
+    icon: "LibraryBooksOutlined",
     state: false,
   },
   {
     path: "/tags",
     name: "Tags",
-    icon: "Tags",
+    icon: "TagOutlined",
     state: false,
   },
   {
     path: "/ideas",
     name: "Ideas",
-    icon: "Ideas",
+    icon: "LightbulbOutlined",
     state: false,
   },
 ];
@@ -324,10 +286,7 @@ const Sidebar_v2 = ({ children }) => {
                   id={item.state ? "activeMainMenu" : null}
                   onClick={() => handleLinkOpen(item, index)}
                 >
-                  <span className="material-symbols-outlined">
-                    {" "}
-                    {item.icon}
-                  </span>
+                  <span className=""> {iconProvider(item.icon)}</span>
                   <AnimatePresence>
                     {isOpen ? (
                       <motion.div
@@ -370,10 +329,7 @@ const Sidebar_v2 = ({ children }) => {
                   id={item.state ? "activeMainMenu" : null}
                   onClick={() => handleNavigationButtons(item, index)}
                 >
-                  <span className="material-symbols-outlined">
-                    {" "}
-                    {item.icon}
-                  </span>
+                  <span className=""> {iconProvider(item.icon)}</span>
                   <AnimatePresence>
                     {isOpen ? (
                       <motion.div
@@ -415,10 +371,7 @@ const Sidebar_v2 = ({ children }) => {
                   id={item.state ? "activeMainMenu" : null}
                   onClick={() => handleActionsButton(item, index)}
                 >
-                  <span className="material-symbols-outlined">
-                    {" "}
-                    {item.icon}
-                  </span>
+                  <span className=""> {iconProvider(item.icon)}</span>
                   <AnimatePresence>
                     {isOpen ? (
                       <motion.div
@@ -490,7 +443,7 @@ const Sidebar_v2 = ({ children }) => {
               </div>
               <div id="barParent" onClick={toggle}>
                 <div className="barsContainer">
-                  <FaBars />
+                  {iconProvider("MenuRounded")}
                 </div>
               </div>
             </div>
