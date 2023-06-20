@@ -1,0 +1,68 @@
+.sidebarLayer2 .link_Modified {
+  display: flex;
+  color: var(--fontColor);
+  background: var(--NavigationBackgroundColor);
+  gap: 19px;
+  padding: 5px 10px;
+  --fill: 0;
+  --weight: 400;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  /* margin: 19px 0px; */
+  /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
+}
+
+.radioInputs .link_Modified {
+  display: flex;
+  color: var(--fontColor);
+  background: var(--NavigationBackgroundColor);
+  gap: 6px;
+  padding: 5px 10px;
+  --fill: 0;
+  --weight: 400;
+  --iconFontSize: 21px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  /* margin: 9px 0px; */
+  font-size: 13px;
+}
+
+.activeState_Modified {
+  display: flex;
+  color: var(--fontColor);
+  gap: 8px;
+  padding: 3px 10px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  /* margin: 19px 0px; */
+  background: var(--ClickState);
+  --fill: 1;
+  --weight: 900;
+  border-radius: 24px;
+}
+.radioInputs .activeState_Modified {
+  display: flex;
+  color: var(--fontColor);
+  gap: 8px;
+  padding: 3px 10px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  margin: 5px 0px;
+  background: var(--ClickState);
+  --fill: 1;
+  --iconFontSize: 21px;
+  --weight: 900;
+  border-radius: 24px;
+  font-size: 13px;
+  width: 133px;
+}
+
+.ellipsis_Style {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

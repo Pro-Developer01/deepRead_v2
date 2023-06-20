@@ -67,7 +67,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 10px;
+  padding: 13px 10px 0px 10px;
 }
 .logo {
   font-size: 18px;
@@ -98,11 +98,12 @@ main {
   /* margin-top: 15px; */
   display: flex;
   flex-direction: column;
-  /* gap: 5px; */
+  gap: 4px;
   width: 180px;
 }
 .mainmenu {
   margin-top: 10px;
+  margin-left: 3px;
 }
 .routesCollapsible {
   /* margin-top: 15px; */
@@ -124,7 +125,7 @@ main {
   border: none;
   cursor: pointer;
   align-items: center;
-  margin: 11px 0px;
+  margin: 1px 0px;
   border-radius: 24px;
   /* height: 56px; */
   /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
@@ -136,12 +137,12 @@ main {
   background: var(--NavigationBackgroundColor);
   align-items: center;
   gap: 1px;
-  padding: 6px 4px;
+  /* padding: 6px 4px; */
   --fill: 0;
   --weight: 400;
   border: none;
   cursor: pointer;
-  margin: 3px 0px;
+  margin: 1.5px 0px;
   border-radius: 9px;
   /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
 }
@@ -235,7 +236,7 @@ main {
   justify-content: center;
   width: 100%;
   align-items: center;
-  margin-bottom: 29px;
+  /* margin-bottom: 29px; */
 }
 .sidebarLower {
   display: flex;
@@ -243,8 +244,8 @@ main {
   justify-content: center;
   width: 100%;
   align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 29px;
+  /* gap: 12px; */
+  margin-bottom: 5px;
 }
 
 #sidebarProfileImg {
@@ -269,6 +270,8 @@ main {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  margin-top: -9px;
+  margin-left: -4px;
 }
 
 /* //Global Css */

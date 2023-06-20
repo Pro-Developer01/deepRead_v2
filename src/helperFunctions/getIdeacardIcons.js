@@ -6,7 +6,12 @@ import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import SettingsIcon from "@mui/icons-material/Settings";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
-
+import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
+import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import FormatQuoteRoundedIcon from '@mui/icons-material/FormatQuoteRounded';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 const labelIconStyleInitial = {
   backgroundColor: "var(--primaryColor)",
   borderRadius: "33px",
@@ -40,23 +45,23 @@ export const dynamicBulletHandler = (
   }
   switch (option) {
     case "KEYWORDS":
-      return <VpnKeySharpIcon fontSize={fontSize} sx={labelIconStyle} />;
+      return <VpnKeyRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
     case "MAIN CLAIMS":
       return (
-        <KeyboardDoubleArrowRightIcon fontSize={fontSize} sx={labelIconStyle} />
+        <KeyboardDoubleArrowRightRoundedIcon fontSize={fontSize} sx={labelIconStyle} />
       );
     case "QUOTES":
-      return <FormatQuoteIcon fontSize={fontSize} sx={labelIconStyle} />;
+      return <FormatQuoteRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
     case "EXAMPLES":
-      return <HistoryEduIcon fontSize={fontSize} sx={labelIconStyle} />;
+      return <ForumRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
     case "ACTIONS ITEMS":
-      return <CampaignIcon fontSize={fontSize} sx={labelIconStyle} />;
+      return <CampaignRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
     case "custom1":
-      return <SettingsIcon fontSize={fontSize} sx={labelIconStyle} />;
+      return <SettingsRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
     case "custom2":
-      return <SettingsIcon fontSize={fontSize} sx={labelIconStyle} />;
+      return <SettingsRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
     case "custom3":
-      return <SettingsIcon fontSize={fontSize} sx={labelIconStyle} />;
+      return <SettingsRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
   }
 };
 

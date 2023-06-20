@@ -5,28 +5,32 @@ import SearchMenu from '../../pages/SearchMenu';
 import ShowMenu from '../../pages/ShowMenu';
 import Filter from '../../pages/Filter';
 import Template from '../../pages/Template';
+import ListView from '../../pages/ListView';
 
-export default function DrawerModal({title, setTitle}) {
-  const closeHandle=()=>{
+export default function DrawerModal({ title, setTitle }) {
+  const closeHandle = () => {
     setTitle(null);
   }
-  const NavigationHandler=(title)=>{
-    switch(title) {
+  const NavigationHandler = (title) => {
+    switch (title) {
       case 'Navigate':
         // code block
-        return <Navigation/> ;
+        return <Navigation />;
       case 'Search':
         // code block
-        return <SearchMenu/>;
+        return <SearchMenu />;
       case 'Show':
         // code block
-     return <ShowMenu/>;
+        return <ShowMenu />;
       case 'Filter':
         // code block
-        return <Filter/>;
+        return <Filter />;
       case 'Template':
         // code block
-       return <Template/>;
+        return <Template />;
+      case 'List View':
+        // code block
+        return <ListView />;
       default:
         return <span>Please Select Proper tab</span>
     }
@@ -35,10 +39,10 @@ export default function DrawerModal({title, setTitle}) {
     <div className='DrawerModalParent'>
       <div className="headingSection">
         <span id='heading'>{title}</span>
-        <span class="material-symbols-outlined" onClick={closeHandle} style={{cursor:'pointer', color:'#717171'}}> close</span>
+        <span class="material-symbols-outlined" onClick={closeHandle} style={{ cursor: 'pointer', color: '#717171' }}> close</span>
       </div>
       <div className="contentsection">
-      {NavigationHandler(title)}
+        {NavigationHandler(title)}
 
       </div>
     </div>
