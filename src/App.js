@@ -63,7 +63,7 @@ function App() {
           </Router>
         </div>
 
-        <NewIdeaButton />
+        {/* <NewIdeaButton /> */}
       </ThemeProvider>
     </>
   );

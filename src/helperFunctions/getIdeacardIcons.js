@@ -8,6 +8,7 @@ import CampaignIcon from "@mui/icons-material/Campaign";
 import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import FormatQuoteRoundedIcon from '@mui/icons-material/FormatQuoteRounded';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
@@ -50,9 +51,9 @@ export const dynamicBulletHandler = (
         <KeyboardDoubleArrowRightRoundedIcon fontSize={fontSize} sx={labelIconStyle} />
       );
     case "QUOTES":
-      return <FormatQuoteIcon fontSize={fontSize} sx={labelIconStyle} />;
+      return <FormatQuoteRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
     case "EXAMPLES":
-      return <KeyboardDoubleArrowRightRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
+      return <ForumRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
     case "ACTIONS ITEMS":
       return <CampaignRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
     case "custom1":

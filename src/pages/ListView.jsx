@@ -1,13 +1,8 @@
 import StartingPoint from "../Assets/StartingPointSvg";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import StructureBySvg from "../Assets/StructureBySvg";
-import ContentListSvg from "../Assets/ContentListSvg";
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import PlaylistAddRoundedIcon from "@mui/icons-material/PlaylistAddRounded";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
-import StopRoundedIcon from "@mui/icons-material/StopRounded";
 import { Chip } from "@mui/material";
 import highlightTester from "../helperFunctions/highlightTester";
 import { dynamicBulletHandler } from "../helperFunctions/getIdeacardIcons";
@@ -279,7 +274,7 @@ const ContentListRenderer = () => {
   const [highlightState, setHighlightState] = useState(false);
   const allIcons = JSON.parse(localStorage.getItem("ideacardIcons"));
 
-  const stateCheckerLoop = () => {
+  const stateCheckerLoopContent = () => {
     let selectCounter = 0;
     for (let i = 0; i < routes[1].subRoutes.length; i++) {
       if (routes[1].subRoutes[i].state) {
@@ -303,13 +298,13 @@ const ContentListRenderer = () => {
 
   const bookmarkClicked = () => {
     if (counter === 0) {
-      stateCheckerLoop();
+      stateCheckerLoopContent();
       setBookmarkState(true);
       setCounter(1);
     } else if (counter === 1) {
       setBookmarkState(false);
       setCounter(0);
-      stateCheckerLoop();
+      stateCheckerLoopContent();
     }
   };
 
@@ -332,11 +327,11 @@ const ContentListRenderer = () => {
 
   const CardsClicked = (index) => {
     routes[1].subRoutes[index].state = !routes[1].subRoutes[index].state;
-    stateCheckerLoop();
+    stateCheckerLoopContent();
     collectSelectedIdeas(routes[1].subRoutes);
   };
 
-  const selectHandler = () => {
+  const selectHandlerContent = () => {
     if (selectState.selectAll) {
       routes[1].subRoutes.forEach((item) => {
         item.state = false;
@@ -433,12 +428,12 @@ const ContentListRenderer = () => {
                       >
                         <input
                           type="checkBox"
-                          id={"selectAll"}
-                          name="selectAll"
+                          id={"selectAllCopy"}
+                          name="selectAllCopy"
                           checked={selectState.selectAll}
-                          onChange={selectHandler}
+                          onChange={selectHandlerContent}
                         />
-                        <label for="selectAll" className="checkBoxLabel">
+                        <label for="selectAllCopy" className="checkBoxLabel">
                           Select all
                         </label>
                       </span>
