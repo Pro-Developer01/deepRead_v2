@@ -1,4 +1,6 @@
 import StartingPoint from "../Assets/StartingPointSvg";
+import ContentListSvg from "../Assets/ContentListSvg";
+import StructureBySvg from "../Assets/StructureBySvg";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
@@ -72,14 +74,14 @@ const StartingPointRenderer = () => {
             classes={{ label: chipLabelStyle }}
             label="Library"
             className="text-fontColor w-fit"
-            onClick={() => {}}
+            onClick={() => { }}
           />
           <Chip
             sx={cardChipStyle}
             icon={<AutoStoriesOutlinedIcon sx={iconStyle} />}
             classes={{ label: chipLabelStyle }}
             label={"Atomic Habits"}
-            onClick={() => {}}
+            onClick={() => { }}
             className="text-fontColor "
           />
         </div>
@@ -198,7 +200,7 @@ const Structurerenderer = () => {
         <span className="text-fontColor text-xs	 ">Structure by:</span>
       </div>
       <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
-        <StartingPoint />
+        <StructureBySvg />
         <div className="flex flex-col gap-[5px]">
           {/* // <Chip
             //   sx={cardChipStyle}
@@ -394,7 +396,7 @@ const ContentListRenderer = () => {
         <span className="text-fontColor text-xs	 ">Content:</span>
       </div>
       <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
-        <StartingPoint />
+        <ContentListSvg />
         <div className="flex flex-col gap-[5px]">
           {routes.map((route, index) => {
             if (route.subRoutes?.length) {

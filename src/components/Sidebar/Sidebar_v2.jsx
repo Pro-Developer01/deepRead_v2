@@ -133,6 +133,35 @@ const Sidebar_v2 = ({ children }) => {
     (state) => state.IdentifyIdeaCardReducer.value
   );
   const dispatch = useDispatch();
+  const handleNavigationButtons = (item, i) => {
+    const tempList = JSON.parse(JSON.stringify(listOfViews));
+    tempList.forEach((item) => {
+      item.state = false;
+    });
+    tempList[i].state = !tempList[i].state;
+    setListOfViews(tempList);
+    setTitle(item.name);
+    setTiggerModal(!tiggerModal);
+    setIsOpen(false);
+  };
+  const handleLinkOpen = (item, i) => {
+    const tempList = JSON.parse(JSON.stringify(listOfLinks));
+    tempList.forEach((item) => {
+      item.state = false;
+    });
+    tempList[i].state = !tempList[i].state;
+    setListOfLinks(tempList);
+    navigate(item.path);
+  };
+  const handleActionsButton = (item, i) => {
+    const tempList = JSON.parse(JSON.stringify(listOfActions));
+    tempList.forEach((item) => {
+      item.state = false;
+    });
+    tempList[i].state = !tempList[i].state;
+    clickHandler(item.name);
+    setListOfActions(tempList);
+  };
 
   const showAnimation = {
     hidden: {
@@ -267,13 +296,13 @@ const Sidebar_v2 = ({ children }) => {
       console.log("buttonState null runned", buttonState);
       dispatch(updatePersistentDrawer(null));
       dispatch(updateIdentifyIdeaCardData(null));
-      setOpen(false);
       removeCursorClass();
       removePopup();
-      window.getSelection().removeAllRanges();
       window.removeEventListener("keydown", handleEnter);
       window.removeEventListener("mouseup", handleTextPopup);
       window.removeEventListener("mousedown", removePopup);
+      window.getSelection().removeAllRanges();
+      setOpen(false);
     }
   };
 
@@ -311,35 +340,6 @@ const Sidebar_v2 = ({ children }) => {
     if (!title) setIsOpen(true);
   }, [title]);
 
-  const handleNavigationButtons = (item, i) => {
-    const tempList = JSON.parse(JSON.stringify(listOfViews));
-    tempList.forEach((item) => {
-      item.state = false;
-    });
-    tempList[i].state = !tempList[i].state;
-    setListOfViews(tempList);
-    setTitle(item.name);
-    setTiggerModal(!tiggerModal);
-    setIsOpen(false);
-  };
-  const handleLinkOpen = (item, i) => {
-    const tempList = JSON.parse(JSON.stringify(listOfLinks));
-    tempList.forEach((item) => {
-      item.state = false;
-    });
-    tempList[i].state = !tempList[i].state;
-    setListOfLinks(tempList);
-    navigate(item.path);
-  };
-  const handleActionsButton = (item, i) => {
-    const tempList = JSON.parse(JSON.stringify(listOfActions));
-    tempList.forEach((item) => {
-      item.state = false;
-    });
-    tempList[i].state = !tempList[i].state;
-    clickHandler(item.name);
-    setListOfActions(tempList);
-  };
 
   const inputAnimation = {
     hidden: {
@@ -382,7 +382,7 @@ const Sidebar_v2 = ({ children }) => {
                     initial="hidden"
                     animate="show"
                     exit="hidden"
-                    // className="logo"
+                  // className="logo"
                   >
                     <FullLogo />
                   </motion.span>
@@ -573,6 +573,15 @@ const Sidebar_v2 = ({ children }) => {
                   id={item.state && buttonState ? "activeMainMenu" : null}
                   onClick={() => handleActionsButton(item, index)}
                 >
+                  {buttonState === 'Identify idea' && (
+                    <style>
+                      {`
+                    ::selection {
+                      background-color: #FFDAC1;
+                    }
+                  `}
+                    </style>
+                  )}
                   <span className=""> {iconProvider(item.icon)}</span>
                   <AnimatePresence>
                     {isOpen ? (
