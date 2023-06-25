@@ -12,6 +12,7 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
+import { iconProvider } from "../../helperFunctions/iconProvider";
 
 const breadcrumbStyle = {
     display: "flex",
@@ -26,7 +27,7 @@ const breadcrumbStyle = {
     borderRadius: "2px",
 };
 const dropdownChipStyle = {
-    width: "6.7rem",
+    width: "6.9rem",
     justifyContent: "flex-start",
     fontWeight: 600,
     textTransform: "capitalize",
@@ -43,12 +44,16 @@ const cardChipStyle = {
     paddingLeft: "2px",
     cursor: "pointer",
     background: "var(--borderColors)",
+    fontSize: "var(--fontSizeRegular)",
+
 };
 
 let breadcrumbMenuItems = [
-    { label: "ListView", icon: <FormatListBulletedIcon />, href: "listview" },
-    { label: "TileView", icon: <GridViewIcon />, href: "tileview" },
-    { label: "FeedView", icon: <DynamicFeedIcon />, href: "feedview" },
+    { label: "List view", icon: <FormatListBulletedIcon />, href: "listview" },
+    { label: "Tile view", icon: <GridViewIcon />, href: "tileview" },
+    { label: "Feed view", icon: <DynamicFeedIcon />, href: "feedview" },
+    { label: "Tree view", icon: iconProvider('AccountTreeOutlined'), href: "treeview" },
+    { label: "Nodes view", icon: iconProvider('HubOutlined'), href: "nodeview" },
 ];
 
 export default function Breadcum({ state }) {

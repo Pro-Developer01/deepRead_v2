@@ -2,8 +2,8 @@
   display: flex;
   color: var(--fontColor);
   background: var(--NavigationBackgroundColor);
-  gap: 19px;
-  padding: 5px 10px;
+  gap: 8px;
+  padding: 3px 10px;
   --fill: 0;
   --weight: 400;
   border: none;
@@ -17,15 +17,15 @@
   display: flex;
   color: var(--fontColor);
   background: var(--NavigationBackgroundColor);
-  gap: 6px;
-  padding: 5px 10px;
+  gap: 8px;
+  padding: 3px 10px;
   --fill: 0;
   --weight: 400;
   --iconFontSize: 21px;
   border: none;
   cursor: pointer;
   align-items: center;
-  /* margin: 9px 0px; */
+  margin: 5px 0px;
   font-size: 13px;
 }
 
@@ -42,6 +42,7 @@
   --fill: 1;
   --weight: 900;
   border-radius: 24px;
+  width: 185px;
 }
 .radioInputs .activeState_Modified {
   display: flex;
@@ -58,7 +59,7 @@
   --weight: 900;
   border-radius: 24px;
   font-size: 13px;
-  width: 133px;
+  width: 151px;
 }
 
 .ellipsis_Style {

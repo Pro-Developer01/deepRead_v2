@@ -50,7 +50,9 @@ const cardChipStyle = {
   paddingLeft: "8px",
   cursor: "pointer",
   color: "var(--fontColor)",
-  background: "var(--ClickState)",
+  background: "var(--ClickState) !important",
+  fontSize: "var(--fontSizeRegular)",
+
 };
 const iconStyle = {
   color: "var(--fontColor)",
@@ -65,7 +67,7 @@ const StartingPointRenderer = () => {
       <div>
         <span className="text-fontColor text-xs	">Starting point:</span>
       </div>
-      <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
+      <div className="flex" style={{ marginTop: "9px" }}>
         <StartingPoint />
         <div className="flex flex-col gap-[5px]">
           <Chip
@@ -77,7 +79,9 @@ const StartingPointRenderer = () => {
             onClick={() => { }}
           />
           <Chip
-            sx={cardChipStyle}
+            sx={{
+              cardChipStyle, width: '181px', justifyContent: 'flex-start', paddingLeft: '9px', background: "var(--ClickState) !important",
+            }}
             icon={<AutoStoriesOutlinedIcon sx={iconStyle} />}
             classes={{ label: chipLabelStyle }}
             label={"Atomic Habits"}
@@ -202,23 +206,8 @@ const Structurerenderer = () => {
       <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
         <StructureBySvg />
         <div className="flex flex-col gap-[5px]">
-          {/* // <Chip
-            //   sx={cardChipStyle}
-            //   key={i + item.name}
-            //   icon={<PlaylistAddRoundedIcon sx={iconStyle} />}
-            //   classes={{ label: chipLabelStyle }}
-            //   label={item?.name}
-            //   className="text-fontColor w-fit"
-            //   style={{
-            //     width: "159px",
-            //     
-            //     // background: `${item.state ? "#71717166" : ""}`,
-            //   }}
-            //   onClick={() => {}}
-            //   // onClick={() => selectedList(i)}
-            // /> */}
           <div className="radioInputs ">
-            <span
+            {/* <span
               className={"link_Modified selectCheckbox"}
               id="bookmarPageRadio"
             >
@@ -232,7 +221,7 @@ const Structurerenderer = () => {
               <label for="selectAll" className="checkBoxLabel">
                 Select all
               </label>
-            </span>
+            </span> */}
             {listLevelState?.map((item, i) => {
               return (
                 <button
@@ -244,7 +233,7 @@ const Structurerenderer = () => {
                   onClick={() => selectedList(i)}
                   style={{
                     gap: "4px",
-                    width: "147px",
+                    width: "185px",
                     marginLeft: `${14 * i}px`,
                   }}
                 >
