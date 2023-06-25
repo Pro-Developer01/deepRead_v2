@@ -5,6 +5,7 @@ import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import GridViewIcon from "@mui/icons-material/GridView";
 import { Link } from "react-router-dom";
+import { iconProvider } from "../../helperFunctions/iconProvider";
 const cardStyle = {
     border: "1px solid var(--borderColors)",
     padding: "10px",
@@ -24,11 +25,14 @@ const cardChipStyle = {
     gap: "10px",
     paddingLeft: "12px",
     cursor: "pointer",
+    fontSize: "var(--fontSizeRegular)",
+
 };
 const SuggestedViews = [
-    { label: "Feed", icon: <DynamicFeedIcon />, url: "feedview" },
     { label: "List", icon: <FormatListBulletedIcon />, url: "listview" },
     { label: "Tiles", icon: <GridViewIcon />, url: "tileview" },
+    { label: "Tree", icon: iconProvider('AccountTreeOutlined'), url: "treeview" },
+    { label: "Nodes", icon: iconProvider('HubOutlined'), url: "nodeview" },
 ];
 
 export default function SuggestedView({ bookId, userId, bookName }) {

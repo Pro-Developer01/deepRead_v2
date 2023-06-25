@@ -26,6 +26,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import Identify from "../../Assets/Identify";
 import Identify_White from "../../Assets/Identify_White";
 import Marker from "../../Assets/Marker";
+import { urlChecker } from "../../helperFunctions/urlChecker";
 
 const clossDoubleArrowStyle = {
   background: "var(--white)",
@@ -49,25 +50,25 @@ const closeCrossButtonStyle = {
 
 const views = [
   {
-    path: "/",
+    linkText: "listview",
     name: "List View",
     icon: "FormatListBulletedOutlined",
     state: false,
   },
   {
-    path: "/users",
+    linkText: "tileview",
     name: "Tiles View",
     icon: "GridViewOutlined",
     state: false,
   },
   {
-    path: "/messages",
+    linkText: "treeview",
     name: "Tree View",
     icon: "AccountTreeOutlined",
     state: false,
   },
   {
-    path: "/analytics",
+    linkText: "nodeview",
     name: "Node View",
     icon: "HubOutlined",
     state: false,
@@ -91,6 +92,7 @@ const actions = [
 const links = [
   {
     path: "/feed",
+    linkText: "feed",
     name: "Feed",
     icon: "DynamicFeedOutlined",
     state: false,
@@ -98,18 +100,21 @@ const links = [
   {
     path: "/library",
     name: "Library",
+    linkText: "library",
     icon: "LibraryBooksOutlined",
     state: false,
   },
   {
     path: "/tags",
     name: "Tags",
+    linkText: "tags",
     icon: "TagOutlined",
     state: false,
   },
   {
     path: "/ideas",
     name: "Ideas",
+    linkText: "ideas",
     icon: "LightbulbOutlined",
     state: false,
   },
@@ -363,7 +368,7 @@ const Sidebar_v2 = ({ children }) => {
       <div className="main-container">
         <motion.div
           animate={{
-            width: isOpen ? "208px" : "54px",
+            width: isOpen ? "208px" : "59px",
             transition: {
               duration: 0.5,
               type: "spring",
@@ -399,85 +404,14 @@ const Sidebar_v2 = ({ children }) => {
                 )}
               </AnimatePresence>
             </div>
-            {/* <div className="search">
-            <div className="search_icon">
-              <BiSearch />
-            </div>
-            <AnimatePresence>
-              {isOpen && (
-                <motion.input
-                  initial="hidden"
-                  animate="show"
-                  exit="hidden"
-                  variants={inputAnimation}
-                  type="text"
-                  placeholder="Search"
-                />
-              )}
-            </AnimatePresence>
-          </div> */}
-            {/* <section
-              className={
-                isOpen ? "routes mainmenu" : "routesCollapsible mainmenu"
-              }
-            >
-              {routes.map((route, index) => {
-                if (route.subRoutes) {
-                  return (
-                    <SidebarMenu
-                      setIsOpen={setIsOpen}
-                      route={route}
-                      showAnimation={showAnimation}
-                      isOpen={isOpen}
-                    />
-                  );
-                }
 
-                return (
-                  <button
-                    key={index}
-                    className={isOpen ? "link" : "linkCollapsible"}
-                    id={route.state ? "activeMainMenu" : null}
-                    onClick={() => handleNavigationButtons(route.name, index)}
-                  >
-                    <span className="material-symbols-outlined">
-                      {" "}
-                      {route.icon}
-                    </span>
-                    <AnimatePresence>
-                      {isOpen ? (
-                        <motion.div
-                          variants={showAnimation}
-                          initial="hidden"
-                          animate="show"
-                          exit="hidden"
-                          className="link_text"
-                        >
-                          {route.name}
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          variants={showAnimation}
-                          initial="hidden"
-                          animate="show"
-                          exit="hidden"
-                          className="link_text_collapse"
-                        >
-                          {route.name}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </button>
-                );
-              })}
-            </section> */}
           </div>
 
           {/* // Links  */}
 
           <div
             className={
-              isOpen ? "routes mainmenu" : "routesCollapsible mainmenu"
+              isOpen ? "routes mainmenu" : "routesCollapsible mainmenu collapse-1 "
             }
           >
             {listOfLinks?.map((item, index) => {
@@ -485,7 +419,7 @@ const Sidebar_v2 = ({ children }) => {
                 <button
                   key={index + item.name}
                   className={isOpen ? "link" : "linkCollapsible"}
-                  id={item.state ? "activeMainMenu" : null}
+                  id={urlChecker(item.linkText, true) ? "activeMainMenu" : null}
                   onClick={() => handleLinkOpen(item, index)}
                 >
                   <span className=""> {iconProvider(item.icon)}</span>
@@ -519,8 +453,9 @@ const Sidebar_v2 = ({ children }) => {
 
           {/* //views  */}
           <div
+
             className={
-              isOpen ? "routes mainmenu" : "routesCollapsible mainmenu"
+              isOpen ? "routes mainmenu" : "routesCollapsible mainmenu collapse-2"
             }
           >
             {listOfViews?.map((item, index) => {
@@ -528,7 +463,7 @@ const Sidebar_v2 = ({ children }) => {
                 <button
                   key={index + item.name}
                   className={isOpen ? "link" : "linkCollapsible"}
-                  id={item.state ? "activeMainMenu" : null}
+                  id={urlChecker(item.linkText) ? "activeMainMenu" : null}
                   onClick={() => handleNavigationButtons(item, index)}
                 >
                   <span className=""> {iconProvider(item.icon)}</span>
@@ -561,8 +496,9 @@ const Sidebar_v2 = ({ children }) => {
           </div>
           {/* //Action  */}
           <div
+
             className={
-              isOpen ? "routes mainmenu" : "routesCollapsible mainmenu"
+              isOpen ? "routes mainmenu" : "routesCollapsible mainmenu collapse-3"
             }
           >
             {listOfActions?.map((item, index) => {
@@ -623,7 +559,7 @@ const Sidebar_v2 = ({ children }) => {
                   }}
                 >
                   <img
-                    src="https://goodmorningimagesforlover.com/wp-content/uploads/2018/09/mehwish-hayat-hot-images.jpg"
+                    src="https://wallpapers.com/images/hd/cute-avatar-profile-picture-23yuqpb8wz1dqqqv.jpg"
                     alt="profile"
                     id="sidebarProfileImg"
                   />

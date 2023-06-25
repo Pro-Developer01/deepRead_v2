@@ -1,34 +1,28 @@
-
-.DrawerModalParent
-{
-    display: flex;
-    flex-flow: column;
-    background-color: var(--NavigationBackgroundColor);
-    height: 100vh;
-    border-left: 1px solid var(--borderColors);
-    border-top-right-radius: 23px;
-    border-bottom-right-radius: 23px;
-    box-shadow: 10px 10px 10px lightgrey;
-    
+.DrawerModalParent {
+  display: flex;
+  flex-flow: column;
+  background-color: var(--NavigationBackgroundColor);
+  height: 100vh;
+  border-left: 1px solid var(--borderColors);
+  border-top-right-radius: 23px;
+  border-bottom-right-radius: 23px;
+  box-shadow: 10px 10px 10px lightgrey;
 }
 
-.DrawerModalParent .headingSection
-{
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--borderColors);
-    padding: 15px 11px 15px 28px;
+.DrawerModalParent .headingSection {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--borderColors);
+  padding: 15px 11px 15px 18px;
 }
-.DrawerModalParent .headingSection #heading
-{
-    font-size: var(--fontSizeHeading);
-    color: var(--fontColor);
+.DrawerModalParent .headingSection #heading {
+  font-size: var(--fontSizeHeading);
+  color: var(--fontColor);
 }
-.DrawerModalParent  .contentsection
-{
-    padding: 15px 11px 15px 18px;
-    overflow-y: auto;
-    overflow-x: hidden;
+.DrawerModalParent .contentsection {
+  padding: 15px 11px 15px 18px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 /* .material-symbols-outlined
 {

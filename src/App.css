@@ -144,6 +144,8 @@ main {
   cursor: pointer;
   margin: 1.5px 0px;
   border-radius: 9px;
+  height: 44px;
+  width: 53px;
   /* transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
 }
 .linkCollapsible:hover {
@@ -255,7 +257,7 @@ main {
 }
 
 .sidebarLayer2 {
-  width: 294px;
+  width: 302px;
 }
 .barsContainer {
   padding: 8px 7px 5px 7px;
@@ -348,3 +350,13 @@ input::placeholder {
   box-shadow: 0px 0px 7px rgb(205 74 6 / 30%);
   border-radius: 4px;
 }
+/* 
+.collapse-1 {
+  margin-top: 34px;
+}
+.collapse-2 {
+  margin-top: 0px;
+}
+.collapse-3 {
+  margin-top: 0px;
+} */
