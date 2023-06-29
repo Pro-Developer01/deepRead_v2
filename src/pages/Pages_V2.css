@@ -2,7 +2,7 @@
   display: flex;
   color: var(--fontColor);
   background: var(--NavigationBackgroundColor);
-  gap: 8px;
+  gap: 4px;
   padding: 3px 10px;
   --fill: 0;
   --weight: 400;
@@ -17,7 +17,7 @@
   display: flex;
   color: var(--fontColor);
   background: var(--NavigationBackgroundColor);
-  gap: 8px;
+  gap: 4px;
   padding: 3px 10px;
   --fill: 0;
   --weight: 400;
@@ -32,7 +32,7 @@
 .activeState_Modified {
   display: flex;
   color: var(--fontColor);
-  gap: 8px;
+  gap: 4px;
   padding: 3px 10px;
   border: none;
   cursor: pointer;
@@ -47,7 +47,7 @@
 .radioInputs .activeState_Modified {
   display: flex;
   color: var(--fontColor);
-  gap: 8px;
+  gap: 4px;
   padding: 3px 10px;
   border: none;
   cursor: pointer;

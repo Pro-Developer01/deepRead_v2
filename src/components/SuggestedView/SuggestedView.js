@@ -25,7 +25,10 @@ const cardChipStyle = {
     gap: "10px",
     paddingLeft: "12px",
     cursor: "pointer",
+    color: "var(--fontColor)",
+    background: "var(--borderColors)",
     fontSize: "var(--fontSizeRegular)",
+
 
 };
 const SuggestedViews = [

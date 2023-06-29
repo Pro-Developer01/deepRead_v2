@@ -34,7 +34,9 @@ const dropdownChipStyle = {
     // gap: "10px",dww
     paddingLeft: "2px",
     cursor: "pointer",
+    color: "var(--fontColor)",
     background: "var(--borderColors)",
+    fontSize: "var(--fontSizeRegular)",
 };
 const cardChipStyle = {
     justifyContent: "flex-start",
@@ -43,6 +45,7 @@ const cardChipStyle = {
     // gap: "10px",dww
     paddingLeft: "2px",
     cursor: "pointer",
+    color: "var(--fontColor)",
     background: "var(--borderColors)",
     fontSize: "var(--fontSizeRegular)",
 
