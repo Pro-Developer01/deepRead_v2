@@ -184,7 +184,7 @@ const ShowMenu = () => {
   };
 
   useEffect(() => {
-    const stateFullAllIcons = allIcons.map((item) => ({
+    const stateFullAllIcons = allIcons?.map((item) => ({
       name: item.label.toLowerCase(),
       icon: item.label,
       state: true,

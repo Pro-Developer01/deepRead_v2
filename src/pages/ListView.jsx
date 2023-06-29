@@ -65,7 +65,7 @@ const StartingPointRenderer = () => {
   return (
     <>
       <div>
-        <span className="text-fontColor text-xs	">Starting point:</span>
+        <span className="text-fontColor text-sm	">Starting point:</span>
       </div>
       <div className="flex" style={{ marginTop: "9px" }}>
         <StartingPoint />
@@ -80,7 +80,7 @@ const StartingPointRenderer = () => {
           />
           <Chip
             sx={{
-              cardChipStyle, width: '181px', justifyContent: 'flex-start', paddingLeft: '9px', background: "var(--ClickState) !important",
+              ...cardChipStyle, width: '181px', justifyContent: 'flex-start', paddingLeft: '9px', background: "var(--ClickState) !important",
             }}
             icon={<AutoStoriesOutlinedIcon sx={iconStyle} />}
             classes={{ label: chipLabelStyle }}
@@ -201,7 +201,7 @@ const Structurerenderer = () => {
   return (
     <>
       <div>
-        <span className="text-fontColor text-xs	 ">Structure by:</span>
+        <span className="text-fontColor text-sm	 ">Structure by:</span>
       </div>
       <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
         <StructureBySvg />
@@ -365,7 +365,7 @@ const ContentListRenderer = () => {
   };
 
   useEffect(() => {
-    const stateFullAllIcons = allIcons.map((item) => ({
+    const stateFullAllIcons = allIcons?.map((item) => ({
       name: item.label.toLowerCase(),
       icon: item.label,
       state: true,
@@ -382,7 +382,7 @@ const ContentListRenderer = () => {
   return (
     <>
       <div>
-        <span className="text-fontColor text-xs	 ">Content:</span>
+        <span className="text-fontColor text-sm	 ">Content:</span>
       </div>
       <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
         <ContentListSvg />
@@ -424,7 +424,7 @@ const ContentListRenderer = () => {
                           checked={selectState.selectAll}
                           onChange={selectHandlerContent}
                         />
-                        <label for="selectAllCopy" className="checkBoxLabel">
+                        <label for="selectAllCopy" className="checkBoxLabel text-sm">
                           Select all
                         </label>
                       </span>
