@@ -6,6 +6,7 @@ import ShowMenu from '../../pages/ShowMenu';
 import Filter from '../../pages/Filter';
 import Template from '../../pages/Template';
 import ListView from '../../pages/ListView';
+import TilesViewMenu from '../../pages/TilesViewMenu';
 
 export default function DrawerModal({ title, setTitle }) {
   const closeHandle = () => {
@@ -31,6 +32,9 @@ export default function DrawerModal({ title, setTitle }) {
       case 'List View':
         // code block
         return <ListView />;
+      case 'Tiles View':
+        // code block
+        return <TilesViewMenu />;
       default:
         return <span>Please Select Proper tab</span>
     }
