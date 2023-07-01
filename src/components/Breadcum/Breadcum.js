@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Chip from "@mui/material/Chip";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBreadcumArray } from "../../Utils/Features/breadcumSlice";
 import Menu from "@mui/material/Menu";
@@ -11,7 +11,7 @@ import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import GridViewIcon from "@mui/icons-material/GridView";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
-import ImportContactsIcon from "@mui/icons-material/ImportContacts";
+import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import { iconProvider } from "../../helperFunctions/iconProvider";
 
 const breadcrumbStyle = {
@@ -100,9 +100,9 @@ export default function Breadcum({ state }) {
     const getBreadcumIcon = (title) => {
         switch (title) {
             case "library":
-                return <LibraryBooksIcon />;
+                return <LibraryBooksOutlinedIcon />;
             default:
-                return <ImportContactsIcon />;
+                return <AutoStoriesOutlinedIcon />;
         }
     };
     const urlChecker = () => {

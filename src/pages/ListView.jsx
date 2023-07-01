@@ -172,12 +172,10 @@ const Structurerenderer = () => {
         return "2st Level:Sub-Chapter";
       case 3:
         return "3rd Level:Section";
-
       case 4:
         return "4th Level:Sub-Section";
       case 5:
         return "5th Level:Sub-Sub-Section";
-
       default:
         return "nth Level";
     }
@@ -200,7 +198,7 @@ const Structurerenderer = () => {
   }, [listLevelState]);
   return (
     <>
-      <div>
+      <div className="pt-[15px]">
         <span className="text-fontColor text-sm	 ">Structure by:</span>
       </div>
       <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
@@ -381,7 +379,7 @@ const ContentListRenderer = () => {
   }, []);
   return (
     <>
-      <div>
+      <div className="pt-[15px]">
         <span className="text-fontColor text-sm	 ">Content:</span>
       </div>
       <div className="flex" style={{ gap: "0.75rem", marginTop: "9px" }}>
@@ -491,7 +489,7 @@ export default function ListView() {
   return (
     <div>
       <StartingPointRenderer />
-      <div className="mt-[15px]">
+      <div className="mt-[21px]">
         <hr />
       </div>
       <Structurerenderer />
