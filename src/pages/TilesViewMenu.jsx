@@ -54,6 +54,7 @@ const cardChipStyle = {
   color: "var(--fontColor)",
   background: "var(--ClickState) !important",
   fontSize: "var(--fontSizeRegular)",
+  height: '29.98px'
 
 };
 const iconStyle = {
@@ -232,7 +233,7 @@ const Structurerenderer = () => {
     stateCheckerLoop();
   }, [listLevelState]);
   useEffect(() => {
-    const filteredList = listLevels.filter((item) => item.label !== selectedItem.label)
+    const filteredList = listLevels.filter((item) => item.label !== selectedItem?.label)
     setListLevelState(filteredList);
   }, [selectedItem]);
   return (
@@ -303,7 +304,7 @@ const Structurerenderer = () => {
                 style={{ textTransform: "capitalize" }}
                 className="link_text ellipsis_Style"
               >
-                {selectedItem.label}
+                {selectedItem?.label}
               </div>
             </button>
           </div>

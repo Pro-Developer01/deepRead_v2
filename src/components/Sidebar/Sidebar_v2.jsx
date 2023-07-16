@@ -26,7 +26,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import Identify from "../../Assets/Identify";
 import Identify_White from "../../Assets/Identify_White";
 import Marker from "../../Assets/Marker";
-import { urlChecker } from "../../helperFunctions/urlChecker";
+import { urlChecker, urlViewFilter } from "../../helperFunctions/urlChecker";
 
 const clossDoubleArrowStyle = {
   background: "var(--white)",
@@ -126,6 +126,7 @@ const Sidebar_v2 = ({ children }) => {
   const [listOfLinks, setListOfLinks] = useState(links);
   const [listOfViews, setListOfViews] = useState(views);
   const [listOfActions, setListOfActions] = useState(actions);
+  const [baseUrl, setBaseUrl] = useState(window.location.pathname + '/');
   const [activeActionButton, setActiveActionButton] = useState(null);
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
@@ -148,6 +149,14 @@ const Sidebar_v2 = ({ children }) => {
     setTitle(item.name);
     setTiggerModal(!tiggerModal);
     setIsOpen(false);
+    const baseUrl = urlViewFilter()
+    if (baseUrl.length > 1) {
+      navigate(urlViewFilter() + '/' + item.linkText)
+    }
+    else {
+      navigate('/' + item.linkText)
+    }
+
   };
   const handleLinkOpen = (item, i) => {
     const tempList = JSON.parse(JSON.stringify(listOfLinks));
