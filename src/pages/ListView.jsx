@@ -52,6 +52,7 @@ const cardChipStyle = {
   color: "var(--fontColor)",
   background: "var(--ClickState) !important",
   fontSize: "var(--fontSizeRegular)",
+  height: '29.98px'
 
 };
 const iconStyle = {
@@ -67,7 +68,9 @@ const StartingPointRenderer = () => {
       <div>
         <span className="text-fontColor text-sm	">Starting point:</span>
       </div>
-      <div className="flex" style={{ marginTop: "9px" }}>
+      <div className="flex" style={{
+        marginTop: "9px", gap: '3px'
+      }}>
         <StartingPoint />
         <div className="flex flex-col gap-[5px]">
           <Chip

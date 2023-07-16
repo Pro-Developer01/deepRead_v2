@@ -48,6 +48,7 @@ const cardChipStyle = {
     color: "var(--fontColor)",
     background: "var(--borderColors)",
     fontSize: "var(--fontSizeRegular)",
+    height: '29.98px'
 
 };
 
