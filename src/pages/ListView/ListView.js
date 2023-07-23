@@ -106,24 +106,6 @@ const IdeacardDivComponent = ({
 
     dispatch(updateIdeacardData(updatedData));
     setOpen(false);
-
-    /*
-        try {
-          await axios.
-          //put(`/api/ideacards/${ideacardData.id}`, updatedData);
-          put(
-            `${apiRoot.endpoint}/api/ideas/update?_id=${updatedData._id}`,
-            {
-                headers: {
-                    authorization: token,
-                },
-            }
-        )
-          dispatch(updateIdeacardData(updatedData));
-          setOpen(false);
-        } catch (error) {
-          console.error(error);
-        }*/
   };
 
   const handleInputChange = (event) => {
@@ -248,16 +230,15 @@ function ListView(props) {
             {item.entries.map((k, i) => (
               <ChaptersLi key={i} id={`chapters-${k.tocPositionId}`}>
                 <div
-                  className={`${
-                    k.entries || k.highlights?.length
+                  className={`${k.entries || k.highlights?.length
                       ? `caret level-${levelCount}`
                       : `caret-without-content level-${levelCount}`
-                  }`}
+                    }`}
                   style={sub_chapter_divs}
                   id={`caret-${k.tocPositionId}`}
                   // onClick={() => openOrCloseChapters(k.tocPositionId)}
                   onClick={(e) => clickHandler(e, k.tocPositionId)}
-                  // onDoubleClick={() => doubleClickOpenOrCloseChapters(k.tocPositionId)}
+                // onDoubleClick={() => doubleClickOpenOrCloseChapters(k.tocPositionId)}
                 >
                   <TriangleRight id="caret-arrow" />
                   {k.ideacard ? (
@@ -290,16 +271,16 @@ function ListView(props) {
               <>
                 {highlight.idea_cards?.length
                   ? highlight.idea_cards.map((ideacards, index) => {
-                      return (
-                        <IdeacardDivComponent
-                          data={ideacards}
-                          setOpen={setOpen}
-                          searchQuery={searchQuery}
-                          handleImageSelect={handleImageSelect}
-                          selectedImage={selectedImage}
-                        />
-                      );
-                    })
+                    return (
+                      <IdeacardDivComponent
+                        data={ideacards}
+                        setOpen={setOpen}
+                        searchQuery={searchQuery}
+                        handleImageSelect={handleImageSelect}
+                        selectedImage={selectedImage}
+                      />
+                    );
+                  })
                   : null}
                 {highlight.context ? (
                   <ChaptersLi
@@ -453,15 +434,14 @@ function ListView(props) {
                           return (
                             <ChaptersLi key={index} id={`chapters-${index}`}>
                               <div
-                                className={`${
-                                  item.entries || item.highlights.length
+                                className={`${item.entries || item.highlights.length
                                     ? `caret level-${levelCount}`
                                     : `caret-without-content-outer level-${levelCount}`
-                                }`}
+                                  }`}
                                 id={`caret-${index}`}
                                 style={{ display: "flex", gap: "7px" }}
                                 onClick={(e) => clickHandler(e, index)}
-                                // onDoubleClick={() => doubleClickOpenOrCloseChapters(index)}
+                              // onDoubleClick={() => doubleClickOpenOrCloseChapters(index)}
                               >
                                 <TriangleRight />
                                 <TriangleRightOutlined
@@ -551,15 +531,14 @@ function ListView(props) {
                           return (
                             <ChaptersLi key={index} id={`chapters-${index}`}>
                               <div
-                                className={`${
-                                  item.entries || item.highlights.length
+                                className={`${item.entries || item.highlights.length
                                     ? `caret level-${levelCount}`
                                     : `caret-without-content-outer level-${levelCount}`
-                                }`}
+                                  }`}
                                 id={`caret-${index}`}
                                 style={{ display: "flex", gap: "7px" }}
                                 onClick={(e) => clickHandler(e, index)}
-                                // onDoubleClick={() => doubleClickOpenOrCloseChapters(index)}
+                              // onDoubleClick={() => doubleClickOpenOrCloseChapters(index)}
                               >
                                 <TriangleRight />
                                 <TriangleRightOutlined
