@@ -2,7 +2,7 @@ import TilesStartingPoint from "../Assets/TilesStartingPosition";
 import TilesContentSvg from "../Assets/TilesContent";
 import TilesTilesSvg from "../Assets/TilesTiles";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import { Chip } from "@mui/material";
@@ -15,6 +15,7 @@ import Menu from "@mui/material/Menu";
 import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import GridViewIcon from "@mui/icons-material/GridView";
+import { updateSelectedLevel } from "../Utils/Features/levelCounterSlice";
 
 const labelIconStyleInitial = {
   color: "var(--fontColor)",
@@ -41,7 +42,8 @@ const routes = [
 
 let listLevels = [
   {
-    label: "1st Level:Chapter"
+    label: "1st Level:Chapter",
+    value: 1
   },
 ];
 
@@ -125,6 +127,8 @@ const Structurerenderer = () => {
   const open = Boolean(anchorEl);
 
   const [selectedItem, setSelectedItem] = useState(listLevels[0]);
+  const dispatch = useDispatch();
+
   const stateCheckerLoop = () => {
     let selectCounter = 0;
     for (let i = 0; i < listLevelState.length; i++) {
@@ -146,6 +150,7 @@ const Structurerenderer = () => {
       setSelectState({ ...selectState, selectAll: false });
     }
   };
+
   const collectSelectedLevels = (data) => {
     const filteredDataTrue = data.filter((item) => item.state === true);
     const filteredDataFalse = data.filter((item) => item.state === false);
@@ -224,6 +229,7 @@ const Structurerenderer = () => {
     for (let i = 1; i < levelCount; i++) {
       const obj = {
         label: levelObjectConstructor(i),
+        value: i
       };
       listLevels.push(obj);
       setListLevelState(listLevels);
@@ -235,6 +241,7 @@ const Structurerenderer = () => {
   useEffect(() => {
     const filteredList = listLevels.filter((item) => item.label !== selectedItem?.label)
     setListLevelState(filteredList);
+    dispatch(updateSelectedLevel(selectedItem))
   }, [selectedItem]);
   return (
     <>
