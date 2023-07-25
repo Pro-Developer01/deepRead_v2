@@ -384,6 +384,7 @@ export default function TileView() {
                     open={open}
                     resizableWidth={resizableWidth}
                     setResizableWidth={setResizableWidth}
+                    showResize={false}
                   />
                 )}
               </div>

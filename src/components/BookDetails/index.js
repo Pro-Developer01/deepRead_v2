@@ -24,7 +24,7 @@ const resizeHandleStyle = {
 };
 function BookDetails(props) {
   /* PROPS */
-  const { book, open, resizableWidth, setResizableWidth } = props;
+  const { book, open, resizableWidth, setResizableWidth, showResize = true } = props;
   const initialWidth = document.getElementById('listViewResizable-Container')?.offsetWidth;
   let startX;
   let startWidth;
@@ -82,7 +82,7 @@ function BookDetails(props) {
   return (
 
     <CardBook>
-      {!open && (
+      {!open && showResize && (
         <ExpandIcon
           style={resizeHandleStyle}
           onMouseDown={(e) => {
