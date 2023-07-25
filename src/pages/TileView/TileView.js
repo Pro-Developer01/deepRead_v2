@@ -303,7 +303,7 @@ export default function TileView() {
                         id={highlight._id}
                         className="highlightSpan "
                       >
-                        {highlight.context}
+                        {highlight.context.length > 152 ? highlight.context.slice(0, 151) + '...' : highlight.context}
                       </span>
                     </div>
                   </ChaptersLi>
@@ -450,7 +450,7 @@ export default function TileView() {
                                               id={highlight._id}
                                               className="highlightSpan "
                                             >
-                                              {highlight.context}
+                                              {highlight.context.length > 154 ? highlight.context.slice(0, 151) + '...' : highlight.context}
                                             </span>
                                           </div>
                                         </ChaptersLi>
