@@ -147,6 +147,7 @@ export default function TileView() {
   const [open, setOpen] = useState(false);
   const [resizableWidth, setResizableWidth] = useState(null);
   const [tileViewData, setTileViewData] = useState({});
+  const [filteredTileViewData, setFilteredTileViewData] = useState({});
   const [bookMetaData, setBookMetaData] = useState({});
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -159,11 +160,76 @@ export default function TileView() {
   let levelCount = 1;
   const dispatch = useDispatch();
   console.log({ levelCountGlobal });
+
   const callForLevelCounter = (levelCounter) => {
     if (levelCounter > maxCount) {
       setMaxCount(levelCounter);
     }
   };
+
+  const dataIterator = (data) => {
+    const iteratedData = []
+    data?.forEach(item => {
+      if (item.entries?.length) {
+        item.entries.forEach(data => { iteratedData.push(data) })
+      }
+    })
+    return iteratedData
+  }
+
+
+  const dataFilterByLevel = (levelCountGlobal) => {
+    if (levelCountGlobal === 1) {
+      setFilteredTileViewData(tileViewData?.data)
+    }
+    let filteredData = []
+    if (levelCountGlobal === 2) {
+      filteredData = []
+      filteredData = [...dataIterator(tileViewData?.data)]
+      setFilteredTileViewData(filteredData)
+    }
+    if (levelCountGlobal === 3) {
+      filteredData = []
+      tileViewData?.data?.forEach(item => {
+        if (item.entries?.length) {
+          filteredData = [...filteredData, ...dataIterator(item.entries)]
+        }
+      })
+      setFilteredTileViewData(filteredData)
+    }
+    if (levelCountGlobal === 4) {
+      filteredData = []
+      tileViewData?.data?.forEach(item => {
+        if (item.entries?.length) {
+          item.entries.forEach(item => {
+            if (item.entries?.length) {
+              filteredData = [...filteredData, ...dataIterator(item.entries)]
+            }
+          })
+        }
+      })
+      setFilteredTileViewData(filteredData)
+    }
+
+    if (levelCountGlobal === 5) {
+      filteredData = []
+      tileViewData?.data?.forEach(item => {
+        if (item.entries?.length) {
+          item.entries.forEach(item => {
+            if (item.entries?.length) {
+              item.entries.forEach(item => {
+                if (item.entries?.length) {
+                  filteredData = [...filteredData, ...dataIterator(item.entries)]
+                }
+              })
+            }
+          })
+        }
+      })
+      setFilteredTileViewData(filteredData)
+    }
+  };
+
   const fetchTileViewData = () => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
@@ -275,8 +341,12 @@ export default function TileView() {
       setBookMetaData(tileViewData?.book[0]);
     }
   }, [tileViewData]);
+  useEffect(() => {
+    dataFilterByLevel(levelCountGlobal)
+  }, [levelCountGlobal, tileViewData]);
   console.log("from tileview", state);
   console.log({ tileViewData });
+  console.log({ filteredTileViewData });
   return (
     <>
       <div
@@ -318,9 +388,9 @@ export default function TileView() {
                 )}
               </div>
 
-              {tileViewData?.data?.length ? (
+              {filteredTileViewData?.length ? (
                 <Row className="justify-center gap-2.5">
-                  {tileViewData?.data?.map((item, index) => {
+                  {filteredTileViewData?.map((item, index) => {
                     return item.highlights?.length || item.entries?.length ? (
                       <Col span={11}>
                         <CardStrucutureBook className="listViewParent ">
