@@ -1,25 +1,27 @@
 import axios from "axios";
-
-import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
-import KeyboardDoubleArrowRightRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
-import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded";
-import ForumRoundedIcon from "@mui/icons-material/ForumRounded";
-import CampaignRoundedIcon from "@mui/icons-material/CampaignRounded";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-
-import { store } from "../Utils/Store/Store";
-
+import { apiRoot } from "./apiRoot";
+import VpnKeySharpIcon from "@mui/icons-material/VpnKeySharp";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
+import SettingsIcon from "@mui/icons-material/Settings";
+import CampaignIcon from "@mui/icons-material/Campaign";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
+import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import FormatQuoteRoundedIcon from '@mui/icons-material/FormatQuoteRounded';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 const labelIconStyleInitial = {
   backgroundColor: "var(--primaryColor)",
   borderRadius: "33px",
   color: "white",
   padding: "3px",
 };
-export const fetchIdeacardIcons = () => {
-  const apiRoot = process.env.REACT_APP_API_URL;
-  const { token } = store.getState().auth;
+const fetchIdeacardIcons = () => {
+  const token = localStorage.getItem("token");
   axios
-    .get(`${apiRoot}/api/idea-label/index`, {
+    .get(`${apiRoot.endpoint}/api/idea-label/index`, {
       headers: {
         authorization: token,
       },
@@ -46,10 +48,7 @@ export const dynamicBulletHandler = (
       return <VpnKeyRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
     case "MAIN CLAIMS":
       return (
-        <KeyboardDoubleArrowRightRoundedIcon
-          fontSize={fontSize}
-          sx={labelIconStyle}
-        />
+        <KeyboardDoubleArrowRightRoundedIcon fontSize={fontSize} sx={labelIconStyle} />
       );
     case "QUOTES":
       return <FormatQuoteRoundedIcon fontSize={fontSize} sx={labelIconStyle} />;
