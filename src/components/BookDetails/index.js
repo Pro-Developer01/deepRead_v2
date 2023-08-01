@@ -1,13 +1,16 @@
-import { useSelector } from "react-redux";
-
-import { Stack } from "@mui/system";
+import { Stack } from '@mui/system';
+import react from 'react';
 import ExpandIcon from "@mui/icons-material/Expand";
 
 /* STYLES */
-import { CardBook, CardBookImg, CardBookTitle, CardBookAuthor } from "./styled";
-
-import ChromeExtensionConnector from "../../components/Connectors/ChromeExtensionCommunication";
-
+import {
+  CardBook,
+  CardBookImg,
+  CardBookContent,
+  CardBookTitle,
+  CardBookGridOne,
+  CardBookAuthor,
+} from './styled';
 const resizeHandleStyle = {
   position: "absolute",
   right: "-29px",
@@ -20,18 +23,9 @@ const resizeHandleStyle = {
   transform: "rotate(90deg)",
 };
 function BookDetails(props) {
-  const { userId, token } = useSelector((state) => state.auth);
   /* PROPS */
-  const {
-    book,
-    open,
-    resizableWidth,
-    setResizableWidth,
-    showResize = true,
-  } = props;
-  const initialWidth = document.getElementById(
-    "listViewResizable-Container"
-  )?.offsetWidth;
+  const { book, open, resizableWidth, setResizableWidth, showResize = true } = props;
+  const initialWidth = document.getElementById('listViewResizable-Container')?.offsetWidth;
   let startX;
   let startWidth;
   /* FUNCTIONS */
@@ -55,17 +49,6 @@ function BookDetails(props) {
     window.removeEventListener("mousemove", resize);
     window.removeEventListener("mouseup", stopResize);
   }
-
-  const handleHighlightSync = async (item) => {
-    try {
-      const bookId = item._id;
-
-      ChromeExtensionConnector.SyncAmazonFullHighlights(token, userId, bookId);
-    } catch (error) {
-      console.log("Error authenticating: ", error);
-    }
-  };
-
   const calcAfterColor = (read, hightlights, idea, metadata) => {
     let val = 0;
     if (read > 0) {
@@ -83,70 +66,47 @@ function BookDetails(props) {
 
     switch (val) {
       case 0:
-        return "afterColor-0";
+        return 'afterColor-0';
       case 1:
-        return "afterColor-0";
+        return 'afterColor-0';
       case 2:
-        return "afterColor-1";
+        return 'afterColor-1';
       case 3:
-        return "afterColor-2";
+        return 'afterColor-2';
       case 3:
-        return "afterColor-3";
+        return 'afterColor-3';
       default:
-        return "afterColor-3";
+        return 'afterColor-3';
     }
   };
   return (
+
     <CardBook>
       {!open && showResize && (
         <ExpandIcon
           style={resizeHandleStyle}
           onMouseDown={(e) => {
             e.preventDefault();
-            startResize(e);
+            startResize(e)
           }}
           fontSize="medium"
         />
       )}
-      <Stack
-        direction="row"
+      <Stack direction="row"
         justifyContent="flex-start"
         alignItems="center"
-        spacing={2}
-        sx={{ width: "85%" }}
-      >
-        <CardBookImg
-          classname="Card-image-w50-h50"
-          src={book.img_path}
-          alt={book.title}
-        />
-        <Stack
-          direction="column"
+        spacing={2} sx={{ width: '85%' }}>
+        <CardBookImg classname='Card-image-w50-h50' src={book.img_path} alt={book.title} />
+        <Stack direction="column"
           justifyContent="space-between"
           alignItems="flex-start"
-          spacing={0}
-          sx={{ width: "90%" }}
-        >
-          <CardBookTitle>{book.title || ""}</CardBookTitle>
-
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="flex-start"
-            spacing={2}
-            sx={{ width: "100%" }}
-          >
-            <CardBookAuthor>
-              {book.author
-                ?.replace(/;/g, " & ")
-                .split(" & ")
-                .map((name) => name.split(", ").reverse().join(" "))
-                .join(" & ")}
-            </CardBookAuthor>
-          </Stack>
+          spacing={0} sx={{ width: '90%' }}>
+          <CardBookTitle>{book.title || ''}</CardBookTitle>
+          <span>{book.author?.replace(/;/g, ' & ').split(' & ').map(name => name.split(', ').reverse().join(' ')).join(' & ')}</span>
         </Stack>
       </Stack>
     </CardBook>
+
   );
 }
 

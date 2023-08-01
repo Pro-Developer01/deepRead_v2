@@ -1,28 +1,32 @@
-import { useState,useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { FaBars, FaLock, FaMoneyBill, FaUser } from "react-icons/fa";
+import { BiSearch } from "react-icons/bi";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Drawer from "@mui/material/Drawer";
-import CloseIcon from "@mui/icons-material/Close";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-
+import SidebarMenu from "./SidebarMenu";
 import DrawerModal from "../DrawerModal/DrawerModal";
+import { ReactComponent as Logo } from "../../Assets/LogoHalfSvg.svg";
 import { ReactComponent as FullLogo } from "../../Assets/logoFullSvg.svg";
+import React, { useEffect } from "react";
+import NewIdeaButton from "../NewIdea/NewIdeaButton";
 import { iconProvider } from "../../helperFunctions/iconProvider";
+
+import Drawer from "@mui/material/Drawer";
+import CreateIdeaCardPage from "../../pages/CreateIdeaCardPage/CreateIdeaCardPage";
 import IdeaCardPage from "../../pages/IdeacardPage/IdeaCardPage";
+import Filter from "../../pages/Filter";
+import highlightTester from "../../helperFunctions/highlightTester";
+import { useSelector, useDispatch } from "react-redux";
+import { updateIdeacardData } from "../../Utils/Features/IdeacardSlice";
 import { getLabelId } from "../../helperFunctions/getIdeacardIcons";
 import { updatePersistentDrawer } from "../../Utils/Features/persistentDrawerSlice";
 import { updateIdentifyIdeaCardData } from "../../Utils/Features/IdentifyIdeaCardSlice";
+import CloseIcon from "@mui/icons-material/Close";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import Identify from "../../Assets/Identify";
+import Identify_White from "../../Assets/Identify_White";
+import Marker from "../../Assets/Marker";
 import { urlChecker, urlViewFilter } from "../../helperFunctions/urlChecker";
-
-import { Auth } from "aws-amplify";
-
-import {reset, selectIdeaCard} from '../../Utils/Features/librarySlice'
-import {logout} from '../../Utils/Features/authSlice'
-import ChromeExtensionConnector from "../Connectors/ChromeExtensionCommunication";
-
-import { resetSyncStatus } from "../../Utils/Features/amazonSyncSlice";
 
 const clossDoubleArrowStyle = {
   background: "var(--white)",
@@ -122,22 +126,19 @@ const Sidebar_v2 = ({ children }) => {
   const [listOfLinks, setListOfLinks] = useState(links);
   const [listOfViews, setListOfViews] = useState(views);
   const [listOfActions, setListOfActions] = useState(actions);
+  const [baseUrl, setBaseUrl] = useState(window.location.pathname + '/');
+  const [activeActionButton, setActiveActionButton] = useState(null);
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const [buttonState, setButtonState] = useState(null);
-  const [count, setCount] = useState(false);
-
-  const { amazonSyncDisabled, bookSyncMessage} = useSelector((state) => state.amazonSync);
+  const [open, setOpen] = React.useState(false);
+  const [buttonState, setButtonState] = React.useState(null);
+  const [count, setCount] = React.useState(false);
 
   const IdentifyIdeaCardData = useSelector(
     (state) => state.IdentifyIdeaCardReducer.value
   );
   const dispatch = useDispatch();
-    const {userId, token} = useSelector((state) => state.auth);
-
-
   const handleNavigationButtons = (item, i) => {
     const tempList = JSON.parse(JSON.stringify(listOfViews));
     tempList.forEach((item) => {
@@ -150,8 +151,7 @@ const Sidebar_v2 = ({ children }) => {
     setIsOpen(false);
     const baseUrl = urlViewFilter()
     if (baseUrl.length > 1) {
-      //navigate(urlViewFilter() + '/' + item.linkText)
-      navigate('/' + item.linkText)
+      navigate(urlViewFilter() + '/' + item.linkText)
     }
     else {
       navigate('/' + item.linkText)
@@ -176,26 +176,6 @@ const Sidebar_v2 = ({ children }) => {
     clickHandler(item.name);
     setListOfActions(tempList);
   };
-  const handleLogout = async () => {
-    try {
-      dispatch(logout());
-      dispatch(reset())
-      dispatch(resetSyncStatus());
-      Auth.signOut(); 
-      
-      // Redirect or perform any other actions after logout
-    } catch (error) {
-      console.log("Error signing out: ", error);
-    }
-  };
-
-  const handleAmazonSync = async () => {
-    try {
-      ChromeExtensionConnector.SyncAmazonBooks(token, userId);
-    } catch (error) {
-      console.log("Error handleAmazonSync: ", error);
-    }
-  };
 
   const showAnimation = {
     hidden: {
@@ -217,7 +197,7 @@ const Sidebar_v2 = ({ children }) => {
   const setCursorClass = () => {
     const allItems = document.querySelectorAll(".highlightLi");
     const dashboard = document.querySelector("#dashboard");
-    dashboard?.classList.add("cursoreChangeAll");
+    dashboard.classList.add("cursoreChangeAll");
     for (let i = 0; i < allItems.length; i++) {
       allItems[i].classList.add("customCursor");
       allItems[i].children[0].children[1].classList.add("customCursor");
@@ -227,7 +207,7 @@ const Sidebar_v2 = ({ children }) => {
   const removeCursorClass = () => {
     const allItems = document.querySelectorAll(".highlightLi");
     const dashboard = document.querySelector("#dashboard");
-    dashboard?.classList.remove("cursoreChangeAll");
+    dashboard.classList.remove("cursoreChangeAll");
     for (let i = 0; i < allItems.length; i++) {
       allItems[i].classList.remove("customCursor");
       allItems[i].children[0].children[1].classList.remove("customCursor");
@@ -273,6 +253,7 @@ const Sidebar_v2 = ({ children }) => {
   };
 
   const identifyICCreater = () => {
+    const userId = localStorage.getItem("userId");
     const selection = window.getSelection();
     const title = selection.toString();
     const itemSelf = selection.anchorNode.parentElement;
@@ -315,12 +296,7 @@ const Sidebar_v2 = ({ children }) => {
   const buttonStateHandler = () => {
     //this func will run after clickhandler
     if (buttonState) {
-      if (buttonState === "Create idea") {    
-        // to close the previous idea card window if open
-        dispatch(selectIdeaCard(null));
-        dispatch(updateIdentifyIdeaCardData(null));
-        dispatch(updatePersistentDrawer(null));
-
+      if (buttonState === "Create idea") {
         setOpen(true);
       } else if (buttonState === "Identify idea") {
         setCount(true);
@@ -378,6 +354,23 @@ const Sidebar_v2 = ({ children }) => {
     if (!title) setIsOpen(true);
   }, [title]);
 
+
+  const inputAnimation = {
+    hidden: {
+      width: 0,
+      padding: 0,
+      transition: {
+        duration: 0.2,
+      },
+    },
+    show: {
+      width: "140px",
+      padding: "5px 15px",
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
 
   return (
     <>
@@ -610,28 +603,7 @@ const Sidebar_v2 = ({ children }) => {
                 </div>
               </div>
             </div>
-          </div>        
-          {/* Sync with Amazon button */}
-          <div id ="loginWithAmazon" className="routes" onClick={handleAmazonSync}>
-              <button
-                className={isOpen ? "link" : "linkCollapsible"} 
-                  disabled={amazonSyncDisabled}
-                  title={bookSyncMessage}
-                  style={{color: amazonSyncDisabled ? "#f44336" : "#000000"}}
-                
-              >
-                Sync with Amazon
-              </button>
-            </div>
-            {/* Logout button */}
-            <div className="routes" onClick={handleLogout}>
-              <button
-                className={isOpen ? "link" : "linkCollapsible"}
-                // Handle logout button click
-              >
-                Logout
-              </button>
-            </div>
+          </div>
         </motion.div>
         {title && (
           <div className="sidebarLayer2">
@@ -665,7 +637,7 @@ const Sidebar_v2 = ({ children }) => {
           style={closeCrossButtonStyle}
           onClick={Close}
         />
-        <IdeaCardPage emptyCard="true"/>
+        <CreateIdeaCardPage />
       </Drawer>
     </>
   );
