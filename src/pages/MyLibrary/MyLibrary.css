@@ -20,6 +20,7 @@
 }
 .fetchStatusIconContainer {
   align-self: end;
+  padding-top: 6px;
 }
 .libraryListsContainer {
   margin: 11px 0px;
@@ -57,10 +58,6 @@
   margin-top: 0.6rem;
   margin-right: 0.5rem;
 }
-.fetchStatusIconContainer {
-  padding-top: 6px;
-}
-
 /* //IdeacardStyling */
 
 .myNotesInput::placeholder {
@@ -81,4 +78,9 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+.ideacardTopRowContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 40px;
 }

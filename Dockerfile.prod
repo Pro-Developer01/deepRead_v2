@@ -1,6 +1,18 @@
 FROM node:14-alpine as build
 WORKDIR /home/deepread/deepread-react
 COPY package*.json ./
+COPY .env ./.env
+ARG REACT_APP_NODE_ENV
+ENV REACT_APP_NODE_ENV=${REACT_APP_NODE_ENV}
+RUN echo $REACT_APP_NODE_ENV
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=${REACT_APP_API_URL}
+ARG REACT_APP_GOOGLE_CSE_ID
+ENV REACT_APP_GOOGLE_CSE_ID=${REACT_APP_GOOGLE_CSE_ID}
+ARG REACT_APP_GOOGLE_API_KEY_FOR_CSE
+ENV REACT_APP_GOOGLE_API_KEY_FOR_CSE=${REACT_APP_GOOGLE_API_KEY_FOR_CSE}
+ARG REACT_APP_CHROME_EXTENSION_ID
+ENV REACT_APP_CHROME_EXTENSION_ID=${REACT_APP_CHROME_EXTENSION_ID}
 RUN npm install
 COPY . .
 RUN npm run build
@@ -8,7 +20,10 @@ RUN npm run build
 FROM node:14-alpine
 WORKDIR /home/deepread/deepread-react
 COPY package*.json ./
+COPY --from=build /home/deepread/deepread-react/node_modules ./node_modules
 COPY --from=build /home/deepread/deepread-react/build .
-# RUN npm install -g serve
+COPY . .
+#RUN npm install -g serve
+RUN npm install
 EXPOSE 3000
 CMD ["npm", "start"]

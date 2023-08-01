@@ -1,47 +1,41 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import "../MyLibrary/MyLibrary.css";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { styled } from "@mui/material/styles";
+
+import { TextField } from "@mui/material";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutline from "@mui/icons-material/ChatBubbleOutline";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-
 import Stack from "@mui/material/Stack";
-import { IdeaCardAccordian } from "../../components/AccordianCollections/AccordianCollections";
-
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import DiamondOutlinedIcon from "@mui/icons-material/DiamondOutlined";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+import "../MyLibrary/MyLibrary.css";
 import {
   dynamicBulletHandler,
   getLabelId,
   getIdeacardIcons,
+  fetchIdeacardIcons,
 } from "../../helperFunctions/getIdeacardIcons";
-import { useSelector } from "react-redux";
-import { updateIdeaCardLabel } from "../../helperFunctions/apiFunctions";
-import DiamondOutlinedIcon from "@mui/icons-material/DiamondOutlined";
+import { IdeaCardInsights } from "../../components/Insights/Insights";
+import { GoogleImageSelect } from "../../components/GoogleCSE/GoogleImageSelect";
+import {
+  getCurrentIdeaCardId,
+  getIdeaCardById,
+  updateIdeaCard,
+  updateIdeaCardLabel,
+  addIdeaCard,
+  deleteIdeaCard,
+} from "../../Utils/Features/librarySlice";
 
-// let booksData = {
-//   _id: "642325574dc0760034d8f977",
-//   book_id: "642325564dc0760034d8981f",
-//   label_id: "63584f343bcadd010442c447",
-//   highlight_id: "642325574dc0760034d8aae9",
-//   user_id: "642325564dc0760034d897ed",
-//   title: "To write a great book, you must first become the book.",
-//   description: [],
-//   own_thoughts: [],
-//   picture_link: "",
-//   rating: 0,
-//   tags: [],
-//   level: 0,
-//   start: 17320,
-//   end: 17401,
-//   created_at: 1673730692254,
-//   updated_at: null,
-//   retrieved_at: 1673730692254,
-//   deleted_at: null,
-//   lastviewed_at: null,
-// };
+import { updatePersistentDrawer } from "../../Utils/Features/persistentDrawerSlice";
+import { updateIdentifyIdeaCardData } from "../../Utils/Features/IdentifyIdeaCardSlice";
+
 const MenuItemStyles = {
   margin: "5px 1px",
   borderRadius: "30px",
@@ -52,21 +46,113 @@ const inactiveLabelIconStyle = {
   color: "white",
   padding: "3px",
 };
+
+const EditableTextField = styled(TextField)(({ theme }) => ({
+  width: "78%",
+  "& .MuiInputBase": {
+    padding: 0,
+  },
+  "& .MuiInputBase-input": {
+    fontSize: "1.2rem",
+    fontWeight: 700,
+  },
+  "& .MuiInput-underline:after": {
+    border: "none",
+  },
+  "& .MuiInput-underline:before": {
+    border: "none",
+  },
+  "& .MuiInput-underline:hover:before": {
+    border: "none !important",
+  },
+}));
+
 const socialButtonsStyle = { color: "darkgrey" };
 
-export default function IdeaCardPage() {
-  const ideacardData = useSelector((state) => state.ideacardReducer.value);
-  const [data, setData] = useState(ideacardData);
+export default function IdeaCardPage({ emptyCard }) {
+  const dispatch = useDispatch();
+  const selectedIdeaCardId = useSelector((state) =>
+    getCurrentIdeaCardId(state)
+  );
+  const ideaCard = useSelector((state) =>
+    getIdeaCardById(state, selectedIdeaCardId)
+  );
+
+  const [title, setTitle] = useState();
   const [activeLabel, setActiveLabel] = useState(getLabelId());
-  const currentLocation = window.location.pathname;
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const allIcons = JSON.parse(localStorage.getItem("ideacardIcons"));
 
-  const socialToggleHandler = () => {
-    let tempData = JSON.parse(JSON.stringify(data));
-    tempData.state = !tempData.state;
-    setData(tempData);
+  let identifyIdeaCard = useSelector(
+    (state) => state.IdentifyIdeaCardReducer.value
+  );
+
+  const { userId } = useSelector((state) => state.auth);
+
+  const saveEmptyCard = () => {
+    dispatch(
+      addIdeaCard({
+        data: {
+          user_id: userId,
+          title: "New Idea",
+          book_id: null,
+          highlight_id: null,
+          label_id: getLabelId("KEYWORDS"),
+          my_notes: [],
+          tags: [],
+          picture_link: "",
+          rating: 0,
+          level: 0,
+          start: null,
+          end: null,
+        },
+      })
+    );
+  };
+  useEffect(() => {
+    if (emptyCard) {
+      if (!localStorage.getItem("ideacardIcons")) {
+        fetchIdeacardIcons();
+      }
+      saveEmptyCard();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (identifyIdeaCard) {
+      dispatch(addIdeaCard({ data: identifyIdeaCard }));
+      setTitle(identifyIdeaCard?.title);
+    }
+  }, [identifyIdeaCard]);
+
+  const handleImageSelect = (imageUrl) => {
+    dispatch(
+      updateIdeaCard({
+        ideaCardId: ideaCard._id,
+        newData: {
+          picture_link: imageUrl,
+        },
+      })
+    );
+  };
+
+  const handleTitleChange = () => {
+    dispatch(
+      updateIdeaCard({
+        ideaCardId: ideaCard._id,
+        newData: {
+          title: title,
+        },
+      })
+    );
+  };
+
+  const handleTitleFieldKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleTitleChange();
+    }
   };
 
   const handleClick = (event, labelId) => {
@@ -74,48 +160,70 @@ export default function IdeaCardPage() {
     setActiveLabel(labelId);
   };
 
-  const handleClose = (iconLabelId) => {
-    setAnchorEl(null);
-    // setIconOption(option);
-    const tempNotes = JSON.parse(JSON.stringify(data));
-    tempNotes.label_id = iconLabelId;
-    updateIdeaCardLabel(data._id, { label_id: iconLabelId });
-    setData(tempNotes);
+  const handleDeleteIdeaCard = () => {
+    dispatch(
+      deleteIdeaCard({
+        ideaCardId: ideaCard._id,
+      })
+    );
+    dispatch(updateIdentifyIdeaCardData(null));
+    dispatch(updatePersistentDrawer(null));
   };
 
-  useEffect(() => {
-    setData(ideacardData);
-  }, [ideacardData]);
+  const handleClose = (iconLabelId) => {
+    setAnchorEl(null);
+
+    dispatch(
+      updateIdeaCardLabel({
+        ideaCardId: ideaCard._id,
+        newData: {
+          label_id: iconLabelId,
+        },
+      })
+    );
+  };
 
   return (
     <>
-      {data && (
+      {ideaCard ? (
         <>
           {" "}
-          <div className="ideacardParentContainer" >
+          <div className="ideacardParentContainer">
             <div className="ideacard-Title">
               {/* //Shared by */}
-              <Stack
-                direction="row"
-                justifyContent="left"
-                alignItems="center"
-                spacing={1}
-                mb={1}
-                sx={{ paddingLeft: "3.4rem", paddingRight: "0.5rem" }}
-              >
-                <DiamondOutlinedIcon
-                  sx={{ fontSize: "14px", color: "lightslategrey" }}
-                />
+              <div className="ideacardTopRowContainer">
+                <Stack
+                  direction="row"
+                  justifyContent="left"
+                  alignItems="center"
+                  spacing={1}
+                  mb={1}
+                  sx={{ paddingLeft: "3.4rem", paddingRight: "0.5rem" }}
+                >
+                  <DiamondOutlinedIcon
+                    sx={{ fontSize: "14px", color: "lightslategrey" }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      color: "lightslategrey",
+                    }}
+                  >
+                    <b>My own content</b>
+                  </span>
+                </Stack>
                 <span
                   style={{
                     fontSize: "12px",
                     color: "lightslategrey",
                   }}
                 >
-
-                  <b>My own content</b>{" "}
+                  <DeleteIcon
+                    fontSize={"small"}
+                    onClick={handleDeleteIdeaCard}
+                  />
                 </span>
-              </Stack>
+              </div>
               {/* //CardHeaderTitle */}
               <Stack
                 direction="row"
@@ -131,7 +239,7 @@ export default function IdeaCardPage() {
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
                   onClick={(e) => {
-                    handleClick(e, data.label_id);
+                    handleClick(e, ideaCard.label_id);
                     e.stopPropagation();
                   }}
                   style={{
@@ -139,14 +247,30 @@ export default function IdeaCardPage() {
                   }}
                   className="cursor-pointer"
                 >
-                  {getIdeacardIcons(data.label_id, "large")}
+                  {getIdeacardIcons(ideaCard.label_id, "large")}
                 </span>
-                <h3 className="text-lg font-bold"> {data.title?.length > 253 ? data.title?.slice(0, 253) + '...' : data.title}</h3>
+                {ideaCard?.highlight_id === identifyIdeaCard?.highlight_id ||
+                emptyCard ? (
+                  <EditableTextField
+                    multiline
+                    value={title}
+                    placeholder="Enter Title"
+                    onChange={(e) => setTitle(e.target.value)}
+                    onBlur={handleTitleChange}
+                    onKeyDown={handleTitleFieldKeyDown}
+                    variant="standard"
+                    autoFocus
+                  />
+                ) : (
+                  <h3 className="text-lg font-bold">
+                    {ideaCard.title?.length > 253
+                      ? ideaCard.title?.slice(0, 253) + "..."
+                      : ideaCard.title}
+                  </h3>
+                )}
               </Stack>
             </div>
-
-            <div style={{ overflow: ' scroll' }}>
-
+            <div style={{ overflow: " scroll" }}>
               {/* //Graphics */}
               <div
                 style={{
@@ -157,17 +281,27 @@ export default function IdeaCardPage() {
                   paddingRight: "0.5rem",
                 }}
               >
-                {data.picture_link && (
-                  <img
-                    src={data.picture_link}
-                    alt={data.title}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: "12px ",
-                    }}
-                  />
-                )}
+                <div>
+                  <div>
+                    <GoogleImageSelect
+                      onImageSelect={handleImageSelect}
+                      image={ideaCard?.picture_link}
+                    />
+                  </div>
+                  <div>
+                    {ideaCard?.picture_link && (
+                      <img
+                        src={ideaCard?.picture_link}
+                        alt={ideaCard.title}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "12px ",
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* //SocialButtons */}
@@ -195,7 +329,10 @@ export default function IdeaCardPage() {
               </div>
               <hr style={{ border: "1px solid var(--borderColors)" }} />
               <div className="otherAccordians">
-                <IdeaCardAccordian data={data} />
+                <IdeaCardInsights
+                  id={ideaCard._id}
+                  highlight={ideaCard.highlight_id}
+                />
               </div>
             </div>
           </div>
@@ -223,7 +360,7 @@ export default function IdeaCardPage() {
                   sx={MenuItemStyles}
                   onClick={() => handleClose(item._id)}
                 >
-                  {item._id == activeLabel ? (
+                  {item._id === activeLabel ? (
                     <>
                       {dynamicBulletHandler(item.label, "medium")} &nbsp;
                       <strong>&nbsp;{item.label}</strong>
@@ -243,6 +380,8 @@ export default function IdeaCardPage() {
             })}
           </Menu>
         </>
+      ) : (
+        <span>IdeaCard data not available</span>
       )}
     </>
   );
