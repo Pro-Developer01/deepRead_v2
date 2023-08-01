@@ -27,6 +27,8 @@ import { updateLevelCounter } from "../../Utils/Features/levelCounterSlice";
 // import listViewDatax from "./listData.json";
 import { updatePersistentDrawer } from "../../Utils/Features/persistentDrawerSlice";
 import { updateFetchListviewState } from "../../Utils/Features/fetchListviewSlice";
+import { Preview } from "@mui/icons-material";
+import PreviewScreenModal from "../../components/PreviewScreenModal/PreviewScreenModal";
 
 const IdeacardDivComponent = ({
   data,
@@ -36,6 +38,8 @@ const IdeacardDivComponent = ({
 }) => {
   const [callingIdeaCard, setCallingIdeaCard] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const ideacardData = useSelector((state) => state.ideacardReducer.value);
   const dataType = useSelector((state) => state.persistentDrawerReducer.value);
   const dispatch = useDispatch();
@@ -105,6 +109,7 @@ const IdeacardDivComponent = ({
       }}
       onClick={clickHandler}
       aria-label="open drawer"
+
     >
       {callingIdeaCard && (
         <div>
@@ -133,9 +138,10 @@ const IdeacardDivComponent = ({
         </div>
       )}
       <span>{getIdeacardIcons(data.label_id)}</span>
-      <span>
+      <span onMouseEnter={(e) => { e.stopPropagation(); setIsModalOpen(true) }}>
         <b> {data.title || ""}</b>
       </span>
+      <PreviewScreenModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} data={data} selectedImage={selectedImage} />
     </div>
   );
 };
