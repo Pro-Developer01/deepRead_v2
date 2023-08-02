@@ -21,7 +21,7 @@ import Stack from "@mui/material/Stack";
 import CloseIcon from "@mui/icons-material/Close";
 import "../../pages/MyLibrary/MyLibrary.css";
 import { Checkbox, Tabs, Tooltip } from "antd";
-
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {
   updateBook,
   updateIdeaCard,
@@ -1371,19 +1371,21 @@ export function CreateIdeaCardAccordian({ data }) {
   );
 }
 export function PreviewScreenTabs({ data }) {
-  console.log({ data });
+  const [activeSlide, setActiveSlide] = useState(1)
+
+
   const onChange = (key) => {
-    console.log(key);
+    setActiveSlide(key);
   };
 
   const items = [
     {
-      key: '1',
+      key: 1,
       label: `PICTURE`,
       children: <PicturePreview link={data?.picture_link} />,
     },
     {
-      key: '2',
+      key: 2,
       label: `LINKED HIGHLIGHTS `,
       children: <div className="h-[259px] overflow-auto"><LinkedHighlights
         highlightId={data?.highlight_id}
@@ -1394,26 +1396,55 @@ export function PreviewScreenTabs({ data }) {
       /></div>,
     },
     {
-      key: '3',
+      key: 3,
       label: `MY NOTES`,
       children: <div className="h-[259px] overflow-auto"><MyNotes myNotesData={data?.my_notes} ideaCardId={data?._id} /></div>
       ,
     },
   ];
   return (
-    <div className="flex flex-col gap-2 items-center justify-center">
-      <div className="flex gap-1 items-center justify-center">
-        <div><ExpandCircleDownOutlinedIcon style={{
+    <div className="flex flex-col gap-2 items-center justify-center" style={{
+      marginLeft: '23px'
+    }}>
+      <div className="flex gap-2 items-center w-full justify-center">
+        <div><ExpandCircleDownOutlinedIcon className="cursor-pointer" style={{
           color: 'var(--borderColors)',
           transform: 'rotate(90deg)'
-        }} /></div>
-        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-        <div><ExpandCircleDownOutlinedIcon style={{
+        }} onClick={() => setActiveSlide(activeSlide === 1 ? 3 : activeSlide - 1)} /></div>
+        <Tabs defaultActiveKey="1" activeKey={activeSlide} items={items} onChange={onChange} />
+        <div><ExpandCircleDownOutlinedIcon className="cursor-pointer" style={{
           color: 'var(--borderColors)',
           transform: 'rotate(270deg)'
-        }} /></div>
+        }} onClick={() => setActiveSlide(activeSlide === 3 ? 1 : activeSlide + 1)} /></div>
       </div>
-      <div>000</div>
+      <div className="flex justify-center gap-1 items-center">
+        {[1, 2, 3].map(items => (
+          <span className="cursor-pointer">
+            <FiberManualRecordIcon style={{
+              color: 'var(--fontColor)', opacity: items === activeSlide ? '1' : '0.5', fontSize: '16px'
+            }} onClick={() => setActiveSlide(items)} />
+          </span>
+        ))}
+      </div>
+      <style>{`
+      .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+        color:var(--fontColor) !important;
+      }
+      .ant-tabs .ant-tabs-tab-btn:active {
+        color:var(--fontColor) !important;
+      }
+      .ant-tabs .ant-tabs-tab:hover {
+        color:var(--fontColor) !important;
+      }
+
+      .ant-tabs{
+        width:100%
+      }
+      .ant-tabs .ant-tabs-ink-bar {
+        background: var(--fontColor) !important;
+      }
+
+      `}</style>
     </div>
   );
 }

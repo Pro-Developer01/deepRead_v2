@@ -17,7 +17,9 @@ export default function PreviewScreenModal(props) {
 
     return (
         <div>
-            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Modal open={isModalOpen} onCancel={handleCancel} style={{
+                maxwidth: '520px'
+            }}>
                 <div>
                     <div className="ideacard-Title">
                         {/* //Shared by */}
@@ -27,7 +29,7 @@ export default function PreviewScreenModal(props) {
                             alignItems="center"
                             spacing={1}
                             mb={1}
-                            sx={{ paddingLeft: "3.4rem", paddingRight: "0.5rem" }}
+                            sx={{ paddingLeft: "29px", paddingRight: "0.5rem" }}
                         >
                             <DiamondOutlinedIcon
                                 sx={{ fontSize: "14px", color: "lightslategrey" }}
@@ -36,6 +38,7 @@ export default function PreviewScreenModal(props) {
                                 style={{
                                     fontSize: "12px",
                                     color: "lightslategrey",
+                                    marginLeft: '13px'
                                 }}
                             >
 
@@ -53,13 +56,6 @@ export default function PreviewScreenModal(props) {
                         >
                             <span
                                 id="ideaCardLabels"
-                                // aria-controls={open ? "ideaCardLabelsMenu" : undefined}
-                                // aria-haspopup="true"
-                                // aria-expanded={open ? "true" : undefined}
-                                // onClick={(e) => {
-                                //     handleClick(e, data.label_id);
-                                //     e.stopPropagation();
-                                // }}
                                 style={{
                                     marginTop: "-7px",
                                 }}
@@ -67,7 +63,7 @@ export default function PreviewScreenModal(props) {
                             >
                                 {getIdeacardIcons(data.label_id, "large")}
                             </span>
-                            <h3 className="text-lg font-bold"> {data.title?.length > 253 ? data.title?.slice(0, 253) + '...' : data.title}</h3>
+                            <h3 className="text-lg font-bold"> {data.title?.length > 108 ? data.title?.slice(0, 108) + '...' : data.title}</h3>
                         </Stack>
                     </div>
 
@@ -76,6 +72,12 @@ export default function PreviewScreenModal(props) {
 
 
             </Modal>
+
+            <style>{`
+      .ant-modal .ant-modal-footer {
+        display:none;
+      }
+      `}</style>
         </div>
     )
 }

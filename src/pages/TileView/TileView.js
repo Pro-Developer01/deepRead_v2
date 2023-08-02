@@ -5,12 +5,12 @@ import { useLocation } from "react-router-dom";
 import { CardStrucutureBook, ChaptersUl, ChaptersLi } from "../ListView/styled";
 import { Col, Row } from "antd";
 
-
+import CloseIcon from "@mui/icons-material/Close";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import Drawer from "@mui/material/Drawer";
 import Stack from "@mui/material/Stack";
 import BookDetails from "../../components/BookDetails/index";
-import CONTENT_TEMP from "../../mongodb_collections/contentHighlights.json";
 import "../ListView/ListView.css";
-import PersistentDrawerRight from "../../components/Drawer/Drawer";
 import { apiRoot } from "../../helperFunctions/apiRoot";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -18,18 +18,32 @@ import SquareIcon from "@mui/icons-material/Square";
 import { getIdeacardIcons } from "../../helperFunctions/getIdeacardIcons";
 import { useSelector, useDispatch } from "react-redux";
 import { updateIdeacardData } from "../../Utils/Features/IdeacardSlice";
-import TriangleRight, {
-  TriangleRightOutlined,
-} from "../../Assets/triangleRight";
-
 import GoogleSearch from "../../components/GoogleCSE/googlesearch"; // assuming this is the path to GoogleSearch component
 import { updateLevelCounter } from "../../Utils/Features/levelCounterSlice";
-// import listViewDatax from "./listData.json";
 import { updatePersistentDrawer } from "../../Utils/Features/persistentDrawerSlice";
-import { updateFetchListviewState } from "../../Utils/Features/fetchListviewSlice";
-import { Preview } from "@mui/icons-material";
+import IdeaCardPage from "../IdeacardPage/IdeaCardPage";
 import PreviewScreenModal from "../../components/PreviewScreenModal/PreviewScreenModal";
 
+
+const clossDoubleArrowStyle = {
+  background: "var(--white)",
+  borderRadius: "33px",
+  border: "1px solid var(--borderColors)",
+  position: "relative",
+  top: "-3px",
+  right: 0,
+  cursor: "pointer",
+  color: "var(--fontColor)",
+};
+const closeCrossButtonStyle = {
+  borderRadius: "33px",
+  position: "fixed",
+  top: "34px",
+  right: "11px",
+  zIndex: 13,
+  cursor: "pointer",
+  color: "var(--fontColor)",
+};
 const IdeacardDivComponent = ({
   data,
   setOpen,
@@ -101,48 +115,50 @@ const IdeacardDivComponent = ({
   };
 
   return (
-    <div
-      className={`ideacardDiv ideacard-${data.label_id}`}
-      style={{
-        border: callingIdeaCard ? "2px solid var(--primaryColor)" : null,
-        marginLeft: '-15px'
-      }}
-      onClick={clickHandler}
-      aria-label="open drawer"
-
-    >
-      {callingIdeaCard && (
-        <div>
+    <>
+      <div
+        className={`ideacardDiv ideacard-${data.label_id}`}
+        style={{
+          border: callingIdeaCard ? "2px solid var(--primaryColor)" : null,
+          marginLeft: '-15px'
+        }}
+        onClick={clickHandler}
+        aria-label="open drawer"
+      >
+        {callingIdeaCard && (
           <div>
-            <input
-              type="text"
-              onClick={(e) => e.stopPropagation()}
-              value={searchQuery}
-              onChange={handleInputChange}
-              placeholder="Enter search query"
+            <div>
+              <input
+                type="text"
+                onClick={(e) => e.stopPropagation()}
+                value={searchQuery}
+                onChange={handleInputChange}
+                placeholder="Enter search query"
+              />
+              <button onClick={() => setSearchQuery("")}>Clear</button>
+            </div>
+            {searchQuery && (
+              <GoogleSearch
+                searchQuery={searchQuery}
+                onSelect={handleImageSelect}
+              />
+            )}
+            <img
+              className="ideaCardImg"
+              src={selectedImage || data.picture_link}
+              alt="idea"
             />
-            <button onClick={() => setSearchQuery("")}>Clear</button>
+            <button onClick={handleSave}>Save</button>
           </div>
-          {searchQuery && (
-            <GoogleSearch
-              searchQuery={searchQuery}
-              onSelect={handleImageSelect}
-            />
-          )}
-          <img
-            className="ideaCardImg"
-            src={selectedImage || data.picture_link}
-            alt="idea"
-          />
-          <button onClick={handleSave}>Save</button>
-        </div>
-      )}
-      <span>{getIdeacardIcons(data.label_id)}</span>
-      <span onMouseEnter={(e) => { e.stopPropagation(); setIsModalOpen(true) }}>
-        <b> {data.title || ""}</b>
-      </span>
+        )}
+        <span>{getIdeacardIcons(data.label_id)}</span>
+        <span onMouseEnter={(e) => { e.stopPropagation(); setIsModalOpen(true) }}>
+          <b> {data.title || ""}</b>
+        </span>
+      </div>
       <PreviewScreenModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} data={data} selectedImage={selectedImage} />
-    </div>
+    </>
+
   );
 };
 export default function TileView() {
@@ -234,6 +250,12 @@ export default function TileView() {
       })
       setFilteredTileViewData(filteredData)
     }
+  };
+
+  const closeDrawer = () => {
+    setOpen(false);
+    dispatch(updatePersistentDrawer(null));
+    dispatch(updateIdeacardData(null));
   };
 
   const fetchTileViewData = () => {
@@ -510,6 +532,28 @@ export default function TileView() {
             <CircularProgress sx={{ color: "var(--primaryColor)" }} />
           </Stack>
         )}
+
+
+
+        {/* //Ideacard Drawer  */}
+        <Drawer anchor={"right"} open={open} onClose={closeDrawer}
+          PaperProps={{
+            style: {
+              backgroundColor: "transparent", boxShadow: "none", paddingTop: '4px', overflow: 'hidden', width: '590px'
+            }
+          }}>
+          <KeyboardDoubleArrowRightIcon
+            fontSize="medium"
+            style={clossDoubleArrowStyle}
+            onClick={closeDrawer}
+          />
+          <CloseIcon
+            fontSize="medium"
+            style={closeCrossButtonStyle}
+            onClick={closeDrawer}
+          />
+          <IdeaCardPage customStyle={{ margin: 0 }} />
+        </Drawer>
       </div >
     </>
   );
