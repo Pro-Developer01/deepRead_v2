@@ -20,8 +20,8 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import CloseIcon from "@mui/icons-material/Close";
 import "../../pages/MyLibrary/MyLibrary.css";
-import { Checkbox, Tooltip } from "antd";
-
+import { Checkbox, Tabs, Tooltip } from "antd";
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {
   updateBook,
   updateIdeaCard,
@@ -38,7 +38,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { getIdeacardIcons } from "../../helperFunctions/getIdeacardIcons";
 import AddIcon from "@mui/icons-material/AddCircle";
-
+import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
 const iconStyling = {
   color: "#FF6600",
   width: 22,
@@ -411,8 +411,8 @@ const LinkedHighlights = ({
   bookId,
   position,
   highlightData,
-  isEditModeON,
-  setIsEditModeON
+  isEditModeON = false,
+  setIsEditModeON = () => { }
 }) => {
   const [beforeHighlights, setBeforeHighlights] = useState(null);
   const [afterHighlights, setAfterHighlights] = useState(null);
@@ -552,12 +552,12 @@ const LinkedHighlights = ({
       setContainerHeight(null)
       updateHighlightData();
       const titlecolor = document.getElementById('panel1a-header highlightColourChange');
-      titlecolor.style.color = '#717171';
+      if (titlecolor) titlecolor.style.color = '#717171';
     }
     if (isEditModeON) {
       const element = document.getElementById('linkedHighlight-conatiner-blur-id')
       const titlecolor = document.getElementById('panel1a-header highlightColourChange')
-      titlecolor.style.color = '#ff6600';
+      if (titlecolor) titlecolor.style.color = '#ff6600';
       setContainerHeight(element.offsetHeight)
     }
   }, [isEditModeON]);
@@ -1103,6 +1103,13 @@ const Recommendation = ({ recommendations }) => {
     </>
   );
 };
+const PicturePreview = ({ link }) => {
+  return (
+    <div className="h-[259px]">
+      <img className="w-full h-[259px] object-cover object-center rounded-lg" src={link} alt="Ideacard Image expected to be here" />
+    </div>
+  );
+};
 
 export default function LibraryAccordian({ metaData }) {
   return (
@@ -1171,7 +1178,6 @@ export default function LibraryAccordian({ metaData }) {
     </>
   );
 }
-
 export function IdeaCardAccordian({ data }) {
   const [editIconVisibility, setEditIconVisibility] = useState(false)
   const [isEditModeON, setIsEditModeON] = useState(false);
@@ -1361,6 +1367,84 @@ export function CreateIdeaCardAccordian({ data }) {
           linkedIdeaCards={data?.linked_structure}
         />
       </Accordion>
+    </div>
+  );
+}
+export function PreviewScreenTabs({ data }) {
+  const [activeSlide, setActiveSlide] = useState(1)
+
+
+  const onChange = (key) => {
+    setActiveSlide(key);
+  };
+
+  const items = [
+    {
+      key: 1,
+      label: `PICTURE`,
+      children: <PicturePreview link={data?.picture_link} />,
+    },
+    {
+      key: 2,
+      label: `LINKED HIGHLIGHTS `,
+      children: <div className="h-[259px] overflow-auto"><LinkedHighlights
+        highlightId={data?.highlight_id}
+        ideaCardId={data?._id}
+        bookId={data?.book_id}
+        position={data?.start}
+        highlightData={data?.description}
+      /></div>,
+    },
+    {
+      key: 3,
+      label: `MY NOTES`,
+      children: <div className="h-[259px] overflow-auto"><MyNotes myNotesData={data?.my_notes} ideaCardId={data?._id} /></div>
+      ,
+    },
+  ];
+  return (
+    <div className="flex flex-col gap-2 items-center justify-center" style={{
+      marginLeft: '23px'
+    }}>
+      <div className="flex gap-2 items-center w-full justify-center">
+        <div><ExpandCircleDownOutlinedIcon className="cursor-pointer" style={{
+          color: 'var(--borderColors)',
+          transform: 'rotate(90deg)'
+        }} onClick={() => setActiveSlide(activeSlide === 1 ? 3 : activeSlide - 1)} /></div>
+        <Tabs defaultActiveKey="1" activeKey={activeSlide} items={items} onChange={onChange} />
+        <div><ExpandCircleDownOutlinedIcon className="cursor-pointer" style={{
+          color: 'var(--borderColors)',
+          transform: 'rotate(270deg)'
+        }} onClick={() => setActiveSlide(activeSlide === 3 ? 1 : activeSlide + 1)} /></div>
+      </div>
+      <div className="flex justify-center gap-1 items-center">
+        {[1, 2, 3].map(items => (
+          <span className="cursor-pointer">
+            <FiberManualRecordIcon style={{
+              color: 'var(--fontColor)', opacity: items === activeSlide ? '1' : '0.5', fontSize: '16px'
+            }} onClick={() => setActiveSlide(items)} />
+          </span>
+        ))}
+      </div>
+      <style>{`
+      .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+        color:var(--fontColor) !important;
+      }
+      .ant-tabs .ant-tabs-tab-btn:active {
+        color:var(--fontColor) !important;
+      }
+      .ant-tabs .ant-tabs-tab:hover {
+        color:var(--fontColor) !important;
+      }
+
+      .ant-tabs{
+        width:100%
+      }
+      .ant-tabs .ant-tabs-ink-bar {
+        background: var(--fontColor) !important;
+      }
+
+      `}</style>
     </div>
   );
 }

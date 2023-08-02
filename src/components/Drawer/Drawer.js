@@ -54,16 +54,16 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
     })
 );
 
-export default function PersistentDrawerRight({ open, resizableWidth, childrenx }) {
-    const theme = useTheme();
-    // const [open, setOpen] = React.useState(false);
-    const ideacardData = useSelector((state) => state.ideacardReducer.value)
+
+export function DrawerContentHandler() {
+
     const dataType = useSelector((state) => state.persistentDrawerReducer.value)
     const dispatch = useDispatch();
     const dataTypeChangeHandler = () => {
         if (dataType) {
             if (dataType === 'ideaCard') {
                 return <IdeaCardPage />
+
 
             }
             else if (dataType === 'identify Ideacard') {
@@ -82,6 +82,51 @@ export default function PersistentDrawerRight({ open, resizableWidth, childrenx 
     };
 
     return (
+
+        <>
+            <KeyboardDoubleArrowRightIcon
+                fontSize="medium"
+                style={clossDoubleArrowStyle}
+                onClick={handleDrawerClose}
+            />
+            <CloseIcon
+                fontSize="medium"
+                style={closeCrossButtonStyle}
+                onClick={handleDrawerClose}
+            />
+            {dataTypeChangeHandler()}
+        </>
+    );
+}
+export default function PersistentDrawerRight({ open, resizableWidth, childrenx }) {
+    const theme = useTheme();
+    // const [open, setOpen] = React.useState(false);
+    const ideacardData = useSelector((state) => state.ideacardReducer.value)
+    const dataType = useSelector((state) => state.persistentDrawerReducer.value)
+    const dispatch = useDispatch();
+    // const dataTypeChangeHandler = () => {
+    //     if (dataType) {
+    //         if (dataType === 'ideaCard') {
+    //             return <IdeaCardPage />
+
+    //         }
+    //         else if (dataType === 'identify Ideacard') {
+    //             return <CreateIdeaCardPage />
+    //         }
+    //     }
+    // }
+    // const handleDrawerClose = () => {
+    //     if (dataType === 'ideaCard') {
+    //         dispatch(updateIdeacardData(null))
+    //     }
+    //     else if (dataType === 'identify Ideacard') {
+    //         dispatch(updateIdentifyIdeaCardData(null))
+    //     }
+    //     dispatch(updatePersistentDrawer(null))
+    // };
+
+    return (
+
         <Box sx={{
             display: "flex", height: '100%', width: open ? "100%" : (resizableWidth ? resizableWidth + 'px' : '48%'),
 
@@ -102,17 +147,9 @@ export default function PersistentDrawerRight({ open, resizableWidth, childrenx 
                 anchor="right"
                 open={dataType}
             >
-                <KeyboardDoubleArrowRightIcon
-                    fontSize="medium"
-                    style={clossDoubleArrowStyle}
-                    onClick={handleDrawerClose}
-                />
-                <CloseIcon
-                    fontSize="medium"
-                    style={closeCrossButtonStyle}
-                    onClick={handleDrawerClose}
-                />
-                {dataTypeChangeHandler()}
+
+                <DrawerContentHandler />
+
             </Drawer>
         </Box>
     );
