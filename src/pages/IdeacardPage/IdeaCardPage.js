@@ -54,7 +54,9 @@ const inactiveLabelIconStyle = {
 };
 const socialButtonsStyle = { color: "darkgrey" };
 
+
 export default function IdeaCardPage({ customStyle = {} }) {
+
   const ideacardData = useSelector((state) => state.ideacardReducer.value);
   const [data, setData] = useState(ideacardData);
   const [activeLabel, setActiveLabel] = useState(getLabelId());
@@ -92,7 +94,9 @@ export default function IdeaCardPage({ customStyle = {} }) {
       {data && (
         <>
           {" "}
+
           <div className="ideacardParentContainer" style={customStyle} >
+
             <div className="ideacard-Title">
               {/* //Shared by */}
               <Stack

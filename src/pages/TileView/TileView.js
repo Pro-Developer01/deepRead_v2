@@ -5,12 +5,14 @@ import { useLocation } from "react-router-dom";
 import { CardStrucutureBook, ChaptersUl, ChaptersLi } from "../ListView/styled";
 import { Col, Row } from "antd";
 
+
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import Drawer from "@mui/material/Drawer";
 import Stack from "@mui/material/Stack";
 import BookDetails from "../../components/BookDetails/index";
 import "../ListView/ListView.css";
+
 import { apiRoot } from "../../helperFunctions/apiRoot";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -18,9 +20,13 @@ import SquareIcon from "@mui/icons-material/Square";
 import { getIdeacardIcons } from "../../helperFunctions/getIdeacardIcons";
 import { useSelector, useDispatch } from "react-redux";
 import { updateIdeacardData } from "../../Utils/Features/IdeacardSlice";
+
+
 import GoogleSearch from "../../components/GoogleCSE/googlesearch"; // assuming this is the path to GoogleSearch component
 import { updateLevelCounter } from "../../Utils/Features/levelCounterSlice";
+// import listViewDatax from "./listData.json";
 import { updatePersistentDrawer } from "../../Utils/Features/persistentDrawerSlice";
+
 import IdeaCardPage from "../IdeacardPage/IdeaCardPage";
 import PreviewScreenModal from "../../components/PreviewScreenModal/PreviewScreenModal";
 
@@ -44,6 +50,7 @@ const closeCrossButtonStyle = {
   cursor: "pointer",
   color: "var(--fontColor)",
 };
+
 const IdeacardDivComponent = ({
   data,
   setOpen,
@@ -52,6 +59,7 @@ const IdeacardDivComponent = ({
 }) => {
   const [callingIdeaCard, setCallingIdeaCard] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const ideacardData = useSelector((state) => state.ideacardReducer.value);
@@ -91,6 +99,7 @@ const IdeacardDivComponent = ({
     dispatch(updateIdeacardData(updatedData));
     setOpen(false);
 
+
     /*
         try {
           await axios.
@@ -115,6 +124,7 @@ const IdeacardDivComponent = ({
   };
 
   return (
+
     <>
       <div
         className={`ideacardDiv ideacard-${data.label_id}`}
@@ -158,6 +168,7 @@ const IdeacardDivComponent = ({
       </div>
       <PreviewScreenModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} data={data} selectedImage={selectedImage} />
     </>
+
 
   );
 };
@@ -252,11 +263,13 @@ export default function TileView() {
     }
   };
 
+
   const closeDrawer = () => {
     setOpen(false);
     dispatch(updatePersistentDrawer(null));
     dispatch(updateIdeacardData(null));
   };
+
 
   const fetchTileViewData = () => {
     const token = localStorage.getItem("token");
@@ -535,6 +548,7 @@ export default function TileView() {
 
 
 
+
         {/* //Ideacard Drawer  */}
         <Drawer anchor={"right"} open={open} onClose={closeDrawer}
           PaperProps={{
@@ -554,6 +568,7 @@ export default function TileView() {
           />
           <IdeaCardPage customStyle={{ margin: 0 }} />
         </Drawer>
+
       </div >
     </>
   );

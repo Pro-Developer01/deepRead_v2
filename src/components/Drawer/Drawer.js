@@ -54,6 +54,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
     })
 );
 
+
 export function DrawerContentHandler() {
 
     const dataType = useSelector((state) => state.persistentDrawerReducer.value)
@@ -62,6 +63,7 @@ export function DrawerContentHandler() {
         if (dataType) {
             if (dataType === 'ideaCard') {
                 return <IdeaCardPage />
+
 
             }
             else if (dataType === 'identify Ideacard') {
@@ -80,6 +82,7 @@ export function DrawerContentHandler() {
     };
 
     return (
+
         <>
             <KeyboardDoubleArrowRightIcon
                 fontSize="medium"
@@ -123,6 +126,7 @@ export default function PersistentDrawerRight({ open, resizableWidth, childrenx 
     // };
 
     return (
+
         <Box sx={{
             display: "flex", height: '100%', width: open ? "100%" : (resizableWidth ? resizableWidth + 'px' : '48%'),
 
@@ -143,7 +147,9 @@ export default function PersistentDrawerRight({ open, resizableWidth, childrenx 
                 anchor="right"
                 open={dataType}
             >
+
                 <DrawerContentHandler />
+
             </Drawer>
         </Box>
     );
