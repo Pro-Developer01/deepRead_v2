@@ -6,7 +6,7 @@ import { getIdeacardIcons } from '../../helperFunctions/getIdeacardIcons';
 import { PreviewScreenTabs } from '../AccordianCollections/AccordianCollections';
 
 export default function PreviewScreenModal(props) {
-    const { isModalOpen = false, setIsModalOpen = () => { }, selectedImage = '', data = {} } = props
+    const { isModalOpen = false, setIsModalOpen = () => { }, selectedImage = '', data = {}, clickHandler = () => { } } = props
 
     const handleOk = () => {
         setIsModalOpen(false);
@@ -21,7 +21,7 @@ export default function PreviewScreenModal(props) {
                 maxwidth: '520px'
             }}>
                 <div>
-                    <div className="ideacard-Title">
+                    <div className="ideacard-Title cursor-pointer" onClick={clickHandler}>
                         {/* //Shared by */}
                         <Stack
                             direction="row"
@@ -29,7 +29,7 @@ export default function PreviewScreenModal(props) {
                             alignItems="center"
                             spacing={1}
                             mb={1}
-                            sx={{ paddingLeft: "29px", paddingRight: "0.5rem" }}
+                            sx={{ paddingLeft: "3.4rem", paddingRight: "0.5rem" }}
                         >
                             <DiamondOutlinedIcon
                                 sx={{ fontSize: "14px", color: "lightslategrey" }}
@@ -38,7 +38,6 @@ export default function PreviewScreenModal(props) {
                                 style={{
                                     fontSize: "12px",
                                     color: "lightslategrey",
-                                    marginLeft: '13px'
                                 }}
                             >
 
@@ -67,7 +66,7 @@ export default function PreviewScreenModal(props) {
                         </Stack>
                     </div>
 
-                    <PreviewScreenTabs data={data} />
+                    <PreviewScreenTabs data={data} clickHandler={clickHandler} />
                 </div>
 
 

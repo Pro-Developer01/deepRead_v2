@@ -1370,7 +1370,7 @@ export function CreateIdeaCardAccordian({ data }) {
     </div>
   );
 }
-export function PreviewScreenTabs({ data }) {
+export function PreviewScreenTabs({ data, clickHandler = () => { } }) {
   const [activeSlide, setActiveSlide] = useState(1)
 
 
@@ -1382,12 +1382,12 @@ export function PreviewScreenTabs({ data }) {
     {
       key: 1,
       label: `PICTURE`,
-      children: <PicturePreview link={data?.picture_link} />,
+      children: <div className="cursor-pointer" onClick={clickHandler}><PicturePreview link={data?.picture_link} /></div>,
     },
     {
       key: 2,
       label: `LINKED HIGHLIGHTS `,
-      children: <div className="h-[259px] overflow-auto"><LinkedHighlights
+      children: <div className="h-[259px] overflow-auto cursor-pointer" onClick={clickHandler}><LinkedHighlights
         highlightId={data?.highlight_id}
         ideaCardId={data?._id}
         bookId={data?.book_id}
@@ -1398,7 +1398,7 @@ export function PreviewScreenTabs({ data }) {
     {
       key: 3,
       label: `MY NOTES`,
-      children: <div className="h-[259px] overflow-auto"><MyNotes myNotesData={data?.my_notes} ideaCardId={data?._id} /></div>
+      children: <div className="h-[259px] overflow-auto cursor-pointer" onClick={clickHandler}><MyNotes myNotesData={data?.my_notes} ideaCardId={data?._id} /></div>
       ,
     },
   ];

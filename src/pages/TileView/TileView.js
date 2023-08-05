@@ -118,7 +118,7 @@ const IdeacardDivComponent = ({
           console.error(error);
         }*/
   };
-
+  console.log({ isModalOpen });
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -162,11 +162,15 @@ const IdeacardDivComponent = ({
           </div>
         )}
         <span>{getIdeacardIcons(data.label_id)}</span>
-        <span onMouseEnter={(e) => { e.stopPropagation(); setIsModalOpen(true) }}>
+        <span onMouseEnter={(e) => {
+          setTimeout(() => {
+            e.stopPropagation(); setIsModalOpen(true)
+          }, 700);
+        }}>
           <b> {data.title || ""}</b>
         </span>
       </div>
-      <PreviewScreenModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} data={data} selectedImage={selectedImage} />
+      <PreviewScreenModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} clickHandler={clickHandler} data={data} selectedImage={selectedImage} />
     </>
 
 
